@@ -1,0 +1,77 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes grow-bar {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--target-height);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-grow-bar {
+  --target-height: 100%;
+  animation: grow-bar 1s ease-out forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+.animation-delay-800 {
+  animation-delay: 0.8s;
+}
+.animation-delay-1000 {
+  animation-delay: 1s;
+}
+.animation-delay-1200 {
+  animation-delay: 1.2s;
+}
+.animation-delay-1400 {
+  animation-delay: 1.4s;
+}
+
+.progress-bar {
+  background: linear-gradient(90deg, #2f5233 0%, #337b01 50%, #76b947 100%);
+}
+
+.progress-circle {
+  transform: rotate(-90deg);
+}
+
+.progress-circle circle {
+  transition: stroke-dashoffset 1s ease-in-out;
+}

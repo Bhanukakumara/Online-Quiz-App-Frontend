@@ -1,0 +1,56 @@
+<div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-2xl">
+    <h2 class="text-2xl font-bold mb-6 text-center">Create New Exam</h2>
+    <form #examForm="ngForm" (ngSubmit)="onSubmit(examForm)" class="space-y-5">
+      <!-- Exam Title -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Exam Title</label>
+        <input type="text" name="title" [(ngModel)]="newExam.title" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none" required>
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Description</label>
+        <textarea name="description" [(ngModel)]="newExam.description" rows="3" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none" required></textarea>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <!-- Question Count -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Question Count</label>
+          <input type="number" name="questionCount" [(ngModel)]="newExam.questionCount" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none" required>
+        </div>
+
+        <!-- Max Attempts -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Max Attempts</label>
+          <input type="number" name="maxAttempts" [(ngModel)]="newExam.maxAttempts" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none" required>
+        </div>
+      </div>
+
+      <!-- Total Time (Minutes) -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Total Time (Minutes)</label>
+        <input type="number" name="totalTimeMinutes" [(ngModel)]="newExam.totalTimeMinutes" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none" required>
+      </div>
+
+      <!-- Course Name Dropdown -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Course Name</label>
+        <select name="courseId" [(ngModel)]="newExam.courseId" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none" required>
+          <option [ngValue]="null">Select Course</option>
+          <option *ngFor="let course of courseList" [ngValue]="course.id">{{course.name}}</option>
+        </select>
+      </div>
+
+      <!-- Teacher Name Dropdown -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Teacher Name</label>
+        <input name="teacherId" [(ngModel)]="createdByName" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-400 focus:outline-none" readonly required>
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-xl hover:bg-blue-600 transition duration-300">Create Exam</button>
+      </div>
+    </form>
+  </div>

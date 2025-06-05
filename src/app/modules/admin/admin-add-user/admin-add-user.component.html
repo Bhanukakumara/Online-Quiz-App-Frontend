@@ -1,0 +1,79 @@
+<!-- src/app/components/add-user/add-user.component.html -->
+<div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+  <h2 class="text-2xl font-bold mb-6 text-center">Add New User</h2>
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" class="space-y-5">
+    <!-- Name -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Name</label>
+      <input
+        type="text"
+        name="name"
+        ngModel
+        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+        required
+      />
+    </div>
+
+    <!-- Username -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Username</label>
+      <input
+        type="text"
+        name="username"
+        [(ngModel)]="newUser.username"
+        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+        required
+      />
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Email</label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)] = "newUser.email"
+        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+        required
+      />
+    </div>
+
+    <!-- Password -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Password</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="newUser.password"
+        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+        required
+      />
+    </div>
+
+    <!-- Role -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Role</label>
+      <select
+        name="role"
+        [(ngModel)]="newUser.role"
+        class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+        required
+      >
+        <option value="">Select Role</option>
+        <option value="ADMIN">ADMIN</option>
+        <option value="TEACHER">TEACHER</option>
+        <option value="STUDENT">STUDENT</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+      <button
+        type="submit"
+        class="w-full bg-blue-500 text-white py-2 rounded-xl hover:bg-blue-600 transition duration-300"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

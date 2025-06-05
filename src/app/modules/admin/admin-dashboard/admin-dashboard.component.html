@@ -1,0 +1,14 @@
+<div class="min-h-screen bg-gray-50 flex flex-col">
+    <!-- Navbar at the top -->
+    <app-admin-navbar></app-admin-navbar>
+
+    <div class="flex flex-1">
+        <!-- Sidebar on the left -->
+        <app-admin-sidebar></app-admin-sidebar>
+
+        <!-- Main content area -->
+        <main class="flex-1 md:ml-64 lg:ml-65 p-4 md:p-2 mt-12">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>

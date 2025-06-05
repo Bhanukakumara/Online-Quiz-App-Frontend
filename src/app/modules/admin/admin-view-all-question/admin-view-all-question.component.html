@@ -1,0 +1,39 @@
+<div class="max-w-7xl mx-auto mt-10 p-4 bg-white shadow rounded-lg">
+  <h2 class="text-xl font-semibold mb-4 text-gray-800">All Questions</h2>
+
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-sm text-left border border-gray-300">
+      <thead class="bg-gray-100 text-gray-700 uppercase">
+        <tr>
+          <th class="px-4 py-2 border">#</th>
+          <th class="px-4 py-2 border">Question</th>
+          <th class="px-4 py-2 border">Option 1</th>
+          <th class="px-4 py-2 border">Option 2</th>
+          <th class="px-4 py-2 border">Option 3</th>
+          <th class="px-4 py-2 border">Option 4</th>
+          <th class="px-4 py-2 border">Correct</th>
+          <th class="px-4 py-2 border">Time (s)</th>
+          <th class="px-4 py-2 border">Exam</th>
+          <th class="px-4 py-2 border">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-t" *ngFor="let question of questions; let i = index">
+          <td class="px-4 py-2 border">{{i + 1}}</td>
+          <td class="px-4 py-2 border">{{question.text}}</td>
+          <td class="px-4 py-2 border">{{question.option1}}</td>
+          <td class="px-4 py-2 border">{{question.option2}}</td>
+          <td class="px-4 py-2 border">{{question.option3}}</td>
+          <td class="px-4 py-2 border">{{question.option4}}</td>
+          <td class="px-4 py-2 border text-green-600 font-semibold">{{question.correctOption}}</td>
+          <td class="px-4 py-2 border text-center">{{question.timeToAnswer}}</td>
+          <td class="px-4 py-2 border">{{question.examTitle}}</td>
+          <td class="px-4 py-2 border text-center space-x-2">
+            <button class="text-blue-600 hover:underline">Edit</button>
+            <button class="text-red-600 hover:underline">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

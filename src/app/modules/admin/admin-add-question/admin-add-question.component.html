@@ -1,0 +1,60 @@
+<form #questionForm="ngForm" (ngSubmit)="onSubmit(questionForm)" class="max-w-xl mx-auto p-6 bg-white shadow rounded-lg space-y-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Question</label>
+      <textarea name="text" [(ngModel)]="newQuestion.text" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-indigo-200 focus:border-indigo-500"></textarea>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Option 1</label>
+      <input name="option1" [(ngModel)]="newQuestion.option1" type="text" required class="option-input mt-1 block w-full border border-gray-300 rounded-md p-2" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Option 2</label>
+      <input name="option2" [(ngModel)]="newQuestion.option2" type="text" required class="option-input mt-1 block w-full border border-gray-300 rounded-md p-2" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Option 3</label>
+      <input name="option3" [(ngModel)]="newQuestion.option3" type="text" required class="option-input mt-1 block w-full border border-gray-300 rounded-md p-2" />
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Option 4</label>
+      <input name="option4" [(ngModel)]="newQuestion.option4" type="text" required class="option-input mt-1 block w-full border border-gray-300 rounded-md p-2" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Correct Option</label>
+      <select name="correctOption" [(ngModel)]="newQuestion.correctOption" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+        <option [ngValue]="1">Option 1</option>
+        <option [ngValue]="2">Option 2</option>
+        <option [ngValue]="3">Option 3</option>
+        <option [ngValue]="4">Option 4</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Time to Answer (seconds)</label>
+      <input name="timeToAnswer" [(ngModel)]="newQuestion.timeToAnswer" type="number" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Marks</label>
+      <input name="marks" [(ngModel)]="newQuestion.marks" type="number" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Select Exam</label>
+      <select name="examId" [(ngModel)]="newQuestion.examId" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
+        <option *ngFor="let exam of examList" [ngValue]="exam.id">{{exam.title}}</option>
+      </select>
+    </div>
+
+    <!-- Admin Name -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Admin Name</label>
+        <input type="text" name="userName" [ngModel]="userName" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" readonly required>
+      </div>
+
+    <div class="text-right">
+      <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-xl hover:bg-blue-600 transition duration-300">Create Question</button>
+    </div>
+  </form>

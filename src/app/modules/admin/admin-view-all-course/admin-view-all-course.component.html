@@ -1,0 +1,32 @@
+<div class="max-w-6xl mx-auto bg-white p-6 rounded-2xl shadow-lg">
+    <h2 class="text-2xl font-bold mb-4">All Courses</h2>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full border border-gray-200 text-sm text-left">
+        <thead class="bg-gray-100 text-gray-700">
+          <tr>
+            <th class="px-4 py-2 border">#</th>
+            <th class="px-4 py-2 border">Course Name</th>
+            <th class="px-4 py-2 border">Description</th>
+            <th class="px-4 py-2 border">Admin Name</th>
+            <th class="px-4 py-2 border text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-800">
+          <!-- Example Row -->
+          <tr class="hover:bg-gray-50" *ngFor="let course of allCourses; let i = index">
+            <td class="px-4 py-2 border">{{i + 1}}</td>
+            <td class="px-4 py-2 border">{{course.name}}</td>
+            <td class="px-4 py-2 border">{{course.description}}</td>
+            <td class="px-4 py-2 border">{{course.adminName}}</td>
+            <td class="px-4 py-2 border text-center space-x-2">
+              <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-xs">Update</button>
+              <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-xs">Delete</button>
+            </td>
+          </tr>
+
+          <!-- Add more <tr> rows dynamically as needed -->
+        </tbody>
+      </table>
+    </div>
+  </div>
