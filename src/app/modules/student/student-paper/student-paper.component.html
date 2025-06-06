@@ -15,7 +15,7 @@
             Max Attempts: {{examDetail.maxAttempts}}
           </div>
           <div class="bg-gradient-to-r from-[#2F5233] to-[#337B01] text-white px-4 py-2 rounded-lg font-semibold">
-            Progress: {{answeredQuestions}}/{{totalQuestions}}
+            Progress: {{getAnsweredCount()}}/{{questionList.length}}
           </div>
         </div>
       </div>
@@ -136,8 +136,7 @@
 
           <!-- Submit Button -->
           <div class="text-center bg-white rounded-xl shadow-lg p-6">
-            <button (click)="submitExam()" 
-                    [disabled]="!canSubmitExam()"
+            <button (click)="submitExam()"
                     class="bg-gradient-to-r from-[#2F5233] via-[#337B01] to-[#76B947] text-white font-bold py-4 px-12 rounded-xl hover:from-[#337B01] hover:via-[#76B947] hover:to-[#BEEAC5] hover:text-[#2F5233] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
               Submit Paper
             </button>
