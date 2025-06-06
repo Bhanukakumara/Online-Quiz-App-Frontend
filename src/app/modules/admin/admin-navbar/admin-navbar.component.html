@@ -50,7 +50,7 @@
             >
               Quiz Portal
             </h1>
-            <p class="text-xs text-gray-500">Admin Dashboard</p>
+            <p class="text-xs text-gray-500">{{userRole}} DashBoard</p>
           </div>
         </div>
       </div>
@@ -116,11 +116,11 @@
             <div
               class="w-8 h-8 bg-gradient-to-br from-[#76B947] to-[#337B01] rounded-full flex items-center justify-center"
             >
-              <span class="text-white text-sm font-semibold">A</span>
+              <span class="text-white text-sm font-semibold">{{userInitialsValue}}</span>
             </div>
             <div class="hidden sm:block text-left">
-              <p class="text-sm font-medium text-gray-900">Admin User</p>
-              <p class="text-xs text-gray-500">Administrator</p>
+              <p class="text-sm font-medium text-gray-900">{{userName}}</p>
+              <p class="text-xs text-gray-500">{{userRole}}</p>
             </div>
             <svg
               class="w-4 h-4 text-gray-400"
