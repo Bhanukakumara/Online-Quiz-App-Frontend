@@ -21,4 +21,13 @@ export class DashboardService {
   getQuestionCount(): Observable<number> {
     return this.http.get<number>('http://localhost:8080/api/question/total-count');
   }
+  getAdminCount(): Observable<number> {
+    return this.http.get<number>('http://localhost:8080/api/user/total-admin-count');
+  }
+  getTeacherCount(): Observable<number> {
+    return this.http.get<number>('http://localhost:8080/api/user/total-teacher-count');
+  }
+  getStudentCount(): Observable<number> {
+    return this.http.get<number>('http://localhost:8080/api/user/total-student-count');
+  } 
 }
