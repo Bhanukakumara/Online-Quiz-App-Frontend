@@ -13,4 +13,8 @@ export class PaperService {
   createPaper(paper: Paper): Observable<any>{
     return this.http.post('http://localhost:8080/api/paper/create', paper);
   }
+
+  savePaper(savePaper: any): Observable<any> {
+    return this.http.post('http://localhost:8080/api/paper/save', savePaper);
+  }
 }
