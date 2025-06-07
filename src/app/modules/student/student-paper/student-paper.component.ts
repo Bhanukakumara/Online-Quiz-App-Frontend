@@ -68,7 +68,6 @@ export class StudentPaperComponent {
     this.totalMarks = this.questionList.reduce((total, question) => {
       return total + (Number(question.marks) || 0);
     }, 0);
-    console.log('Total Marks Calculated:', this.totalMarks); // Debug log
   }
 
   loadExamDetails() {

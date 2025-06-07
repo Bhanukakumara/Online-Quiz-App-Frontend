@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaperService } from '../../../core/services/paper.service';
 import { QuestionService } from '../../../core/services/question.service';
 import { forkJoin } from 'rxjs';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-admin-view-all-result',
@@ -13,14 +14,34 @@ import { forkJoin } from 'rxjs';
 export class AdminViewAllResultComponent implements OnInit {
   allResult: any[] = [];
   questionsCache: { [key: number]: any } = {}; // Cache for questions to avoid repeated API calls
+  userRole: string = 'ADMIN';
+  userId: number = 0;
   
   constructor(
     private paperService: PaperService,
-    private questionService: QuestionService
+    private questionService: QuestionService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.getAllResult(); 
+    this.me(); 
+  }
+  me(){
+    this.authService.me().subscribe({
+      next: (user) => {
+        this.userRole = user.role;
+        this.userId = user.id;
+        if (this.userRole === 'ADMIN') {
+          this.getAllResult();
+        }
+        else if (this.userRole === 'STUDENT') {
+          this.getAllResultByStudentId();
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching user details:', error);
+      }
+    });
   }
 
   getAllResult() {
@@ -37,6 +58,23 @@ export class AdminViewAllResultComponent implements OnInit {
       error: (error) => {
         console.error('Error fetching results:', error);
       }
+    });
+  }
+
+  getAllResultByStudentId() {
+    this.paperService.getAllResultByStudentId(this.userId).subscribe({
+      next: (results) => {
+        // Initialize expanded property for each paper
+        this.allResult = results.map((paper: any) => ({
+          ...paper,
+          expanded: false,
+          questionsLoaded: false, // Track if questions are loaded for this paper
+          questionDetails: [], // Store question details for this paper
+        }));
+      },
+      error: (error) => {
+        console.error('Error fetching results:', error);
+      },
     });
   }
 
