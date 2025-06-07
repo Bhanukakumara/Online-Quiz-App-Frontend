@@ -26,6 +26,7 @@ export class StudentPaperComponent {
   startTime: Date;
   isLoading = false;
   totalMarks: number = 0;
+  studentId: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -161,7 +162,7 @@ export class StudentPaperComponent {
       this.paperService.savePaper(paperData).subscribe({
         next: () => {
           alert('Exam submitted successfully!');
-          this.router.navigate(['/student/exam']);
+          this.router.navigate([`/student/view-all-result/${user.id}`]);
         },
         error: (error) => {
           console.error('Error submitting exam', error);

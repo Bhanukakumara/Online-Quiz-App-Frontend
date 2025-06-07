@@ -18,6 +18,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { StudentExamComponent } from './modules/student/student-exam/student-exam.component';
 import { StudentPaperComponent } from './modules/student/student-paper/student-paper.component';
 import { AdminViewAllResultComponent } from './modules/admin/admin-view-all-result/admin-view-all-result.component';
+import { StudentAllResultComponent } from './modules/student/student-all-result/student-all-result.component';
 
 export const routes: Routes = [
     {
@@ -63,7 +64,8 @@ export const routes: Routes = [
         children: [
             {path: 'dashboard', component: StudentMainComponent},
             {path: 'exam', component: StudentExamComponent},
-            {path: 'exam/paper', component: StudentPaperComponent}
+            {path: 'exam/paper', component: StudentPaperComponent},
+            {path: 'view-all-result/:studentId', component: StudentAllResultComponent}
         ]
     }
 ];

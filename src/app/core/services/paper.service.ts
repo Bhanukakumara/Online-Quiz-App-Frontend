@@ -20,4 +20,8 @@ export class PaperService {
   getAllResult(): Observable<any> {
     return this.http.get('http://localhost:8080/api/paper/get-all-answer')
   }
+
+  getAllResultByStudentId(studentId: number): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/paper/get-all-answer-by-student-id/${studentId}`);
+  }
 }
