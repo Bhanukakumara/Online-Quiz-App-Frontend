@@ -130,6 +130,10 @@ export class AdminMainComponent implements OnInit, OnDestroy {
     this.router.navigate(['admin/create-course']);
   }
 
+  viewReports(){
+    this.router.navigate(['admin/view-all-result']);
+  }
+
   getAdminCount() {
     this.dashboardService.getAdminCount().subscribe({
       next: (count) => {

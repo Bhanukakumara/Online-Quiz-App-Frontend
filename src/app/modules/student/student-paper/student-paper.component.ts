@@ -26,6 +26,7 @@ export class StudentPaperComponent {
   startTime: Date;
   isLoading = false;
   totalMarks: number = 0;
+  studentId: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -67,7 +68,6 @@ export class StudentPaperComponent {
     this.totalMarks = this.questionList.reduce((total, question) => {
       return total + (Number(question.marks) || 0);
     }, 0);
-    console.log('Total Marks Calculated:', this.totalMarks); // Debug log
   }
 
   loadExamDetails() {
@@ -113,10 +113,13 @@ export class StudentPaperComponent {
   getStudentAnswersArray(): { questionId: number; givenAnswer: number }[] {
     return Object.keys(this.selectedAnswers).map((key) => {
       const questionId = parseInt(key);
+      // Find the question in questionList to get the correct answer (already stored as number)
+    const question = this.questionList.find(q => q.id === questionId);
+    const correctAnswer = question?.correctOption;
       // Convert answer letter (A,B,C,D) to number (1,2,3,4)
       const givenAnswer =
         this.selectedAnswers[questionId].charCodeAt(0) - 'A'.charCodeAt(0) + 1;
-      return { questionId, givenAnswer };
+      return { questionId, correctAnswer, givenAnswer };
     });
   }
 
@@ -128,7 +131,7 @@ export class StudentPaperComponent {
     if (this.isLoading) return;
 
     const studentAnswers = this.getStudentAnswersArray();
-
+    
     if (this.answeredQuestions < this.totalQuestions) {
       if (
         !confirm(
@@ -158,7 +161,7 @@ export class StudentPaperComponent {
       this.paperService.savePaper(paperData).subscribe({
         next: () => {
           alert('Exam submitted successfully!');
-          this.router.navigate(['/student/exam']);
+          this.router.navigate([`/student/view-all-result/${user.id}`]);
         },
         error: (error) => {
           console.error('Error submitting exam', error);
