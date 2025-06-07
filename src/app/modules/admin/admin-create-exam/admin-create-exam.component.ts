@@ -59,8 +59,7 @@ export class AdminCreateExamComponent implements OnInit{
         this.createdBy.id
       );
       this.examService.createExam(examToCreate).subscribe({
-        next: (response) => {
-          console.log('Exam Created Successfully', response);
+        next: () => {
           form.resetForm();
           alert('Exam created successfully!');
         },

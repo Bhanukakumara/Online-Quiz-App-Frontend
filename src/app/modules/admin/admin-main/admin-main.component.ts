@@ -1,119 +1,344 @@
-import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import {Component,ElementRef,OnDestroy,OnInit,ViewChild} from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
+import { DashboardService } from '../../../core/services/dashboard.service';
+import { Router } from '@angular/router';
+import Chart, { ChartConfiguration, ChartType } from 'chart.js/auto';
+import {ChartDataPoint,LiveSubmissionData,SubmissionChartService,} from '../../../core/services/submission-chart.service';
+import { catchError, interval, of, Subscription, switchMap } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-admin-main',
-  imports: [NgFor],
+  imports: [CommonModule],
   templateUrl: './admin-main.component.html',
-  styleUrl: './admin-main.component.css'
+  styleUrl: './admin-main.component.css',
 })
-export class AdminMainComponent {
-  activeItem: any;
-  hasContent = false; // Set to true when child components are present
-  get mainContentClasses(): string {
-    return 'lg:ml-64';
-  }
-  getPageTitle(): string {
-    const titles: { [key: string]: string } = {
-      'dashboard': 'Dashboard',
-      'users': 'User Management',
-      'courses': 'Course Management',
-      'exams': 'Exam Management',
-      'questions': 'Question Bank',
-      'reports': 'Reports & Analytics',
-      'settings': 'Settings'
-    };
-    return titles[this.activeItem] || 'Dashboard';
-  }
-  getPageDescription(): string {
-    const descriptions: { [key: string]: string } = {
-      'dashboard': 'Overview of your quiz portal activities and statistics',
-      'users': 'Manage admins, teachers, and students',
-      'courses': 'Create and manage courses for your quiz system',
-      'exams': 'Create and configure exams for different courses',
-      'questions': 'Manage question pools for your exams',
-      'reports': 'View detailed analytics and performance reports',
-      'settings': 'Configure system settings and preferences'
-    };
-    return descriptions[this.activeItem] || 'Welcome to the admin panel';
-  }
-  getActionButtonText(): string {
-    const actions: { [key: string]: string } = {
-      'dashboard': 'View Reports',
-      'users': 'Add New User',
-      'courses': 'Create Course',
-      'exams': 'Create Exam',
-      'questions': 'Add Question',
-      'reports': 'Export Data',
-      'settings': 'Save Changes'
-    };
-    return actions[this.activeItem] || 'Take Action';
-  }
-  stats = {
-    totalUsers: 1247,
-    activeCourses: 24,
-    totalExams: 89,
-    totalQuestions: 2156,
-    activeSessions: 34
-  };
+export class AdminMainComponent implements OnInit, OnDestroy {
+  userName: string = '';
+  userCount: number = 0;
+  courseCount: number = 0;
+  examCount: number = 0;
+  questionCount: number = 0;
+  adminCount: number = 0;
+  teacherCount: number = 0;
+  studentCount: number = 0;
 
-  userDistribution = {
-    students: 1180,
-    teachers: 62,
-    admins: 5
-  };
+  @ViewChild('chartCanvas', { static: true })
+  chartCanvas!: ElementRef<HTMLCanvasElement>;
 
-  recentActivities = [
-    {
-      type: 'user',
-      title: 'New student registered',
-      description: 'John Smith joined Computer Science course',
-      time: '2 minutes ago'
-    },
-    {
-      type: 'exam',
-      title: 'Exam completed',
-      description: 'Mathematics Quiz - 45 students participated',
-      time: '15 minutes ago'
-    },
-    {
-      type: 'course',
-      title: 'New course created',
-      description: 'Advanced Programming course by Dr. Anderson',
-      time: '1 hour ago'
-    },
-    {
-      type: 'question',
-      title: 'Question bank updated',
-      description: '25 new questions added to Physics category',
-      time: '2 hours ago'
-    },
-    {
-      type: 'user',
-      title: 'Teacher account activated',
-      description: 'Sarah Johnson can now create exams',
-      time: '3 hours ago'
+  private chart!: Chart;
+  private refreshSubscription!: Subscription;
+
+  // Live data
+  currentMinuteCount: number = 0;
+  todayTotal: number = 0;
+  lastUpdated: Date = new Date();
+  isLoading: boolean = true;
+  error: string | null = null;
+
+  // Chart configuration
+  chartData: ChartDataPoint[] = [];
+  timeRange: number = 60; // minutes
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private dashboardService: DashboardService,
+    private submissionChartService: SubmissionChartService
+  ) {}
+
+  ngOnDestroy(): void {
+    if (this.refreshSubscription) {
+      this.refreshSubscription.unsubscribe();
     }
-  ];
-
-  ngOnInit() {
-    // Component initialization logic
-    this.loadDashboardData();
+    if (this.chart) {
+      this.chart.destroy();
+    }
   }
 
-  loadDashboardData() {
-    // Simulate loading data from API
-    // You can replace this with actual API calls to your Spring Boot backend
-    console.log('Loading dashboard data...');
+  ngOnInit(): void {
+    this.me();
+    this.getUserCount();
+    this.getCourseCount();
+    this.getExamCount();
+    this.getQuestionCount();
+    this.getAdminCount();
+    this.getTeacherCount();
+    this.getStudentCount();
+    this.initializeChart();
+    this.startRealTimeUpdates();
+  }
+  me() {
+    this.authService.me().subscribe({
+      next: (user) => {
+        this.userName = user.name;
+      },
+      error: (error) => {
+        console.error('Error fetching user data', error);
+        alert('Error fetching user data. Please try again later.');
+      },
+    });
+  }
+  getUserCount() {
+    this.dashboardService.getUserCount().subscribe({
+      next: (count) => {
+        this.userCount = count;
+      },
+      error: (error) => {
+        console.error('Error fetching user count', error);
+        alert('Error fetching user count. Please try again later.');
+      },
+    });
+  }
+  getCourseCount() {
+    this.dashboardService.getCourseCount().subscribe({
+      next: (count) => {
+        this.courseCount = count;
+      },
+      error: (error) => {
+        console.error('Error fetching course count', error);
+        alert('Error fetching course count. Please try again later.');
+      },
+    });
+  }
+  getExamCount() {
+    this.dashboardService.getExamCount().subscribe({
+      next: (count) => {
+        this.examCount = count;
+      },
+      error: (error) => {
+        console.error('Error fetching exam count', error);
+        alert('Error fetching exam count. Please try again later.');
+      },
+    });
+  }
+  getQuestionCount() {
+    this.dashboardService.getQuestionCount().subscribe({
+      next: (count) => {
+        this.questionCount = count;
+      },
+      error: (error) => {
+        console.error('Error fetching question count', error);
+        alert('Error fetching question count. Please try again later.');
+      },
+    });
+  }
+  addNewUser() {
+    this.router.navigate(['admin/add-user']);
+  }
+  createCourse() {
+    this.router.navigate(['admin/create-course']);
   }
 
-  getActivityIconClass(type: string): string {
-    const classes = {
-      'user': 'bg-gradient-to-br from-[#BEEAC5] to-[#76B947] text-[#2F5233]',
-      'exam': 'bg-gradient-to-br from-[#76B947] to-[#337B01] text-white',
-      'course': 'bg-gradient-to-br from-[#337B01] to-[#2F5233] text-white',
-      'question': 'bg-gradient-to-br from-[#2F5233] to-[#337B01] text-white'
+  getAdminCount() {
+    this.dashboardService.getAdminCount().subscribe({
+      next: (count) => {
+        this.adminCount = count;
+      },
+      error: (error) => {
+        console.error('Error fetching admin count', error);
+        alert('Error fetching admin count. Please try again later.');
+      }
+    });
+  }
+
+  getTeacherCount() {
+    this.dashboardService.getTeacherCount().subscribe({
+      next: (count) => {
+        this.teacherCount = count;
+      },
+      error: (error) => {
+        console.error('Error fetching teacher count', error);
+        alert('Error fetching teacher count. Please try again later.');
+      }
+    });
+  }
+
+  getStudentCount() {
+    this.dashboardService.getStudentCount().subscribe({
+      next: (count) => {
+        this.studentCount = count;
+      },
+      error: (error) => {
+        console.error('Error fetching student count', error);
+        alert('Error fetching student count. Please try again later.');
+      }
+    });
+  }
+
+  initializeChart(): void {
+    const ctx = this.chartCanvas.nativeElement.getContext('2d');
+    if (!ctx) return;
+
+    const config: ChartConfiguration = {
+      type: 'line' as ChartType,
+      data: {
+        labels: [],
+        datasets: [
+          {
+            label: 'Submissions per Minute',
+            data: [],
+            borderColor: '#4f46e5',
+            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4,
+            pointBackgroundColor: '#4f46e5',
+            pointBorderColor: '#ffffff',
+            pointBorderWidth: 2,
+            pointRadius: 4,
+            pointHoverRadius: 6,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Paper Submissions - Last 60 Minutes',
+            font: {
+              size: 16,
+              weight: 'bold',
+            },
+          },
+          legend: {
+            display: true,
+            position: 'top',
+          },
+          tooltip: {
+            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            titleColor: '#ffffff',
+            bodyColor: '#ffffff',
+            borderColor: '#4f46e5',
+            borderWidth: 1,
+          },
+        },
+        scales: {
+          x: {
+            display: true,
+            title: {
+              display: true,
+              text: 'Time',
+            },
+            grid: {
+              color: 'rgba(0, 0, 0, 0.1)',
+            },
+          },
+          y: {
+            display: true,
+            title: {
+              display: true,
+              text: 'Number of Submissions',
+            },
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(0, 0, 0, 0.1)',
+            },
+            ticks: {
+              stepSize: 1,
+            },
+          },
+        },
+        animation: {
+          duration: 750,
+          easing: 'easeInOutQuart',
+        },
+      },
     };
-    return classes[type as keyof typeof classes] || classes['user'];
+
+    this.chart = new Chart(ctx, config);
+  }
+
+  startRealTimeUpdates(): void {
+    // Initial load
+    this.loadChartData();
+
+    // Update every second
+    this.refreshSubscription = interval(1000)
+      .pipe(
+        switchMap(() => this.submissionChartService.getLiveSubmissions()),
+        catchError((error) => {
+          console.error('Error fetching live data:', error);
+          this.error = 'Failed to fetch live data';
+          return of(null);
+        })
+      )
+      .subscribe((liveData) => {
+        if (liveData) {
+          this.updateLiveData(liveData);
+          this.error = null;
+        }
+      });
+
+    // Update chart data every 30 seconds
+    interval(30000)
+      .pipe(
+        switchMap(() =>
+          this.submissionChartService.getSubmissionsByMinute(this.timeRange)
+        ),
+        catchError((error) => {
+          console.error('Error fetching chart data:', error);
+          return of([]);
+        })
+      )
+      .subscribe((data) => {
+        if (data.length > 0) {
+          this.updateChartData(data);
+        }
+      });
+  }
+
+  loadChartData(): void {
+    this.isLoading = true;
+    this.submissionChartService
+      .getSubmissionsByMinute(this.timeRange)
+      .subscribe({
+        next: (data) => {
+          this.updateChartData(data);
+          this.isLoading = false;
+        },
+        error: (error) => {
+          console.error('Error loading chart data:', error);
+          this.error = 'Failed to load chart data';
+          this.isLoading = false;
+        },
+      });
+  }
+
+  updateChartData(data: ChartDataPoint[]): void {
+    this.chartData = data;
+
+    if (this.chart) {
+      this.chart.data.labels = data.map((d) => d.time);
+      this.chart.data.datasets[0].data = data.map((d) => d.count);
+      this.chart.update('none'); // No animation for real-time updates
+    }
+  }
+
+  updateLiveData(data: LiveSubmissionData): void {
+    this.currentMinuteCount = data.currentMinuteCount;
+    this.todayTotal = data.todayTotal;
+    this.lastUpdated = new Date(data.timestamp);
+  }
+
+  changeTimeRange(minutes: number): void {
+    this.timeRange = minutes;
+    this.loadChartData();
+
+    // Update chart title
+    if (this.chart) {
+      this.chart.options.plugins!.title!.text = `Paper Submissions - Last ${minutes} Minutes`;
+      this.chart.update();
+    }
+  }
+
+  refreshData(): void {
+    this.loadChartData();
   }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/services/auth.service';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Course } from '../../../core/models/course';
@@ -38,8 +37,7 @@ export class AdminCreateCourseComponent implements OnInit{
         this.newCourse.adminId
       );
       this.courseService.createCourse(courseToCreate).subscribe({
-        next: (response) => {
-          console.log('Course Created Successfully', response);
+        next: () => {
           form.resetForm();
           alert('Course created successfully!');
         },
