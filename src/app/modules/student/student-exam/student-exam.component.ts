@@ -33,7 +33,7 @@ export class StudentExamComponent implements OnInit {
       next: (response) => {
         this.exams = response;
       },
-      error: (error) => {
+      error: () => {
         alert('Error fetching exams. Please try again.');
       },
     });
