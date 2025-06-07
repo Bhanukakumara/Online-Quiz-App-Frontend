@@ -113,10 +113,13 @@ export class StudentPaperComponent {
   getStudentAnswersArray(): { questionId: number; givenAnswer: number }[] {
     return Object.keys(this.selectedAnswers).map((key) => {
       const questionId = parseInt(key);
+      // Find the question in questionList to get the correct answer (already stored as number)
+    const question = this.questionList.find(q => q.id === questionId);
+    const correctAnswer = question?.correctOption;
       // Convert answer letter (A,B,C,D) to number (1,2,3,4)
       const givenAnswer =
         this.selectedAnswers[questionId].charCodeAt(0) - 'A'.charCodeAt(0) + 1;
-      return { questionId, givenAnswer };
+      return { questionId, correctAnswer, givenAnswer };
     });
   }
 
@@ -128,7 +131,7 @@ export class StudentPaperComponent {
     if (this.isLoading) return;
 
     const studentAnswers = this.getStudentAnswersArray();
-
+    
     if (this.answeredQuestions < this.totalQuestions) {
       if (
         !confirm(

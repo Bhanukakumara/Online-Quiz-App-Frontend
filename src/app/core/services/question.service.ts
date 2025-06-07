@@ -19,6 +19,10 @@ export class QuestionService {
   }
 
   getQuestionPaperByExamId(examId: number): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:8080/api/question/get-question-paper-by-examId/${examId}`);
+    return this.http.get<any[]>(`http://localhost:8080/api/question/get-by-examId/${examId}`);
+  }
+
+  getQuestionById(questionId: number): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/question/get-by-id/${questionId}`);
   }
 }

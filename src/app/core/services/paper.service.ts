@@ -17,4 +17,7 @@ export class PaperService {
   savePaper(savePaper: any): Observable<any> {
     return this.http.post('http://localhost:8080/api/paper/save', savePaper);
   }
+  getAllResult(): Observable<any> {
+    return this.http.get('http://localhost:8080/api/paper/get-all-answer')
+  }
 }
