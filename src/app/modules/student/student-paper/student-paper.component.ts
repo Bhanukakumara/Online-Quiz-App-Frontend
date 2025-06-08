@@ -7,6 +7,7 @@ import { ExamService } from '../../../core/services/exam.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { PaperService } from '../../../core/services/paper.service';
 import { Paper } from '../../../core/models/paper';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-paper',
@@ -77,7 +78,7 @@ export class StudentPaperComponent {
       },
       error: (error) => {
         console.error('Error loading exam details', error);
-        alert('Error loading exam details. Please try again.');
+        Swal.fire('Error', 'Failed to load exam details. Please try again later.', 'error');
       },
     });
   }
@@ -160,12 +161,12 @@ export class StudentPaperComponent {
       // Save the paper
       this.paperService.savePaper(paperData).subscribe({
         next: () => {
-          alert('Exam submitted successfully!');
+          Swal.fire("Success", "Exam submitted successfully!", "success");
           this.router.navigate([`/student/view-all-result/${user.id}`]);
         },
         error: (error) => {
           console.error('Error submitting exam', error);
-          alert('Error submitting exam. Please try again.');
+          Swal.fire('Error', 'Failed to submit exam. Please try again later.', 'error');
           this.isLoading = false;
         },
       });

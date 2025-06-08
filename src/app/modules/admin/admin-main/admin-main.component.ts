@@ -6,6 +6,7 @@ import Chart, { ChartConfiguration, ChartType } from 'chart.js/auto';
 import {ChartDataPoint,LiveSubmissionData,SubmissionChartService,} from '../../../core/services/submission-chart.service';
 import { catchError, interval, of, Subscription, switchMap } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-main',
@@ -75,7 +76,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching user data', error);
-        alert('Error fetching user data. Please try again later.');
+        Swal.fire("Error", "Failed to fetch user data. Please try again later.", "error");
       },
     });
   }
@@ -86,7 +87,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching user count', error);
-        alert('Error fetching user count. Please try again later.');
+        Swal.fire('Error', 'Failed to fetch user count. Please try again later.', 'error');
       },
     });
   }
@@ -97,7 +98,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching course count', error);
-        alert('Error fetching course count. Please try again later.');
+        Swal.fire('Error', 'Failed to fetch course count. Please try again later.', 'error');
       },
     });
   }
@@ -108,7 +109,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching exam count', error);
-        alert('Error fetching exam count. Please try again later.');
+        Swal.fire('Error', 'Failed to fetch exam count. Please try again later.', 'error');
       },
     });
   }
@@ -119,7 +120,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching question count', error);
-        alert('Error fetching question count. Please try again later.');
+        Swal.fire('Error', 'Failed to fetch question count. Please try again later.', 'error');
       },
     });
   }
@@ -141,7 +142,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching admin count', error);
-        alert('Error fetching admin count. Please try again later.');
+        Swal.fire('Error', 'Failed to fetch admin count. Please try again later.', 'error');
       }
     });
   }
@@ -153,7 +154,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching teacher count', error);
-        alert('Error fetching teacher count. Please try again later.');
+        Swal.fire('Error', 'Failed to fetch teacher count. Please try again later.', 'error');
       }
     });
   }
@@ -165,7 +166,7 @@ export class AdminMainComponent implements OnInit, OnDestroy {
       },
       error: (error) => {
         console.error('Error fetching student count', error);
-        alert('Error fetching student count. Please try again later.');
+        Swal.fire('Error', 'Failed to fetch student count. Please try again later.', 'error');
       }
     });
   }

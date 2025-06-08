@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Course } from '../../../core/models/course';
 import { CourseService } from '../../../core/services/course.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-create-course',
@@ -25,7 +26,7 @@ export class AdminCreateCourseComponent implements OnInit{
       },
       error: (error) => {
         console.error('Error fetching user data', error);
-        alert('Error fetching user data. Please try again.');
+        Swal.fire('Error', 'Failed to fetch user data. Please try again later.', 'error');
       }
     }); 
   }
@@ -39,11 +40,11 @@ export class AdminCreateCourseComponent implements OnInit{
       this.courseService.createCourse(courseToCreate).subscribe({
         next: () => {
           form.resetForm();
-          alert('Course created successfully!');
+          Swal.fire('Success', 'Course created successfully!', 'success');
         },
         error: (error) => {
           console.error('Error creating course', error);
-          alert('Error creating course. Please try again.');
+          Swal.fire('Error', 'Failed to create course. Please try again.', 'error');
         },
       });
     }

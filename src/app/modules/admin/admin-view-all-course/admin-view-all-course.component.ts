@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '../../../core/models/course';
 import { CourseService } from '../../../core/services/course.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-view-all-course',
@@ -19,7 +20,8 @@ export class AdminViewAllCourseComponent implements OnInit{
       },
       error: (error) => {
         console.error('Error fetching courses', error);
-        alert('Error fetching courses. Please try again later.');
+        Swal.fire('Error', 'Failed to load courses. Please try again later.', 'error');
+        
       },
     });
   }

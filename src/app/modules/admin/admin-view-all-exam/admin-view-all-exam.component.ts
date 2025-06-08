@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExamService } from '../../../core/services/exam.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-view-all-exam',
@@ -25,7 +26,8 @@ export class AdminViewAllExamComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching exams', error);
-        alert('Error fetching exams. Please try again.');
+        Swal.fire('Error', 'Failed to load exams. Please try again later.', 'error');
+        
       }
     });
   }

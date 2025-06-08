@@ -5,6 +5,7 @@ import { CourseService } from '../../../core/services/course.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-create-exam',
@@ -28,7 +29,7 @@ export class AdminCreateExamComponent implements OnInit{
       },
       error: (error) => {
         console.error('Error fetching user data', error);
-        alert('Error fetching user data. Please try again.');
+        Swal.fire('Error', 'Failed to fetch user data. Please try again later.', 'error');
       }
     });
     this.courseService.getAllCourses().subscribe({
@@ -37,7 +38,7 @@ export class AdminCreateExamComponent implements OnInit{
       },
       error: (error) => {
         console.error('Error fetching courses', error);
-        alert('Error fetching courses. Please try again.');
+        Swal.fire('Error', 'Failed to load courses. Please try again later.', 'error');
       }
     });
     this.authService.me().subscribe({
@@ -61,11 +62,11 @@ export class AdminCreateExamComponent implements OnInit{
       this.examService.createExam(examToCreate).subscribe({
         next: () => {
           form.resetForm();
-          alert('Exam created successfully!');
+          Swal.fire('Success', 'Exam created successfully!', 'success');
         },
         error: (error) => {
           console.error('Error creating exam', error);
-          alert('Error creating exam. Please try again.');
+          Swal.fire('Error', 'Failed to create exam. Please try again.', 'error');
         },
       });
     }
