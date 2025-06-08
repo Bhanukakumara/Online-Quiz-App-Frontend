@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '../../../core/models/user';
 import { RequestUser } from '../../../core/models/request-user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-add-user',
@@ -26,11 +27,11 @@ newUser: User = new User('','','','','');
       this.userService.addUser(userToCreate).subscribe({
         next: (response) => {
           form.resetForm();
-          alert('User added successfully!');
+          Swal.fire('Success', 'User added successfully!', 'success');
         },
         error: (error) => {
           console.error('Error adding user', error);
-          alert('Error adding user.olease try again.');
+          Swal.fire('Error', 'Failed to add user. Please try again.', 'error');
         },
       });
     }

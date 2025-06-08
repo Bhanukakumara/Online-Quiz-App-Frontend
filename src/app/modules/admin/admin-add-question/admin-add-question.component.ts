@@ -5,6 +5,7 @@ import { ExamService } from '../../../core/services/exam.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-add-question',
@@ -34,7 +35,7 @@ export class AdminAddQuestionComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching exams', error);
-        alert('Error fetching exams. Please try again.');
+        Swal.fire('Error', 'Failed to load exams. Please try again later.', 'error');
       }
     });
     
@@ -45,7 +46,7 @@ export class AdminAddQuestionComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching user data', error);
-        alert('Error fetching user data. Please try again.');
+        Swal.fire('Error', 'Failed to fetch user data. Please try again later.', 'error');
       }
     });
   }
@@ -69,11 +70,11 @@ export class AdminAddQuestionComponent implements OnInit {
       this.questionService.createQuestion(questionToCreate).subscribe({
         next: () => {
           form.reset();
-          alert('Question added successfully!');
+          Swal.fire('Success', 'Question added successfully!', 'success');
         },
         error: (error) => {
           console.error('Error adding question', error);
-          alert('Error adding question. Please try again.');
+          Swal.fire('Error', 'Failed to add question. Please try again later.', 'error');
         },
       });
     } else {

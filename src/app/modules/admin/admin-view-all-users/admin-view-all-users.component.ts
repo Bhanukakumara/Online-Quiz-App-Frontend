@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RequestUser } from '../../../core/models/request-user';
 import { UserService } from '../../../core/services/user.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-view-all-users',
@@ -25,7 +26,8 @@ export class AdminViewAllUsersComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching users', error);
-        alert('Error fetching users. Please try again later.');
+        Swal.fire('Error', 'Failed to load users. Please try again later.', 'error');
+      
       },
     });
   }
