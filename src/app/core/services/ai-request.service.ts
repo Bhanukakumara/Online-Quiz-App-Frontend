@@ -11,7 +11,7 @@ export class AiRequestService{
   
   
   sendAiRequest(studentId: number) {
-    return this.http.get(`http://localhost:8080/api/paper/get-ai-request/:${studentId}`);
+    return this.http.get(`http://localhost:8080/api/paper/get-ai-request/${studentId}`);
   }
 
 }
