@@ -6,8 +6,11 @@ import { QuestionService } from '../../../core/services/question.service';
 import { ExamService } from '../../../core/services/exam.service';
 import { AuthService } from '../../../core/services/auth.service';
 import { PaperService } from '../../../core/services/paper.service';
+import { AiRequestService } from '../../../core/services/ai-request.service';
 import { Paper } from '../../../core/models/paper';
 import Swal from 'sweetalert2';
+import { AiRequestDto } from '../../../core/models/ai-request-dto';
+import { AiFeedbackService } from '../../../core/services/ai-feedback.service';
 
 @Component({
   selector: 'app-student-paper',
@@ -28,6 +31,7 @@ export class StudentPaperComponent {
   isLoading = false;
   totalMarks: number = 0;
   studentId: number = 0;
+  aiRequest!: AiRequestDto;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,7 +39,9 @@ export class StudentPaperComponent {
     private examService: ExamService,
     private paperService: PaperService,
     private questionService: QuestionService,
-    private authService: AuthService
+    private authService: AuthService,
+    private aiRequestService: AiRequestService,
+    private aiFeedbackService: AiFeedbackService
   ) {
     this.startTime = new Date();
   }
@@ -78,7 +84,11 @@ export class StudentPaperComponent {
       },
       error: (error) => {
         console.error('Error loading exam details', error);
-        Swal.fire('Error', 'Failed to load exam details. Please try again later.', 'error');
+        Swal.fire(
+          'Error',
+          'Failed to load exam details. Please try again later.',
+          'error'
+        );
       },
     });
   }
@@ -115,8 +125,8 @@ export class StudentPaperComponent {
     return Object.keys(this.selectedAnswers).map((key) => {
       const questionId = parseInt(key);
       // Find the question in questionList to get the correct answer (already stored as number)
-    const question = this.questionList.find(q => q.id === questionId);
-    const correctAnswer = question?.correctOption;
+      const question = this.questionList.find((q) => q.id === questionId);
+      const correctAnswer = question?.correctOption;
       // Convert answer letter (A,B,C,D) to number (1,2,3,4)
       const givenAnswer =
         this.selectedAnswers[questionId].charCodeAt(0) - 'A'.charCodeAt(0) + 1;
@@ -132,7 +142,7 @@ export class StudentPaperComponent {
     if (this.isLoading) return;
 
     const studentAnswers = this.getStudentAnswersArray();
-    
+
     if (this.answeredQuestions < this.totalQuestions) {
       if (
         !confirm(
@@ -161,12 +171,39 @@ export class StudentPaperComponent {
       // Save the paper
       this.paperService.savePaper(paperData).subscribe({
         next: () => {
-          Swal.fire("Success", "Exam submitted successfully!", "success");
+          Swal.fire('Success', 'Exam submitted successfully!', 'success');
           this.router.navigate([`/student/view-all-result/${user.id}`]);
+
+          this.aiRequestService.sendAiRequest(user.id).subscribe({
+            next: (data: AiRequestDto) => {
+              console.log('Data received:', data);
+
+              const htmlSummary = this.aiFeedbackService.getSummary(
+                data as AiRequestDto
+              );
+              Swal.fire({
+                title: `Exam Feedback for ${data.studentName}`,
+                html: htmlSummary,
+                icon: 'info',
+                confirmButtonText: 'OK',
+                width: '600px',
+              });
+            },
+            error: (error) => {
+              console.error('An error occurred:', error);
+            },
+            complete: () => {
+              console.log('Observable completed.');
+            },
+          });
         },
         error: (error) => {
           console.error('Error submitting exam', error);
-          Swal.fire('Error', 'Failed to submit exam. Please try again later.', 'error');
+          Swal.fire(
+            'Error',
+            'Failed to submit exam. Please try again later.',
+            'error'
+          );
           this.isLoading = false;
         },
       });
