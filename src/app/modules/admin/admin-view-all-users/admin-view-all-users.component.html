@@ -1,121 +1,104 @@
-<div class="max-w-6xl mx-auto">
-  <h1 class="text-2xl font-bold mb-6">Angular Tailwind CSS Tabs</h1>
+<div *ngIf="isActive('tab1')" class="tab-content bg-gradient-to-br from-[#003060] to-[#0E86D4]">
+  <div class="max-w-6xl mx-auto bg-gradient-to-br from-white to-[#b4c8ff]/20 p-6 rounded-2xl shadow-xl border border-[#b4c8ff]/50 backdrop-blur-sm">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#003060] to-[#055C9D]">
+        All Users
+      </h2>
+      <div class="relative">
+        <input 
+          type="text" 
+          placeholder="Search users..." 
+          class="pl-10 pr-4 py-2 rounded-xl border border-[#b4c8ff] focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
+        >
+        <svg class="absolute left-3 top-2.5 h-5 w-5 text-[#68BBE3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+    </div>
 
-  <!-- Tab Navigation -->
-  <div class="flex border-b border-gray-200">
-    <button
-      *ngFor="let tab of tabs"
-      class="py-2 px-4 font-medium text-sm border-b-2 focus:outline-none"
-      [class.border-blue-500]="isActive(tab.id)"
-      [class.text-blue-600]="isActive(tab.id)"
-      [class.border-transparent]="!isActive(tab.id)"
-      [class.text-gray-500]="!isActive(tab.id)"
-      (click)="setActiveTab(tab.id)"
-    >
-      {{ tab.title }}
-    </button>
-  </div>
-
-  <!-- Tab Content -->
-  <div class="bg-white p-6 rounded-b-lg shadow">
-    <!-- All Users -->
-    <div *ngIf="isActive('tab1')" class="tab-content">
-      <div class="max-w-6xl mx-auto bg-white p-6 rounded-2xl shadow-lg">
-        <h2 class="text-2xl font-bold mb-4">All Users</h2>
-
-        <div class="overflow-x-auto">
-          <table
-            class="min-w-full border border-gray-200 text-sm text-left"
-            *ngIf="allUser.length > 0"
+    <div class="overflow-x-auto rounded-xl border border-[#b4c8ff]/50 shadow-sm">
+      <table class="min-w-full divide-y divide-[#b4c8ff]/50" *ngIf="allUser.length > 0">
+        <thead class="bg-gradient-to-r from-[#003060] to-[#055C9D]">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">#</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Username</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Email</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Role</th>
+            <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-[#b4c8ff]/50">
+          <tr 
+            *ngFor="let user of allUser; let i = index"
+            class="hover:bg-[#68BBE3]/10 transition-all duration-200"
           >
-            <thead class="bg-gray-100 text-gray-700">
-              <tr>
-                <th class="px-4 py-2 border">#</th>
-                <th class="px-4 py-2 border">Name</th>
-                <th class="px-4 py-2 border">Username</th>
-                <th class="px-4 py-2 border">Email</th>
-                <th class="px-4 py-2 border">Role</th>
-                <th class="px-4 py-2 border text-center">Actions</th>
-              </tr>
-            </thead>
-            <tbody class="text-gray-800">
-              <!-- Example Row -->
-              <tr
-                class="hover:bg-gray-50"
-                *ngFor="let user of allUser; let i = index"
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#003060]">{{ i + 1 }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-[#055C9D] font-medium">{{ user.name }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-[#003060]">{{ user.username }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-[#055C9D]">{{ user.email }}</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span 
+                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full"
+                [ngClass]="{
+                  'bg-[#003060]/10 text-[#003060]': user.role === 'ADMIN',
+                  'bg-[#055C9D]/10 text-[#055C9D]': user.role === 'TEACHER',
+                  'bg-[#0E86D4]/10 text-[#0E86D4]': user.role === 'STUDENT'
+                }"
               >
-                <td class="px-4 py-2 border">{{ i + 1 }}</td>
-                <td class="px-4 py-2 border">{{ user.name }}</td>
-                <td class="px-4 py-2 border">{{ user.username }}</td>
-                <td class="px-4 py-2 border">{{ user.email }}</td>
-                <td class="px-4 py-2 border">{{ user.role }}</td>
-                <td class="px-4 py-2 border text-center space-x-2">
-                  <button
-                    class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 text-xs"
-                  >
-                    Update
-                  </button>
-                  <button
-                    class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 text-xs"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-
-              <!-- Repeat rows for other users -->
-            </tbody>
-          </table>
+                {{ user.role }}
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium space-x-5">
+              <a
+                href="#"
+                class="inline-flex items-center justify-center text-[var(--primary-color)] hover:from-[#0E86D4] hover:to-[#055C9D] transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                title="Edit"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="inline-flex items-center justify-center text-red-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                title="Delete"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                </svg>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <div *ngIf="allUser.length === 0" class="p-8 text-center">
+        <div class="text-[#68BBE3] mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
         </div>
+        <h3 class="text-lg font-medium text-[#003060]">No users found</h3>
+        <p class="text-[#055C9D]">Add new users to see them listed here</p>
       </div>
     </div>
-
-    <!-- Profile Tab -->
-    <div *ngIf="isActive('tab2')" class="tab-content">
-      <h2 class="text-xl font-semibold mb-4">Profile Content</h2>
-      <p>Here you can view and edit your profile information.</p>
-      <div class="mt-4 p-4 bg-gray-50 rounded">
-        <p>Name: John Doe</p>
-        <p>Email: johnexample.com</p>
+    
+    <div class="mt-6 flex justify-between items-center">
+      <div class="text-sm text-[#68BBE3]">
+        Showing <span class="font-medium">{{allUser.length}}</span> users
       </div>
-    </div>
-
-    <!-- Messages Tab -->
-    <div *ngIf="isActive('tab3')" class="tab-content">
-      <h2 class="text-xl font-semibold mb-4">Messages</h2>
-      <ul class="space-y-2">
-        <li class="p-2 hover:bg-gray-50">New message from Sarah</li>
-        <li class="p-2 hover:bg-gray-50">Meeting reminder</li>
-        <li class="p-2 hover:bg-gray-50">Newsletter subscription</li>
-      </ul>
-    </div>
-
-    <!-- Settings Tab -->
-    <div *ngIf="isActive('tab4')" class="tab-content">
-      <h2 class="text-xl font-semibold mb-4">Settings</h2>
-      <form class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700"
-            >Notifications</label
-          >
-          <select
-            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-          >
-            <option>Enabled</option>
-            <option>Disabled</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Theme</label>
-          <select
-            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-          >
-            <option>Light</option>
-            <option>Dark</option>
-            <option>System</option>
-          </select>
-        </div>
-      </form>
+      <div class="flex space-x-2">
+        <a href="#" class="px-3 py-1 rounded-lg border border-[#b4c8ff] text-[#003060] hover:bg-[#b4c8ff]/20 transition-colors">
+          Previous
+        </a>
+        <a href="#" class="px-3 py-1 rounded-lg bg-[#003060] text-white hover:bg-[#055C9D] transition-colors">
+          1
+        </a>
+        <a href="#" class="px-3 py-1 rounded-lg border border-[#b4c8ff] text-[#003060] hover:bg-[#b4c8ff]/20 transition-colors">
+          Next
+        </a>
+      </div>
     </div>
   </div>
 </div>
