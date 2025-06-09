@@ -4,15 +4,15 @@
     <div class="stats-cards grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
       <div class="stat-card bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] p-4 rounded-lg shadow-md text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
         <div class="stat-value text-3xl font-bold mb-1 animate-count-up">{{ currentMinuteCount }}</div>
-        <div class="stat-label text-[var(--text-color)] font-medium">Current Minute</div>
+        <div class="stat-label text-white font-medium">Current Minute</div>
       </div>
       <div class="stat-card bg-gradient-to-br from-[var(--secondary-color)] to-[var(--background-color)] p-4 rounded-lg shadow-md text-white transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
         <div class="stat-value text-3xl font-bold mb-1 animate-count-up">{{ todayTotal }}</div>
-        <div class="stat-label text-[var(--text-color)] font-medium">Today's Total</div>
+        <div class="stat-label text-white font-medium">Today's Total</div>
       </div>
       <div class="stat-card bg-gradient-to-br from-[var(--background-color)] to-[var(--text-color)] p-4 rounded-lg shadow-md text-[var(--primary-color)] transition-all duration-300 hover:scale-[1.02] hover:shadow-lg">
         <div class="stat-value text-3xl font-bold mb-1">{{ lastUpdated | date:'HH:mm:ss' }}</div>
-        <div class="stat-label text-[var(--primary-color)]/90 font-medium">Last Updated</div>
+        <div class="stat-label text-white font-medium">Last Updated</div>
       </div>
     </div>
     
