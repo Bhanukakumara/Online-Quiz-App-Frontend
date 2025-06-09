@@ -2,7 +2,7 @@
   <!-- Welcome Header -->
   <div class="mb-8 animate-fade-in">
     <div
-      class="bg-gradient-to-r from-[#2F5233] via-[#337B01] to-[#76B947] rounded-2xl p-6 lg:p-8 text-white relative overflow-hidden"
+      class="bg-gradient-to-r from-[var(--primary-color)] via-[var(--secondary-color)] to-[var(--background-color)] rounded-2xl p-6 lg:p-8 text-white relative overflow-hidden"
     >
       <!-- Background Animation Elements -->
       <div
@@ -37,10 +37,10 @@
           <p class="text-2xl font-bold text-gray-900 mt-1">{{ userCount }}</p>
         </div>
         <div
-          class="w-12 h-12 bg-gradient-to-br from-[#BEEAC5] to-[#76B947] rounded-lg flex items-center justify-center"
+          class="w-12 h-12 bg-gradient-to-br from-[var(--text-color)] to-[var(--background-color)] rounded-lg flex items-center justify-center"
         >
           <svg
-            class="w-6 h-6 text-[#2F5233]"
+            class="w-6 h-6 text-[var(--primary-color)]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -66,7 +66,7 @@
           <p class="text-2xl font-bold text-gray-900 mt-1">{{ courseCount }}</p>
         </div>
         <div
-          class="w-12 h-12 bg-gradient-to-br from-[#76B947] to-[#337B01] rounded-lg flex items-center justify-center"
+          class="w-12 h-12 bg-gradient-to-br from-[var(--background-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center"
         >
           <svg
             class="w-6 h-6 text-white"
@@ -95,7 +95,7 @@
           <p class="text-2xl font-bold text-gray-900 mt-1">{{ examCount }}</p>
         </div>
         <div
-          class="w-12 h-12 bg-gradient-to-br from-[#337B01] to-[#2F5233] rounded-lg flex items-center justify-center"
+          class="w-12 h-12 bg-gradient-to-br from-[var(--secondary-color)] to-[var(--primary-color)] rounded-lg flex items-center justify-center"
         >
           <svg
             class="w-6 h-6 text-white"
@@ -126,10 +126,10 @@
           </p>
         </div>
         <div
-          class="w-12 h-12 bg-gradient-to-br from-[#BEEAC5] to-[#337B01] rounded-lg flex items-center justify-center"
+          class="w-12 h-12 bg-gradient-to-br from-[var(--text-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center"
         >
           <svg
-            class="w-6 h-6 text-[#2F5233]"
+            class="w-6 h-6 text-[var(--primary-color)]"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -165,7 +165,7 @@
       <div class="space-y-3">
         <button
           (click)="addNewUser()"
-          class="w-full p-4 bg-gradient-to-r from-[#2F5233] to-[#337B01] text-white rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
+          class="w-full p-4 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
         >
           <div class="flex items-center space-x-3">
             <svg
@@ -187,7 +187,7 @@
 
         <button
           (click)="createCourse()"
-          class="w-full p-4 bg-gradient-to-r from-[#337B01] to-[#76B947] text-white rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
+          class="w-full p-4 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--background-color)] text-white rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
         >
           <div class="flex items-center space-x-3">
             <svg
@@ -209,7 +209,7 @@
 
         <button
           (click)="viewReports()"
-          class="w-full p-4 bg-gradient-to-r from-[#76B947] to-[#BEEAC5] text-[#2F5233] rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
+          class="w-full p-4 bg-gradient-to-r from-[var(--background-color)] to-[var(--text-color)] text-[var(--primary-color)] rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
         >
           <div class="flex items-center space-x-3">
             <svg

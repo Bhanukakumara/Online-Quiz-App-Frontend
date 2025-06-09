@@ -1,27 +1,58 @@
-<div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-    <h2 class="text-2xl font-bold mb-6 text-center">Create New Course</h2>
-    <form #courseForm="ngForm" (ngSubmit)="onSubmit(courseForm)" class="space-y-5">
+<div class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[var(--primary-color)] to-[var(--background-color)]">
+  <div class="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-2xl w-full max-w-3xl border border-[var(--border-color)] transform transition-all duration-500 hover:scale-[1.02]">
+    <h2 class="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] bg-clip-text text-transparent">
+      Create New Course
+    </h2>
+    
+    <form #courseForm="ngForm" (ngSubmit)="onSubmit(courseForm)" class="space-y-6">
       <!-- Course Name -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Course Name</label>
-        <input type="text" name="name" [(ngModel)]="newCourse.name" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" required>
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[var(--primary-color)]">Course Name</label>
+        <input 
+          type="text" 
+          name="name" 
+          [(ngModel)]="newCourse.name" 
+          class="mt-1 w-full px-4 py-3 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300 placeholder-[var(--text-color)/50]" 
+          placeholder="Enter course name"
+          required
+        >
       </div>
 
       <!-- Course Description -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Course Description</label>
-        <textarea name="description" rows="4" [(ngModel)]="newCourse.description" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" required></textarea>
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[var(--primary-color)]">Course Description</label>
+        <textarea 
+          name="description" 
+          rows="4" 
+          [(ngModel)]="newCourse.description" 
+          class="mt-1 w-full px-4 py-3 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300 placeholder-[var(--text-color)/50]" 
+          placeholder="Describe your course"
+          required
+        ></textarea>
       </div>
 
       <!-- Admin Name -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Admin Name</label>
-        <input type="text" name="adminName" [ngModel]="adminName" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" readonly required>
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[var(--primary-color)]">Admin Name</label>
+        <input 
+          type="text" 
+          name="adminName" 
+          [ngModel]="adminName" 
+          class="mt-1 w-full px-4 py-3 border border-[var(--border-color)] rounded-xl focus:outline-none bg-gray-50 text-[var(--primary-color)] cursor-not-allowed" 
+          readonly 
+          required
+        >
       </div>
 
       <!-- Submit Button -->
-      <div>
-        <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-xl hover:bg-blue-600 transition duration-300">Create Course</button>
+      <div class="pt-2">
+        <button 
+          type="submit" 
+          class="w-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white py-3 rounded-xl hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-[0_5px_15px_var(--text-color)/30] transform hover:-translate-y-1"
+        >
+          Create Course
+        </button>
       </div>
     </form>
   </div>
+</div>

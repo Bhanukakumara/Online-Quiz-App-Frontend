@@ -1,60 +1,149 @@
-<form #questionForm="ngForm" (ngSubmit)="onSubmit(questionForm)" class="max-w-xl mx-auto p-6 bg-white shadow rounded-lg space-y-4">
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Question</label>
-      <textarea name="text" [(ngModel)]="newQuestion.text" rows="3" required class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:ring focus:ring-indigo-200 focus:border-indigo-500"></textarea>
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Option 1</label>
-      <input name="option1" [(ngModel)]="newQuestion.option1" type="text" required class="option-input mt-1 block w-full border border-gray-300 rounded-md p-2" />
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Option 2</label>
-      <input name="option2" [(ngModel)]="newQuestion.option2" type="text" required class="option-input mt-1 block w-full border border-gray-300 rounded-md p-2" />
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Option 3</label>
-      <input name="option3" [(ngModel)]="newQuestion.option3" type="text" required class="option-input mt-1 block w-full border border-gray-300 rounded-md p-2" />
-    </div>
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Option 4</label>
-      <input name="option4" [(ngModel)]="newQuestion.option4" type="text" required class="option-input mt-1 block w-full border border-gray-300 rounded-md p-2" />
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Correct Option</label>
-      <select name="correctOption" [(ngModel)]="newQuestion.correctOption" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
-        <option [ngValue]="1">Option 1</option>
-        <option [ngValue]="2">Option 2</option>
-        <option [ngValue]="3">Option 3</option>
-        <option [ngValue]="4">Option 4</option>
-      </select>
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Time to Answer (seconds)</label>
-      <input name="timeToAnswer" [(ngModel)]="newQuestion.timeToAnswer" type="number" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Marks</label>
-      <input name="marks" [(ngModel)]="newQuestion.marks" type="number" required class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
-    </div>
-
-    <div>
-      <label class="block text-sm font-medium text-gray-700">Select Exam</label>
-      <select name="examId" [(ngModel)]="newQuestion.examId" required class="mt-1 block w-full border border-gray-300 rounded-md p-2">
-        <option *ngFor="let exam of examList" [ngValue]="exam.id">{{exam.title}}</option>
-      </select>
-    </div>
-
-    <!-- Admin Name -->
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Admin Name</label>
-        <input type="text" name="userName" [ngModel]="userName" class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400" readonly required>
+<div class="min-h-screen bg-gradient-to-br from-[var(--primary-color)] to-[var(--background-color)] animate-gradient py-8 px-4">
+  <div class="max-w-2xl mx-auto">
+    <!-- Title with gradient text -->
+    <h1 class="text-4xl font-bold mb-8 text-center bg-gradient-to-r from-[var(--text-color)] to-white bg-clip-text text-transparent drop-shadow-lg">
+      Create New Question
+    </h1>
+    
+    <form #questionForm="ngForm" (ngSubmit)="onSubmit(questionForm)" class="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-[var(--border-color)] transform transition-all duration-500 hover:shadow-[0_10px_25px_var(--border-color)/30]">
+      <!-- Question -->
+      <div class="mb-6 space-y-2">
+        <label class="block text-sm font-medium text-[var(--primary-color)]">Question</label>
+        <textarea 
+          name="text" 
+          [(ngModel)]="newQuestion.text" 
+          rows="3" 
+          required 
+          class="mt-1 block w-full border border-[var(--border-color)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300 placeholder-[var(--text-color)/50]"
+          placeholder="Enter your question here..."
+        ></textarea>
       </div>
 
-    <div class="text-right">
-      <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded-xl hover:bg-blue-600 transition duration-300">Create Question</button>
-    </div>
-  </form>
+      <!-- Options Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-[var(--primary-color)]">Option 1</label>
+          <input 
+            name="option1" 
+            [(ngModel)]="newQuestion.option1" 
+            type="text" 
+            required 
+            class="option-input mt-1 block w-full border border-[var(--border-color)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+            placeholder="Option 1"
+          />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-[var(--primary-color)]">Option 2</label>
+          <input 
+            name="option2" 
+            [(ngModel)]="newQuestion.option2" 
+            type="text" 
+            required 
+            class="option-input mt-1 block w-full border border-[var(--border-color)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+            placeholder="Option 2"
+          />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-[var(--primary-color)]">Option 3</label>
+          <input 
+            name="option3" 
+            [(ngModel)]="newQuestion.option3" 
+            type="text" 
+            required 
+            class="option-input mt-1 block w-full border border-[var(--border-color)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+            placeholder="Option 3"
+          />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-[var(--primary-color)]">Option 4</label>
+          <input 
+            name="option4" 
+            [(ngModel)]="newQuestion.option4" 
+            type="text" 
+            required 
+            class="option-input mt-1 block w-full border border-[var(--border-color)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+            placeholder="Option 4"
+          />
+        </div>
+      </div>
+
+      <!-- Correct Option -->
+      <div class="mb-6 space-y-2">
+        <label class="block text-sm font-medium text-[var(--primary-color)]">Correct Option</label>
+        <select 
+          name="correctOption" 
+          [(ngModel)]="newQuestion.correctOption" 
+          class="mt-1 block w-full border border-[var(--border-color)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300 appearance-none bg-white bg-[right_1rem_center] bg-no-repeat bg-[length:1.5em_1.5em]"
+          style="background-image: url('data:image/svg+xml,%3csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; fill=&apos;none&apos; viewBox=&apos;0 0 20 20&apos;%3e%3cpath stroke=&apos;%23003060&apos; stroke-linecap=&apos;round&apos; stroke-linejoin=&apos;round&apos; stroke-width=&apos;1.5&apos; d=&apos;M6 8l4 4 4-4&apos;/%3e%3c/svg%3e')"
+        >
+          <option [ngValue]="1" class="text-[var(--primary-color)]">Option 1</option>
+          <option [ngValue]="2" class="text-[var(--primary-color)]">Option 2</option>
+          <option [ngValue]="3" class="text-[var(--primary-color)]">Option 3</option>
+          <option [ngValue]="4" class="text-[var(--primary-color)]">Option 4</option>
+        </select>
+      </div>
+
+      <!-- Time and Marks -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-[var(--primary-color)]">Time to Answer (seconds)</label>
+          <input 
+            name="timeToAnswer" 
+            [(ngModel)]="newQuestion.timeToAnswer" 
+            type="number" 
+            required 
+            class="mt-1 block w-full border border-[var(--border-color)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+          />
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-[var(--primary-color)]">Marks</label>
+          <input 
+            name="marks" 
+            [(ngModel)]="newQuestion.marks" 
+            type="number" 
+            required 
+            class="mt-1 block w-full border border-[var(--border-color)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+          />
+        </div>
+      </div>
+
+      <!-- Select Exam -->
+      <div class="mb-6 space-y-2">
+        <label class="block text-sm font-medium text-[var(--primary-color)]">Select Exam</label>
+        <select 
+          name="examId" 
+          [(ngModel)]="newQuestion.examId" 
+          required 
+          class="mt-1 block w-full border border-[var(--border-color)] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300 appearance-none bg-white bg-[right_1rem_center] bg-no-repeat bg-[length:1.5em_1.5em]"
+          style='background-image: url("data:image/svg+xml,%3csvg xmlns=&apos;http://www.w3.org/2000/svg&apos; fill=&apos;none&apos; viewBox=&apos;0 0 20 20&apos;%3e%3cpath stroke=&apos;%23003060&apos; stroke-linecap=&apos;round&apos; stroke-linejoin=&apos;round&apos; stroke-width=&apos;1.5&apos; d=&apos;M6 8l4 4 4-4&apos;/%3e%3c/svg%3e");'
+        >
+          <option [ngValue]="null" class="text-[var(--text-color)]">Select an exam</option>
+          <option *ngFor="let exam of examList" [ngValue]="exam.id" class="text-[var(--primary-color)]">{{exam.title}}</option>
+        </select>
+      </div>
+
+      <!-- Admin Name -->
+      <div class="mb-8 space-y-2">
+        <label class="block text-sm font-medium text-[var(--primary-color)]">Admin Name</label>
+        <input 
+          type="text" 
+          name="userName" 
+          [ngModel]="userName" 
+          class="mt-1 w-full px-4 py-3 border border-[var(--border-color)] rounded-xl bg-gray-50 text-[var(--primary-color)] cursor-not-allowed" 
+          readonly 
+          required
+        >
+      </div>
+
+      <!-- Submit Button -->
+      <div>
+        <button 
+          type="submit" 
+          class="w-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white py-3 rounded-xl hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-[0_5px_15px_var(--text-color)/30] transform hover:-translate-y-1 font-medium text-lg"
+        >
+          Create Question
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
