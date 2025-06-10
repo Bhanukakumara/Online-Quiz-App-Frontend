@@ -111,4 +111,56 @@ export class AdminViewAllQuestionComponent implements OnInit {
     this.totalQuestion = this.filteredQuestion.length;
     this.updateDisplayedQuestion();
   }
+  deleteQuestion(questionId: number) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to delete this question?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.questionService.deleteQuestionById(questionId).subscribe({
+          next: (response) => {
+            if (response) {
+              // Remove the deleted question from allQuestion
+              this.allQuestion = this.allQuestion.filter(
+                (question) => question.id !== questionId
+              );
+
+              // Reapply search filter to update filteredQuestion
+              this.applySearch();
+
+              // Adjust current page if necessary
+              const totalPages = this.getTotalPages();
+              if (this.currentPage >= totalPages && totalPages > 0) {
+                this.currentPage = totalPages - 1;
+              }
+
+              // Update displayed questions
+              this.updateDisplayedQuestion();
+
+              // Show success message
+              Swal.fire(
+                'Deleted!',
+                'The question has been deleted.',
+                'success'
+              );
+            } else {
+              Swal.fire('Error', 'Failed to delete the question.', 'error');
+            }
+          },
+          error: (error) => {
+            console.error('Error deleting question', error);
+            Swal.fire(
+              'Error',
+              'Failed to delete the question. Please try again.',
+              'error'
+            );
+          },
+        });
+      }
+    });
+  }
 }

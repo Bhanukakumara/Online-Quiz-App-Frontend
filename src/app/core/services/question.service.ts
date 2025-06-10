@@ -29,4 +29,8 @@ export class QuestionService {
   getQuestionById(questionId: number): Observable<any> {
     return this.http.get(`http://localhost:8080/api/question/get-by-id/${questionId}`);
   }
+
+  deleteQuestionById(questionId:number){
+    return this.http.delete(`http://localhost:8080/api/question/delete/${questionId}`);
+  }
 }
