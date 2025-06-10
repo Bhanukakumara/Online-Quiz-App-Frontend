@@ -13,4 +13,15 @@ export class PaperService {
   createPaper(paper: Paper): Observable<any>{
     return this.http.post('http://localhost:8080/api/paper/create', paper);
   }
+
+  savePaper(savePaper: any): Observable<any> {
+    return this.http.post('http://localhost:8080/api/paper/save', savePaper);
+  }
+  getAllResult(): Observable<any> {
+    return this.http.get('http://localhost:8080/api/paper/get-all-answer')
+  }
+
+  getAllResultByStudentId(studentId: number): Observable<any> {
+    return this.http.get(`http://localhost:8080/api/paper/get-all-answer-by-student-id/${studentId}`);
+  }
 }

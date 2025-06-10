@@ -1,34 +1,48 @@
-<div class="w-8xl ml-5 mt-5">
-    <h1 class="text-2xl font-bold mb-4">Exam Details</h1>
-    <div class="overflow-x-auto">
-      <table class="min-w-full bg-white rounded-lg shadow">
+<div class="w-full p-6 bg-gradient-to-br from-[var(--primary-color)] to-[var(--background-color)] animate-gradient">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-white drop-shadow-md">Exam Details</h1>
+    
+    <div class="overflow-x-auto rounded-2xl shadow-2xl">
+      <table class="min-w-full bg-white/90 backdrop-blur-sm border border-[var(--border-color)]">
         <thead>
-          <tr class="bg-gray-200 text-gray-700 text-sm uppercase text-left">
-            <th class="py-3 px-4">#</th>
-            <th class="py-3 px-4">Title</th>
-            <th class="py-3 px-4">Description</th>
-            <th class="py-3 px-4">Questions</th>
-            <th class="py-3 px-4">Max Attempts</th>
-            <th class="py-3 px-4">Course</th>
-            <th class="py-3 px-4">Teacher</th>
-            <th class="py-3 px-4">Actions</th>
+          <tr class="bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white text-sm uppercase">
+            <th class="py-4 px-6 text-left font-medium">#</th>
+            <th class="py-4 px-6 text-left font-medium">Title</th>
+            <th class="py-4 px-6 text-left font-medium">Description</th>
+            <th class="py-4 px-6 text-left font-medium">Questions</th>
+            <th class="py-4 px-6 text-left font-medium">Max Attempts</th>
+            <th class="py-4 px-6 text-left font-medium">Course</th>
+            <th class="py-4 px-6 text-left font-medium">Teacher</th>
+            <th class="py-4 px-6 text-left font-medium">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="border-t hover:bg-gray-50" *ngFor="let exam of exams; let i = index">
-            <td class="py-3 px-4">{{i + 1}}</td>
-            <td class="py-3 px-4">{{exam.title}}</td>
-            <td class="py-3 px-4">{{exam.description}}</td>
-            <td class="py-3 px-4">{{exam.questionCount}}</td>
-            <td class="py-3 px-4">{{exam.maxAttempts}}</td>
-            <td class="py-3 px-4">{{exam.courseName}}</td>
-            <td class="py-3 px-4">{{exam.teacherName}}</td>
-            <td class="py-3 px-4 space-x-2">
-              <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm">Update</button>
-              <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm">Delete</button>
+          <tr 
+            class="border-t border-[var(--border-color)] hover:bg-[var(--text-color)/10] transition-colors duration-300"
+            *ngFor="let exam of exams; let i = index"
+          >
+            <td class="py-4 px-6 text-[var(--primary-color)] font-medium">{{i + 1}}</td>
+            <td class="py-4 px-6 text-[var(--primary-color)]">{{exam.title}}</td>
+            <td class="py-4 px-6 text-[var(--secondary-color)]">{{exam.description}}</td>
+            <td class="py-4 px-6 text-[var(--primary-color)] text-center">{{exam.questionCount}}</td>
+            <td class="py-4 px-6 text-[var(--primary-color)] text-center">{{exam.maxAttempts}}</td>
+            <td class="py-4 px-6 text-[var(--secondary-color)]">{{exam.courseName}}</td>
+            <td class="py-4 px-6 text-[var(--secondary-color)]">{{exam.teacherName}}</td>
+            <td class="py-4 px-6 space-x-2">
+              <button 
+                class="bg-gradient-to-r from-[var(--secondary-color)] to-[var(--background-color)] hover:from-[var(--primary-color)] hover:to-[var(--secondary-color)] text-white px-4 py-2 rounded-lg text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+              >
+                Update
+              </button>
+              <button 
+                class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+              >
+                Delete
+              </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
+</div>

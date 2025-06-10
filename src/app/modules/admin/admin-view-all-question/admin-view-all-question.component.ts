@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../../core/services/question.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-view-all-question',
@@ -18,7 +19,7 @@ export class AdminViewAllQuestionComponent implements OnInit {
       },
       error: (error) => {
         console.error('Error fetching questions', error);
-        alert('Error fetching questions. Please try again.');
+        Swal.fire('Error', 'Failed to load questions. Please try again later.', 'error');
       }
     });
   }

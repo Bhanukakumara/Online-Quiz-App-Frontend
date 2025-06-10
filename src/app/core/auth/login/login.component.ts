@@ -5,13 +5,14 @@ import {
   FormGroup,
   ReactiveFormsModule
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/login-request';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, NgIf, RouterLink],
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -35,7 +36,7 @@ export class LoginComponent {
 
   onSubmit() {
     if (!this.loginForm.valid) {
-      alert('Wrong credentilas');
+      Swal.fire('Error', 'Please enter valid credentials', 'error');
       return;
     }
     const formValues = this.loginForm.value;

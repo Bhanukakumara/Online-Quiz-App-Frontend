@@ -15,8 +15,8 @@
   <div class="p-4">
     <!-- Sidebar Header -->
     <div class="mb-6">
-      <h2 class="text-lg font-semibold text-[#2F5233] mb-1">Navigation</h2>
-      <p class="text-sm text-gray-500">Manage your quiz portal</p>
+      <h2 class="text-lg font-semibold text-[var(--primary-color)] mb-1">Navigation</h2>
+      <p class="text-sm text-[var(--primary-color)]">Manage your quiz portal</p>
     </div>
 
     <!-- Navigation Menu -->
@@ -26,8 +26,8 @@
         routerLink="/admin/dashboard"
         [class]="
           activeItem === 'dashboard'
-            ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-            : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+            ? 'bg-gradient-to-r from-[var(--border-color)] to-[var(--primary-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--primary-color)]'
+            : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-[var(--border-color)]'
         "
         (click)="setActiveItem('dashboard')"
         class="flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 group"
@@ -59,8 +59,8 @@
         (click)="toggleUserDropdown()"
         [class]="
           activeItem === 'users'
-            ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-            : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+            ? 'bg-gradient-to-r from-[var(--border-color)] to-[var(--primary-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--primary-color)]'
+            : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-[var(--border-color)]'
         "
         class="flex items-center justify-between w-full space-x-3 px-3 py-2 rounded-lg transition-all duration-200"
       >
@@ -121,8 +121,8 @@
         (click)="toggleCourseDropdown()"
         [class]="
           activeItem === 'course'
-            ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-            : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+            ? 'bg-gradient-to-r from-[var(--border-color)] to-[var(--primary-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--primary-color)]'
+            : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-[var(--border-color)]'
         "
         class="flex items-center justify-between w-full space-x-3 px-3 py-2 rounded-lg transition-all duration-200"
       >
@@ -183,8 +183,8 @@
         (click)="toggleExamDropdown()"
         [class]="
           activeItem === 'exams'
-            ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-            : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+            ? 'bg-gradient-to-r from-[var(--border-color)] to-[var(--primary-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--primary-color)]'
+            : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-[var(--border-color)]'
         "
         class="flex items-center justify-between w-full space-x-3 px-3 py-2 rounded-lg transition-all duration-200"
       >
@@ -246,8 +246,8 @@
     (click)="toggleQuestionDropdown()"
     [class]="
       activeItem === 'questions'
-        ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-        : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+        ? 'bg-gradient-to-r from-[var(--border-color)] to-[var(--primary-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--primary-color)]'
+            : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-[var(--border-color)]'
     "
     class="flex items-center justify-between w-full space-x-3 px-3 py-2 rounded-lg transition-all duration-200"
   >
@@ -301,11 +301,11 @@
 
       <!-- Reports -->
       <a
-        href="#"
+        routerLink="view-all-result"
         [class]="
           activeItem === 'reports'
-            ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-            : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+            ? 'bg-gradient-to-r from-[var(--border-color)] to-[var(--primary-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--primary-color)]'
+            : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-[var(--border-color)]'
         "
         (click)="setActiveItem('reports')"
         class="flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200"
@@ -332,8 +332,8 @@
           href="#"
           [class]="
             activeItem === 'settings'
-              ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-              : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+              ? 'bg-gradient-to-r from-[var(--border-color)] to-[var(--primary-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--primary-color)]'
+            : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-[var(--border-color)]'
           "
           (click)="setActiveItem('settings')"
           class="flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200"

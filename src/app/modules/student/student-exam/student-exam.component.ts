@@ -6,6 +6,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Enrollment } from '../../../core/models/enrollment';
 import { EnrollmentService } from '../../../core/services/enrollment.service';
 import { switchMap } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-student-exam',
@@ -33,8 +34,8 @@ export class StudentExamComponent implements OnInit {
       next: (response) => {
         this.exams = response;
       },
-      error: (error) => {
-        alert('Error fetching exams. Please try again.');
+      error: () => {
+        Swal.fire('Error', 'Failed to load exams. Please try again later.', 'error');
       },
     });
   }
@@ -58,7 +59,8 @@ export class StudentExamComponent implements OnInit {
         },
         error: (error) => {
           console.log('Error creating enrollment', error);
-          alert('Maximum attempts reached for this exam');
+          Swal.fire('Error', 'Maximum attempts reached for this exam', 'error');
+  
         },
       });
   }
