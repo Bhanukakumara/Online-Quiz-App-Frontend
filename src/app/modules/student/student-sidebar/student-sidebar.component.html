@@ -15,7 +15,7 @@
     <div class="p-4">
       <!-- Sidebar Header -->
       <div class="mb-6">
-        <h2 class="text-lg font-semibold text-[#2F5233] mb-1">Navigation</h2>
+        <h2 class="text-lg font-semibold text-[var(--primary-color)] mb-1">Navigation</h2>
         <p class="text-sm text-gray-500">Manage your quiz portal</p>
       </div>
 
@@ -26,8 +26,8 @@
           routerLink="dashboard"
           [class]="
             activeItem === 'dashboard'
-              ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-              : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+              ? 'bg-gradient-to-r from-[var(--text-color)] to-[var(--background-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--secondary-color)]'
+              : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-gray-50'
           "
           (click)="setActiveItem('dashboard')"
           class="flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200 group"
@@ -59,8 +59,8 @@
           routerLink="exam"
           [class]="
             activeItem === 'exams'
-              ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-              : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+              ? 'bg-gradient-to-r from-[var(--text-color)] to-[var(--background-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--secondary-color)]'
+              : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-gray-50'
           "
           (click)="setActiveItem('exams')"
           class="flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200"
@@ -86,8 +86,8 @@
           [routerLink]="'view-all-result/' + studentId"
           [class]="
             activeItem === 'reports'
-              ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-              : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+              ? 'bg-gradient-to-r from-[var(--text-color)] to-[var(--background-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--secondary-color)]'
+              : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-gray-50'
           "
           (click)="setActiveItem('reports')"
           class="flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200"
@@ -114,8 +114,8 @@
             href="#"
             [class]="
               activeItem === 'settings'
-                ? 'bg-gradient-to-r from-[#BEEAC5] to-[#76B947]/20 text-[#2F5233] border-r-2 border-[#337B01]'
-                : 'text-gray-600 hover:text-[#2F5233] hover:bg-gray-50'
+                ? 'bg-gradient-to-r from-[var(--text-color)] to-[var(--background-color)]/20 text-[var(--primary-color)] border-r-2 border-[var(--secondary-color)]'
+                : 'text-gray-600 hover:text-[var(--primary-color)] hover:bg-gray-50'
             "
             (click)="setActiveItem('settings')"
             class="flex items-center space-x-3 px-3 py-2 rounded-lg transition-all duration-200"
