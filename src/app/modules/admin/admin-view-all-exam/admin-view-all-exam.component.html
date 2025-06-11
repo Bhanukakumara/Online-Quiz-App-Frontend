@@ -1,11 +1,12 @@
 <div class="w-full p-6 bg-gradient-to-br from-[var(--primary-color)] to-[var(--background-color)] animate-gradient">
   <div class="max-w-7xl mx-auto">
     <h1 class="text-3xl font-bold mb-6 text-white drop-shadow-md">Exam Details</h1>
-    
+
     <div class="overflow-x-auto rounded-2xl shadow-2xl">
       <table class="min-w-full bg-white/90 backdrop-blur-sm border border-[var(--border-color)]">
         <thead>
-          <tr class="bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white text-sm uppercase">
+          <tr
+            class="bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white text-sm uppercase">
             <th class="py-4 px-6 text-left font-medium">#</th>
             <th class="py-4 px-6 text-left font-medium">Title</th>
             <th class="py-4 px-6 text-left font-medium">Description</th>
@@ -17,10 +18,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr 
+          <tr
             class="border-t border-[var(--border-color)] hover:bg-[var(--text-color)/10] transition-colors duration-300"
-            *ngFor="let exam of exams; let i = index"
-          >
+            *ngFor="let exam of exams; let i = index">
             <td class="py-4 px-6 text-[var(--primary-color)] font-medium">{{i + 1}}</td>
             <td class="py-4 px-6 text-[var(--primary-color)]">{{exam.title}}</td>
             <td class="py-4 px-6 text-[var(--secondary-color)]">{{exam.description}}</td>
@@ -29,14 +29,12 @@
             <td class="py-4 px-6 text-[var(--secondary-color)]">{{exam.courseName}}</td>
             <td class="py-4 px-6 text-[var(--secondary-color)]">{{exam.teacherName}}</td>
             <td class="py-4 px-6 space-x-2">
-              <button 
-                class="bg-gradient-to-r from-[var(--secondary-color)] to-[var(--background-color)] hover:from-[var(--primary-color)] hover:to-[var(--secondary-color)] text-white px-4 py-2 rounded-lg text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
-              >
+              <button (click)="updateExam(exam.id)"
+                class="bg-gradient-to-r from-[var(--secondary-color)] to-[var(--background-color)] hover:from-[var(--primary-color)] hover:to-[var(--secondary-color)] text-white px-4 py-2 rounded-lg text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
                 Update
               </button>
-              <button 
-                class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
-              >
+              <button
+                class="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
                 Delete
               </button>
             </td>

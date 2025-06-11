@@ -21,4 +21,8 @@ export class ExamService {
   getExamById(examId: number): Observable<any> {
     return this.http.get<any>(`http://localhost:8080/api/exam/get-by-id/${examId}`);
   }
+
+  updateExam(examId: number, examData: any): Observable<any> {
+    return this.http.put<any>(`http://localhost:8080/api/exam/update/${examId}`, examData);
+  }
 }

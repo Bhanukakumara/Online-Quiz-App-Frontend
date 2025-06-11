@@ -18,6 +18,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { StudentExamComponent } from './modules/student/student-exam/student-exam.component';
 import { StudentPaperComponent } from './modules/student/student-paper/student-paper.component';
 import { AdminViewAllResultComponent } from './modules/admin/admin-view-all-result/admin-view-all-result.component';
+import { AdminUpdateExamComponent } from './modules/admin/admin-update-exam/admin-update-exam.component';
 
 export const routes: Routes = [
     {
@@ -38,7 +39,8 @@ export const routes: Routes = [
             {path: 'view-all-exam', component: AdminViewAllExamComponent},
             {path: 'add-question', component: AdminAddQuestionComponent},
             {path: 'view-all-question', component: AdminViewAllQuestionComponent},
-            {path: 'view-all-result', component: AdminViewAllResultComponent}
+            {path: 'view-all-result', component: AdminViewAllResultComponent},
+            {path: 'update-exam/:id', component: AdminUpdateExamComponent}
         ]
     },
     {
