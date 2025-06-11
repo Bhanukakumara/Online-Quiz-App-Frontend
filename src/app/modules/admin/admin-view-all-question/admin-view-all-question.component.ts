@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../../core/services/question.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
+import { RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
 @Component({
   selector: 'app-admin-view-all-question',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './admin-view-all-question.component.html',
   styleUrl: './admin-view-all-question.component.css',
 })
