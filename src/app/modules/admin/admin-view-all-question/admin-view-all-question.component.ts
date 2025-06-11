@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../../../core/services/question.service';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-import { RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-view-all-question',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './admin-view-all-question.component.html',
   styleUrl: './admin-view-all-question.component.css',
 })
@@ -22,7 +22,9 @@ export class AdminViewAllQuestionComponent implements OnInit {
   searchTerm = '';
   private searchSubject = new Subject<string>();
 
-  constructor(private questionService: QuestionService) {}
+  constructor(
+    private questionService: QuestionService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.loadAllQuestion();
@@ -163,5 +165,8 @@ export class AdminViewAllQuestionComponent implements OnInit {
         });
       }
     });
+  }
+  updateQuestion(questionId:number){
+    this.router.navigate([`/admin/edit-question/${questionId}`]);
   }
 }
