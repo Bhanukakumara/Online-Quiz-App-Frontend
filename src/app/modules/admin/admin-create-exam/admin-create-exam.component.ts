@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
   styleUrl: './admin-create-exam.component.css'
 })
 export class AdminCreateExamComponent implements OnInit{
-  newExam = new Exam('', '', 0, 0, 0, 0, 0);
+  newExam = new Exam('', '', 0, 0, 0, 0);
   createdBy: any;
   courseList: any[] = [];
   createdByName: string = '';
@@ -55,7 +55,6 @@ export class AdminCreateExamComponent implements OnInit{
         form.value.description,
         form.value.questionCount,
         form.value.maxAttempts,
-        form.value.totalTimeMinutes,
         form.value.courseId,
         this.createdBy.id
       );

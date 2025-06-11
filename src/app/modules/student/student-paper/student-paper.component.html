@@ -1,20 +1,20 @@
-<div class="min-h-screen bg-gradient-to-br from-[#BEEAC5] via-[#76B947] to-[#337B01] p-4">
+<div class="min-h-screen bg-gradient-to-br from-[var(--text-color)] via-[var(--background-color)] to-[var(--secondary-color)] p-4">
   <div class="max-w-7xl mx-auto">
     
     <!-- Header -->
     <div class="bg-white rounded-xl shadow-lg p-6 mb-6">
       <div class="flex flex-col md:flex-row justify-between items-center">
         <div>
-          <p class="text-[#337B01] font-semibold">Course Name - {{examDetail.courseName}}</p>
-          <h1 class="text-2xl md:text-3xl font-bold text-[#2F5233] mb-2">Exam - {{examDetail.title}}</h1>
-          <p class="text-[#337B01] font-semibold">{{examDetail.description}}</p>
-          <p class="text-[#337B01] font-semibold">Question Count - {{examDetail.questionCount}}</p>
+          <p class="text-[var(--secondary-color)] font-semibold">Course Name - {{examDetail.courseName}}</p>
+          <h1 class="text-2xl md:text-3xl font-bold text-[var(--primary-color)] mb-2">Exam - {{examDetail.title}}</h1>
+          <p class="text-[var(--secondary-color)] font-semibold">{{examDetail.description}}</p>
+          <p class="text-[var(--secondary-color)] font-semibold">Question Count - {{examDetail.questionCount}}</p>
         </div>
         <div class="mt-4 md:mt-0 flex items-center space-x-4">
-          <div class="bg-gradient-to-r from-[#76B947] to-[#337B01] text-white px-4 py-2 rounded-lg font-semibold">
+          <div class="bg-gradient-to-r from-[var(--background-color)] to-[var(--secondary-color)] text-white px-4 py-2 rounded-lg font-semibold">
             Max Attempts: {{examDetail.maxAttempts}}
           </div>
-          <div class="bg-gradient-to-r from-[#2F5233] to-[#337B01] text-white px-4 py-2 rounded-lg font-semibold">
+          <div class="bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white px-4 py-2 rounded-lg font-semibold">
             Progress: {{getAnsweredCount()}}/{{questionList.length}}
           </div>
         </div>
@@ -26,14 +26,14 @@
       <!-- Question Navigation Panel -->
       <div class="lg:col-span-1">
         <div class="bg-white rounded-xl shadow-lg p-6 sticky top-4">
-          <h3 class="text-lg font-bold text-[#2F5233] mb-4">Question Navigator</h3>
+          <h3 class="text-lg font-bold text-[var(--primary-color)] mb-4">Question Navigator</h3>
           <div class="grid grid-cols-5 lg:grid-cols-3 gap-2">
             <button *ngFor="let question of questionList; let i = index" 
-                    class="question-nav w-10 h-10 rounded-lg border-2 border-[#76B947] font-semibold transition-all duration-200"
+                    class="question-nav w-10 h-10 rounded-lg border-2 border-[var(--background-color)] font-semibold transition-all duration-200"
                     [ngClass]="{
-                      'bg-[#76B947] text-white': isCurrentQuestion(i+1),
-                      'bg-[#337B01] text-white': isAnswered(i+1),
-                      'text-[#2F5233] hover:bg-[#BEEAC5]': !isCurrentQuestion(i+1) && !isAnswered(i+1)
+                      'bg-[var(--background-color)] text-white': isCurrentQuestion(i+1),
+                      'bg-[var(--secondary-color)] text-white': isAnswered(i+1),
+                      'text-[var(--primary-color)] hover:bg-[var(--text-color)]': !isCurrentQuestion(i+1) && !isAnswered(i+1)
                     }"
                     (click)="scrollToQuestion(i+1)">
               {{i + 1}}
@@ -43,16 +43,16 @@
           <!-- Legend -->
           <div class="mt-6 space-y-2 text-sm">
             <div class="flex items-center space-x-2">
-              <div class="w-4 h-4 rounded bg-[#76B947]"></div>
-              <span class="text-[#2F5233]">Current</span>
+              <div class="w-4 h-4 rounded bg-[var(--background-color)]"></div>
+              <span class="text-[var(--primary-color)]">Current</span>
             </div>
             <div class="flex items-center space-x-2">
-              <div class="w-4 h-4 rounded bg-[#337B01]"></div>
-              <span class="text-[#2F5233]">Answered</span>
+              <div class="w-4 h-4 rounded bg-[var(--secondary-color)]"></div>
+              <span class="text-[var(--primary-color)]">Answered</span>
             </div>
             <div class="flex items-center space-x-2">
-              <div class="w-4 h-4 rounded border-2 border-[#76B947]"></div>
-              <span class="text-[#2F5233]">Not Answered</span>
+              <div class="w-4 h-4 rounded border-2 border-[var(--background-color)]"></div>
+              <span class="text-[var(--primary-color)]">Not Answered</span>
             </div>
           </div>
         </div>
@@ -65,70 +65,70 @@
           <!-- Questions -->
           <div *ngFor="let question of questionList; let i = index" class="question-container bg-white rounded-xl shadow-lg p-6" [id]="'question-' + (i + 1)">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="text-lg font-bold text-[#2F5233]">Question {{i + 1}}</h3>
-              <span class="bg-gradient-to-r from-[#76B947] to-[#BEEAC5] text-[#2F5233] px-3 py-1 rounded-full text-sm font-semibold">Time: {{question.timeToAnswer}}min</span>
+              <h3 class="text-lg font-bold text-[var(--primary-color)]">Question {{i + 1}}</h3>
+              <span class="bg-gradient-to-r from-[var(--background-color)] to-[var(--text-color)] text-[var(--primary-color)] px-3 py-1 rounded-full text-sm font-semibold">Time: {{question.timeToAnswer}}min</span>
             </div>
             
             <div class="mb-6">
-              <p class="text-[#2F5233] text-lg leading-relaxed">
+              <p class="text-[var(--primary-color)] text-lg leading-relaxed">
                 {{question.text}}
               </p>
             </div>
 
             <div class="space-y-3">
-              <label class="flex items-start space-x-3 p-4 rounded-lg border-2 border-transparent hover:border-[#76B947] hover:bg-[#BEEAC5]/20 cursor-pointer transition-all duration-200 group"
-                     [ngClass]="{'border-[#337B01] bg-[#BEEAC5]/30': selectedAnswers[question.id] === 'A'}">
+              <label class="flex items-start space-x-3 p-4 rounded-lg border-2 border-transparent hover:border-[var(--background-color)] hover:bg-[var(--text-color)]/20 cursor-pointer transition-all duration-200 group"
+                     [ngClass]="{'border-[var(--secondary-color)] bg-[var(--text-color)]/30': selectedAnswers[question.id] === 'A'}">
                 <input type="radio" 
                        [name]="'question_' + question.id" 
                        value="A" 
-                       class="mt-1 w-4 h-4 text-[#337B01] focus:ring-[#76B947] border-[#76B947]"
+                       class="mt-1 w-4 h-4 text-[var(--secondary-color)] focus:ring-[var(--background-color)] border-[var(--background-color)]"
                        (change)="onAnswerSelect(question.id, 'A')"
                        [checked]="selectedAnswers[question.id] === 'A'">
                 <div class="flex-1">
-                  <span class="font-semibold text-[#337B01] group-hover:text-[#2F5233]">A.</span>
-                  <span class="ml-2 text-[#2F5233]">{{question.option1}}</span>
+                  <span class="font-semibold text-[var(--secondary-color)] group-hover:text-[var(--primary-color)]">A.</span>
+                  <span class="ml-2 text-[var(--primary-color)]">{{question.option1}}</span>
                 </div>
               </label>
               
-              <label class="flex items-start space-x-3 p-4 rounded-lg border-2 border-transparent hover:border-[#76B947] hover:bg-[#BEEAC5]/20 cursor-pointer transition-all duration-200 group"
-                     [ngClass]="{'border-[#337B01] bg-[#BEEAC5]/30': selectedAnswers[question.id] === 'B'}">
+              <label class="flex items-start space-x-3 p-4 rounded-lg border-2 border-transparent hover:border-[var(--background-color)] hover:bg-[var(--text-color)]/20 cursor-pointer transition-all duration-200 group"
+                     [ngClass]="{'border-[var(--secondary-color)] bg-[var(--text-color)]/30': selectedAnswers[question.id] === 'B'}">
                 <input type="radio" 
                        [name]="'question_' + question.id" 
                        value="B" 
-                       class="mt-1 w-4 h-4 text-[#337B01] focus:ring-[#76B947] border-[#76B947]"
+                       class="mt-1 w-4 h-4 text-[var(--secondary-color)] focus:ring-[var(--background-color)] border-[var(--background-color)]"
                        (change)="onAnswerSelect(question.id, 'B')"
                        [checked]="selectedAnswers[question.id] === 'B'">
                 <div class="flex-1">
-                  <span class="font-semibold text-[#337B01] group-hover:text-[#2F5233]">B.</span>
-                  <span class="ml-2 text-[#2F5233]">{{question.option2}}</span>
+                  <span class="font-semibold text-[var(--secondary-color)] group-hover:text-[var(--primary-color)]">B.</span>
+                  <span class="ml-2 text-[var(--primary-color)]">{{question.option2}}</span>
                 </div>
               </label>
               
-              <label class="flex items-start space-x-3 p-4 rounded-lg border-2 border-transparent hover:border-[#76B947] hover:bg-[#BEEAC5]/20 cursor-pointer transition-all duration-200 group"
-                     [ngClass]="{'border-[#337B01] bg-[#BEEAC5]/30': selectedAnswers[question.id] === 'C'}">
+              <label class="flex items-start space-x-3 p-4 rounded-lg border-2 border-transparent hover:border-[var(--background-color)] hover:bg-[var(--text-color)]/20 cursor-pointer transition-all duration-200 group"
+                     [ngClass]="{'border-[var(--secondary-color)] bg-[var(--text-color)]/30': selectedAnswers[question.id] === 'C'}">
                 <input type="radio" 
                        [name]="'question_' + question.id" 
                        value="C" 
-                       class="mt-1 w-4 h-4 text-[#337B01] focus:ring-[#76B947] border-[#76B947]"
+                       class="mt-1 w-4 h-4 text-[var(--secondary-color)] focus:ring-[var(--background-color)] border-[var(--background-color)]"
                        (change)="onAnswerSelect(question.id, 'C')"
                        [checked]="selectedAnswers[question.id] === 'C'">
                 <div class="flex-1">
-                  <span class="font-semibold text-[#337B01] group-hover:text-[#2F5233]">C.</span>
-                  <span class="ml-2 text-[#2F5233]">{{question.option3}}</span>
+                  <span class="font-semibold text-[var(--secondary-color)] group-hover:text-[var(--primary-color)]">C.</span>
+                  <span class="ml-2 text-[var(--primary-color)]">{{question.option3}}</span>
                 </div>
               </label>
               
-              <label class="flex items-start space-x-3 p-4 rounded-lg border-2 border-transparent hover:border-[#76B947] hover:bg-[#BEEAC5]/20 cursor-pointer transition-all duration-200 group"
-                     [ngClass]="{'border-[#337B01] bg-[#BEEAC5]/30': selectedAnswers[question.id] === 'D'}">
+              <label class="flex items-start space-x-3 p-4 rounded-lg border-2 border-transparent hover:border-[var(--background-color)] hover:bg-[var(--text-color)]/20 cursor-pointer transition-all duration-200 group"
+                     [ngClass]="{'border-[var(--secondary-color)] bg-[var(--text-color)]/30': selectedAnswers[question.id] === 'D'}">
                 <input type="radio" 
                        [name]="'question_' + question.id" 
                        value="D" 
-                       class="mt-1 w-4 h-4 text-[#337B01] focus:ring-[#76B947] border-[#76B947]"
+                       class="mt-1 w-4 h-4 text-[var(--secondary-color)] focus:ring-[var(--background-color)] border-[var(--background-color)]"
                        (change)="onAnswerSelect(question.id, 'D')"
                        [checked]="selectedAnswers[question.id] === 'D'">
                 <div class="flex-1">
-                  <span class="font-semibold text-[#337B01] group-hover:text-[#2F5233]">D.</span>
-                  <span class="ml-2 text-[#2F5233]">{{question.option4}}</span>
+                  <span class="font-semibold text-[var(--secondary-color)] group-hover:text-[var(--primary-color)]">D.</span>
+                  <span class="ml-2 text-[var(--primary-color)]">{{question.option4}}</span>
                 </div>
               </label>
             </div>
@@ -137,13 +137,13 @@
           <!-- Submit Button -->
           <div class="text-center bg-white rounded-xl shadow-lg p-6">
             <button (click)="submitExam()"
-                    class="bg-gradient-to-r from-[#2F5233] via-[#337B01] to-[#76B947] text-white font-bold py-4 px-12 rounded-xl hover:from-[#337B01] hover:via-[#76B947] hover:to-[#BEEAC5] hover:text-[#2F5233] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                    class="bg-gradient-to-r from-[var(--primary-color)] via-[var(--secondary-color)] to-[var(--background-color)] text-white font-bold py-4 px-12 rounded-xl hover:from-[var(--secondary-color)] hover:via-[var(--background-color)] hover:to-[var(--text-color)] hover:text-[var(--primary-color)] transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-2xl text-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
               Submit Paper
             </button>
-            <p class="text-[#2F5233] mt-2 text-sm opacity-75">
+            <p class="text-[var(--primary-color)] mt-2 text-sm opacity-75">
               Answered: {{getAnsweredCount()}}/{{questionList.length}} questions
             </p>
-            <p class="text-[#2F5233] text-sm opacity-75">Make sure you have answered all questions before submitting</p>
+            <p class="text-[var(--primary-color)] text-sm opacity-75">Make sure you have answered all questions before submitting</p>
           </div>
         </div>
       </div>

@@ -1,91 +1,205 @@
-<div class="bg-gradient-to-br from-[#003060] to-[#0E86D4]">
-  <div class="max-w-6xl mx-auto bg-gradient-to-br from-white to-[#b4c8ff]/20 p-6 rounded-2xl shadow-xl border border-[#b4c8ff]/50 backdrop-blur-sm transform transition-all duration-500 hover:shadow-2xl">
-  <div class="flex justify-between items-center mb-6">
-    <h2 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#003060] to-[#055C9D]">
-      All Courses
-    </h2>
-    <div class="relative">
-      <input 
-        type="text" 
-        placeholder="Search courses..." 
-        class="pl-10 pr-4 py-2 rounded-xl border border-[#b4c8ff] focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
+<div class="pt-10 pb-10 bg-gradient-to-br from-[#003060] to-[#0E86D4]">
+  <div
+    class="max-w-6xl mx-auto bg-gradient-to-br from-white to-[#b4c8ff]/20 p-6 rounded-2xl shadow-xl border border-[#b4c8ff]/50 backdrop-blur-sm transform transition-all duration-500 hover:shadow-2xl"
+  >
+    <div *ngIf="!isLoading" class="flex justify-between items-center mb-6">
+      <h2
+        class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#003060] to-[#055C9D]"
       >
-      <svg class="absolute left-3 top-2.5 h-5 w-5 text-[#68BBE3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-      </svg>
-    </div>
-  </div>
-
-  <div class="overflow-x-auto rounded-xl border border-[#b4c8ff]/50 shadow-sm">
-    <table class="min-w-full divide-y divide-[#b4c8ff]/50">
-      <thead class="bg-gradient-to-r from-[#003060] to-[#055C9D]">
-        <tr>
-          <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">#</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Course Name</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Description</th>
-          <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Admin Name</th>
-          <th class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider">Actions</th>
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-[#b4c8ff]/50">
-        <tr 
-          class="hover:bg-[#68BBE3]/10 transition-all duration-200"
-          *ngFor="let course of allCourses; let i = index"
+        All Courses
+      </h2>
+      <div class="relative">
+        <input
+          type="text"
+          placeholder="Search coures..."
+          class="pl-10 pr-4 py-2 rounded-xl border border-[#676768] focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
+          (input)="onSearchInput($event)"
+          [value]="searchTerm"
+        />
+        <svg
+          class="absolute left-3 top-2.5 h-5 w-5 text-[#68BBE3]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#003060]">{{i + 1}}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#055C9D]">{{course.name}}</td>
-          <td class="px-6 py-4 text-sm text-[#003060] max-w-xs truncate">{{course.description}}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-sm text-[#055C9D]">{{course.adminName}}</td>
-          <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium space-x-5">
-            <a
-              href="#"
-              class="inline-flex items-center justify-center text-[var(--primary-color)] transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-              title="Edit"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-              </svg>
-            </a>
-            <a
-              href="#"
-              class="inline-flex items-center justify-center text-red-600 hover:from-[#ff3d3d] hover:to-[#ff0000] transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-              title="Delete"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-              </svg>
-            </a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    
-    <div *ngIf="allCourses.length === 0" class="p-8 text-center">
-      <div class="text-[#68BBE3] mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
         </svg>
       </div>
-      <h3 class="text-lg font-medium text-[#003060]">No courses found</h3>
-      <p class="text-[#055C9D]">Create new courses to see them listed here</p>
+    </div>
+
+    <div
+      *ngIf="!isLoading"
+      class="overflow-x-auto rounded-xl border border-[#b4c8ff]/50 shadow-sm"
+    >
+      <table
+        *ngIf="displayedCoures.length > 0"
+        class="min-w-full divide-y divide-[#b4c8ff]/50"
+      >
+        <thead class="bg-gradient-to-r from-[#003060] to-[#055C9D]">
+          <tr>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+            >
+              #
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+            >
+              Course Name
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+            >
+              Description
+            </th>
+            <th
+              class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider"
+            >
+              Admin Name
+            </th>
+            <th
+              class="px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-[#b4c8ff]/50">
+          <tr
+            class="hover:bg-[#68BBE3]/10 transition-all duration-200"
+            *ngFor="let course of displayedCoures; let i = index"
+          >
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#003060]"
+            >
+              {{ currentPage * pageSize + i + 1 }}
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#055C9D]"
+            >
+              {{ course.name }}
+            </td>
+            <td class="px-6 py-4 text-sm text-[#003060] max-w-xs truncate">
+              {{ course.description }}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-[#055C9D]">
+              {{ course.adminName }}
+            </td>
+            <td
+              class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium space-x-5"
+            >
+              <a
+                href="#"
+                class="inline-flex items-center justify-center text-[var(--primary-color)] hover:from-[#0E86D4] hover:to-[#055C9D] transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                title="Edit"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#"
+                class="inline-flex items-center justify-center text-red-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                title="Delete"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  />
+                </svg>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="displayedCoures.length === 0" class="p-8 text-center">
+        <div class="text-[#68BBE3] mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-12 w-12 mx-auto"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+            />
+          </svg>
+        </div>
+        <h3 class="text-lg font-medium text-[#003060]">No courses found</h3>
+        <p class="text-[#055C9D]">Create new courses to see them listed here</p>
+      </div>
+    </div>
+
+    <div class="mt-6 flex justify-between items-center">
+      <div class="text-sm text-[#68BBE3]">
+        Showing
+        <span class="font-medium">{{ currentPage * pageSize + 1 }}</span> to
+        <span class="font-medium">{{
+          currentPage * pageSize + displayedCoures.length
+        }}</span>
+        of <span class="font-medium">{{ totalCoures }}</span> courses
+      </div>
+      <div class="flex space-x-2">
+        <button
+          (click)="onPageChange(currentPage - 1)"
+          [disabled]="currentPage === 0"
+          class="px-3 py-1 rounded-lg border border-[#b4c8ff] text-[#003060] hover:bg-[#b4c8ff]/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Previous
+        </button>
+        <div class="flex space-x-1">
+          <button
+            *ngFor="let page of getPageNumbers()"
+            (click)="onPageChange(page - 1)"
+            class="px-3 py-1 rounded-lg border border-[#b4c8ff] transition-colors"
+            [ngClass]="{
+              'bg-[#003060] text-white hover:bg-[#055C9D]':
+                currentPage === page - 1,
+              'text-[#003060] hover:bg-[#b4c8ff]/20': currentPage !== page - 1
+            }"
+          >
+            {{ page }}
+          </button>
+        </div>
+
+        <button
+          (click)="onPageChange(currentPage + 1)"
+          [disabled]="(currentPage + 1) * pageSize >= totalCoures"
+          class="px-3 py-1 rounded-lg border border-[#b4c8ff] text-[#003060] hover:bg-[#b4c8ff]/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Next
+        </button>
+      </div>
     </div>
   </div>
-  
-  <div class="mt-6 flex justify-between items-center">
-    <div class="text-sm text-[#68BBE3]">
-      Showing <span class="font-medium">{{allCourses.length}}</span> courses
-    </div>
-    <div class="flex space-x-2">
-      <a href="#" class="px-3 py-1 rounded-lg border border-[#b4c8ff] text-[#003060] hover:bg-[#b4c8ff]/20 transition-colors">
-        Previous
-      </a>
-      <a href="#" class="px-3 py-1 rounded-lg bg-[#003060] text-white hover:bg-[#055C9D] transition-colors">
-        1
-      </a>
-      <a href="#" class="px-3 py-1 rounded-lg border border-[#b4c8ff] text-[#003060] hover:bg-[#b4c8ff]/20 transition-colors">
-        Next
-      </a>
-    </div>
-  </div>
-</div>
 </div>

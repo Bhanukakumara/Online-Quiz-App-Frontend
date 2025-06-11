@@ -4,7 +4,6 @@ export class Exam {
         public description: string,
         public questionCount: number,
         public maxAttempts: number,
-        public totalTimeMinutes: number,
         public courseId: number,
         public teacherId: number
     ){}
