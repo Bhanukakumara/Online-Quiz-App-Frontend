@@ -1,181 +1,219 @@
-<div class="bg-gradient-to-br from-[#003060] to-[#0E86D4]">
-  <div class="max-w-7xl mx-auto p-5">
-  <h1 class="text-3xl font-bold text-[var(--border-color)] mb-6">All Student Results</h1>
-  <div class="bg-white shadow-md rounded-lg overflow-hidden">
-    <table class="min-w-full divide-y divide-gray-200">
-      <thead class="bg-gray-100">
-        <tr>
-          <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-          >
-            Student Name
-          </th>
-          <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-          >
-            Exam Name
-          </th>
-          <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-          >
-            Course Name
-          </th>
-          <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-          >
-            Attempt Count
-          </th>
-          <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-          >
-            Marks
-          </th>
-          <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-          >
-            Time Duration
-          </th>
-          <th
-            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-          >
-            View Answers
-          </th>
-        </tr>
-      </thead>
-      <tbody class="bg-white divide-y divide-gray-200">
-        <ng-container *ngFor="let paper of allResult">
-          <tr class="hover:bg-gray-50">
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm font-medium text-gray-900">
-                {{ paper.studentName }}
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900">{{ paper.examName }}</div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900">{{ paper.courseName }}</div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900">{{ paper.attemptNumber }}</div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900">
-                {{
-                  (paper.obtainedMarks / paper.totalMarks) * 100
-                    | number : "1.2-2"
-                }}%
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900">
-                {{ calculateDuration(paper.startTime, paper.endTime) }}
-              </div>
-            </td>
-            <td
-              class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
-            >
-              <button
-                (click)="togglePaper(paper)"
-                class="text-indigo-600 hover:text-indigo-900 flex items-center"
-              >
-                <i
-                  class="fas"
-                  [ngClass]="{
-                    'fa-arrow-down': !paper.expanded,
-                    'fa-arrow-up': paper.expanded
-                  }"
-                ></i>
-                {{ paper.expanded ? "Hide" : "View" }}
-              </button>
-            </td>
-          </tr>
+<div class="pb-5 pt-5 bg-gradient-to-br from-[#003060] to-[#0E86D4]">
+  <div class="max-w-7xl mx-auto bg-gradient-to-br from-white to-[#b4c8ff]/20 p-6 rounded-2xl shadow-xl border border-[#b4c8ff]/50 backdrop-blur-sm">
+    <div class="flex justify-between items-center p-8">
+      <h2 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#003060] to-[#055C9D]">
+        All Student Results
+      </h2>
+      <div class="relative">
+        <input
+          type="text"
+          placeholder="Search by paper title or student name..."
+          [(ngModel)]="searchTerm"
+          (input)="onSearchChange($any($event.target).value)"
+          class="w-85 pl-10 pr-4 py-2 rounded-xl border border-[#676768] focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
+        />
+        <svg
+          class="absolute left-3 top-2.5 h-5 w-5 text-[#68BBE3]"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          />
+        </svg>
+      </div>
+    </div>
 
-          <!-- Expanded details row -->
-          <tr
-            *ngIf="paper.expanded"
-            class="bg-gray-50 transition-all duration-300"
-          >
-            <td colspan="7" class="px-6 py-4">
-              <!-- Loading indicator -->
-              <div *ngIf="!paper.questionsLoaded" class="text-center py-4">
-                <div class="inline-flex items-center">
-                  <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-indigo-600 mr-2"></div>
-                  Loading question details...
-                </div>
-              </div>
-              
-              <!-- Question details table -->
-              <div *ngIf="paper.questionsLoaded" class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                  <thead class="bg-gray-200">
-                    <tr>
-                      <th
-                        class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Question
-                      </th>
-                      <th
-                        class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Correct Answer
-                      </th>
-                      <th
-                        class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Student Answer
-                      </th>
-                      <th
-                        class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                      >
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody class="bg-white divide-y divide-gray-200">
-                    <tr
-                      *ngFor="let detail of paper.questionDetails"
-                      class="hover:bg-gray-100"
-                    >
-                      <td
-                        class="px-4 py-2 text-sm text-gray-900"
-                        style="max-width: 300px; word-wrap: break-word;"
-                      >
-                        {{ detail.questionText }}
-                      </td>
-                      <td
-                        class="px-4 py-2 text-sm text-gray-900"
-                        style="max-width: 200px; word-wrap: break-word;"
-                      >
-                        {{ detail.correctAnswerText }}
-                      </td>
-                      <td
-                        class="px-4 py-2 text-sm text-gray-900"
-                        style="max-width: 200px; word-wrap: break-word;"
-                      >
-                        {{ detail.givenAnswerText }}
-                      </td>
-                      <td
-                        class="px-4 py-2 whitespace-nowrap text-sm"
-                      >
-                        <span
-                          [ngClass]="{
-                            'text-green-600 font-semibold': detail.isCorrect,
-                            'text-red-600 font-semibold': !detail.isCorrect
-                          }"
-                        >
-                          {{ detail.isCorrect ? "Correct" : "Incorrect" }}
-                        </span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </td>
+    <div *ngIf="isLoading" class="text-center py-4">
+      <div class="inline-flex items-center text-[#055C9D]">
+        <div
+          class="animate-spin rounded-full h-6 w-6 border-b-2 border-[#055C9D] mr-2"
+        ></div>
+        Loading results...
+      </div>
+    </div>
+
+    <div *ngIf="!isLoading && displayedResult.length === 0" class="text-center py-4 text-[#055C9D]">
+      No results found
+    </div>
+
+    <div *ngIf="!isLoading && displayedResult.length > 0" class="overflow-x-auto rounded-xl border border-[#b4c8ff]/50 shadow-sm">
+      <table class="min-w-full divide-y divide-[#b4c8ff]/50">
+        <thead class="bg-gradient-to-r from-[#003060] to-[#055C9D]">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Student Name
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Exam Name
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Course Name
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Attempt Count
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Marks
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              Time Duration
+            </th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+              View Answers
+            </th>
           </tr>
-        </ng-container>
-      </tbody>
-    </table>
+        </thead>
+        <tbody class="bg-white divide-y divide-[#b4c8ff]/50">
+          <ng-container *ngFor="let paper of displayedResult">
+            <tr class="hover:bg-[#68BBE3]/10 transition-all duration-200">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm font-medium text-[#003060]">
+                  {{ paper.studentName }}
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-[#055C9D]">{{ paper.examName || paper.title }}</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-[#003060]">{{ paper.courseName }}</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-[#055C9D]">
+                  {{ paper.attemptNumber }}
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-[#003060]">
+                  {{
+                    (paper.obtainedMarks / paper.totalMarks) * 100
+                      | number : "1.2-2"
+                  }}%
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-sm text-[#055C9D]">
+                  {{ calculateDuration(paper.startTime, paper.endTime) }}
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <button
+                  (click)="togglePaper(paper)"
+                  class="text-[#055C9D] hover:text-[#003060] flex items-center transition-colors duration-200"
+                >
+                  <i
+                    class="fas"
+                    [ngClass]="{
+                      'fa-arrow-down': !paper.expanded,
+                      'fa-arrow-up': paper.expanded
+                    }"
+                  ></i>
+                  {{ paper.expanded ? "Hide" : "View" }}
+                </button>
+              </td>
+            </tr>
+
+            <!-- Expanded details row -->
+            <tr
+              *ngIf="paper.expanded"
+              class="bg-[#68BBE3]/5 transition-all duration-300"
+            >
+              <td colspan="7" class="px-6 py-4">
+                <!-- Loading indicator -->
+                <div *ngIf="!paper.questionsLoaded" class="text-center py-4">
+                  <div class="inline-flex items-center text-[#055C9D]">
+                    <div
+                      class="animate-spin rounded-full h-4 w-4 border-b-2 border-[#055C9D] mr-2"
+                    ></div>
+                    Loading question details...
+                  </div>
+                </div>
+
+                <!-- Question details table -->
+                <div *ngIf="paper.questionsLoaded" class="overflow-x-auto">
+                  <table class="min-w-full divide-y divide-[#b4c8ff]/50">
+                    <thead class="bg-gradient-to-r from-[#003060]/80 to-[#055C9D]/80">
+                      <tr>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Question
+                        </th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Correct Answer
+                        </th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Student Answer
+                        </th>
+                        <th class="px-4 py-2 text-left text-xs font-medium text-white uppercase tracking-wider">
+                          Status
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-[#b4c8ff]/50">
+                      <tr
+                        *ngFor="let detail of paper.questionDetails"
+                        class="hover:bg-[#68BBE3]/10"
+                      >
+                        <td
+                          class="px-4 py-2 text-sm text-[#003060]"
+                          style="max-width: 300px; word-wrap: break-word"
+                        >
+                          {{ detail.questionText }}
+                        </td>
+                        <td
+                          class="px-4 py-2 text-sm text-[#055C9D]"
+                          style="max-width: 200px; word-wrap: break-word"
+                        >
+                          {{ detail.correctAnswerText }}
+                        </td>
+                        <td
+                          class="px-4 py-2 text-sm text-[#003060]"
+                          style="max-width: 200px; word-wrap: break-word"
+                        >
+                          {{ detail.givenAnswerText }}
+                        </td>
+                        <td class="px-4 py-2 whitespace-nowrap text-sm">
+                          <span
+                            [ngClass]="{
+                              'text-green-600 font-semibold': detail.isCorrect,
+                              'text-red-600 font-semibold': !detail.isCorrect
+                            }"
+                          >
+                            {{ detail.isCorrect ? "Correct" : "Incorrect" }}
+                          </span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="totalPages > 1" class="flex justify-between items-center mt-6 p-4 bg-[#b4c8ff]/10 rounded-xl">
+      <button
+        [disabled]="currentPage === 1"
+        (click)="previousPage()"
+        class="px-4 py-2 bg-gradient-to-r from-[#003060] to-[#055C9D] text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:from-[#00244A] hover:to-[#004787] transition-all duration-200"
+      >
+        Previous
+      </button>
+      <span class="text-[#055C9D] font-medium">
+        Page {{ currentPage }} of {{ totalPages }} ({{ totalResult }} results)
+      </span>
+      <button
+        [disabled]="currentPage === totalPages"
+        (click)="nextPage()"
+        class="px-4 py-2 bg-gradient-to-r from-[#003060] to-[#055C9D] text-white rounded-xl disabled:opacity-50 disabled:cursor-not-allowed hover:from-[#00244A] hover:to-[#004787] transition-all duration-200"
+      >
+        Next
+      </button>
+    </div>
   </div>
-</div>
 </div>

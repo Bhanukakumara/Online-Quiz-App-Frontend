@@ -41,6 +41,7 @@ export const routes: Routes = [
             {path: 'view-all-question', component: AdminViewAllQuestionComponent},
             {path: 'view-all-result', component: AdminViewAllResultComponent},
             {path: 'update-exam/:id', component: AdminUpdateExamComponent}
+            {path: 'edit-question/:questionId', component: AdminEditQuestionComponent}
         ]
     },
     {
@@ -54,7 +55,8 @@ export const routes: Routes = [
             {path: 'create-exam', component: AdminCreateExamComponent},
             {path: 'view-all-exam', component: AdminViewAllExamComponent},
             {path: 'add-question', component: AdminAddQuestionComponent},
-            {path: 'view-all-question', component: AdminViewAllQuestionComponent}
+            {path: 'view-all-question', component: AdminViewAllQuestionComponent},
+            {path: 'edit-question/:questionId', component: AdminEditQuestionComponent}
         ]
     },
     {
