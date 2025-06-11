@@ -1,0 +1,60 @@
+<div class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[var(--primary-color)] to-[var(--background-color)]">
+  <div class="bg-white/90 backdrop-blur-sm p-8 rounded-2xl shadow-2xl w-full max-w-3xl border border-[var(--border-color)] transform transition-all duration-500 hover:scale-[1.02]">
+    <h2 class="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] bg-clip-text text-transparent">
+      Settings
+    </h2>
+    
+    <form [formGroup]="settingsForm" (ngSubmit)="onUpdate()">
+      <!-- Course Name -->
+      <div class="space-y-2">
+        <label class="inline text-sm font-medium text-[var(--primary-color)]">Update Email</label>
+        <div *ngIf="settingsForm.get('email')?.invalid && (settingsForm.get('email')?.touched || settingsForm.get('email')?.dirty)">
+              <small *ngIf="settingsForm.get('email')?.errors?.['email']" style="color: brown;">Please enter a valid email address.</small>
+        </div>
+        <input 
+          type="text" 
+          formControlName="email" 
+          
+          class="mt-1 w-full px-4 py-3 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300 placeholder-[var(--text-color)/50]" 
+          placeholder="Enter new email"
+          required
+        >
+      </div>
+
+      <!-- Course Description -->
+      <div class="space-y-2">
+        <label class="inline text-sm font-medium text-[var(--primary-color)]">Update Username</label>
+         <input 
+          type="text" 
+          formControlName="username" 
+          
+          class="mt-1 w-full px-4 py-3 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300 placeholder-[var(--text-color)/50]" 
+          placeholder="Enter new username"
+          required
+        >
+      </div>
+
+      <div class="space-y-2">
+        <label class="inline text-sm font-medium text-[var(--primary-color)]">Update Password</label>
+         <input 
+          type="text" 
+          formControlName="password" 
+          
+          class="mt-1 w-full px-4 py-3 border border-[var(--border-color)] rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300 placeholder-[var(--text-color)/50]" 
+          placeholder="Enter new password"
+          required
+        >
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-2">
+        <button type="submit" [disabled]="settingsForm.invalid"
+          
+          class="w-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white py-3 rounded-xl hover:opacity-90 transition-all duration-300 shadow-lg hover:shadow-[0_5px_15px_var(--text-color)/30] transform hover:-translate-y-1"
+        >
+          Update
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

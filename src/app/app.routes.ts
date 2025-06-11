@@ -19,6 +19,7 @@ import { StudentExamComponent } from './modules/student/student-exam/student-exa
 import { StudentPaperComponent } from './modules/student/student-paper/student-paper.component';
 import { AdminViewAllResultComponent } from './modules/admin/admin-view-all-result/admin-view-all-result.component';
 import { AdminEditQuestionComponent } from './modules/admin/admin-edit-question/admin-edit-question.component';
+import { SettingComponent } from './modules/setting/setting.component';
 
 export const routes: Routes = [
     {
@@ -67,7 +68,8 @@ export const routes: Routes = [
             {path: 'dashboard', component: StudentMainComponent},
             {path: 'exam', component: StudentExamComponent},
             {path: 'exam/paper', component: StudentPaperComponent},
-            {path: 'view-all-result/:studentId', component: AdminViewAllResultComponent}
+            {path: 'view-all-result/:studentId', component: AdminViewAllResultComponent},
+            {path: 'setting', component: SettingComponent}
         ]
     }
 ];

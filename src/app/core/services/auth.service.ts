@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   me():Observable<any> {
-    return this,this.http.get('http://localhost:8080/auth/me')
+    return this.http.get('http://localhost:8080/auth/me');
   }
 
   logout() {
