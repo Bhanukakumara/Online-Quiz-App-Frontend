@@ -38,6 +38,7 @@
             <td class="px-6 py-4 space-x-3">
               <button 
                 class="bg-gradient-to-r from-[var(--secondary-color)] to-[var(--background-color)] hover:from-[var(--primary-color)] hover:to-[var(--secondary-color)] text-white px-4 py-2 rounded-lg text-sm font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+                [routerLink]="['../edit-question', question.id]"
               >
                 Edit
               </button>
