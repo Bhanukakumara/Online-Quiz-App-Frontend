@@ -65,7 +65,7 @@
 }
 
 .progress-bar {
-  background: linear-gradient(90deg, #2f5233 0%, #337b01 50%, #76b947 100%);
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--background-color) 100%);
 }
 
 .progress-circle {
