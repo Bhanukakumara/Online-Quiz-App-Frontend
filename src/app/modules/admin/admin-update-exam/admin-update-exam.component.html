@@ -1,0 +1,135 @@
+<div
+  class="w-full p-6 bg-gradient-to-br from-[var(--primary-color)] to-[var(--background-color)] animate-gradient min-h-screen">
+  <div class="max-w-4xl mx-auto">
+    <div class="mb-6">
+      <h1 class="text-3xl font-bold text-white drop-shadow-md mb-2">Update Exam</h1>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="flex justify-center items-center py-12">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+      <span class="ml-3 text-white text-lg">Loading exam data...</span>
+    </div>
+
+    <!-- Update Form -->
+    <div *ngIf="!isLoading"
+      class="bg-white/90 backdrop-blur-sm rounded-2xl shadow-2xl p-8 border border-[var(--border-color)]">
+      <form [formGroup]="updateExamForm" (ngSubmit)="onSubmit()">
+
+        <!-- Form Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+          <!-- Title Field -->
+          <div class="md:col-span-2">
+            <label for="title" class="block text-sm font-medium text-[var(--primary-color)] mb-2">
+              Exam Title <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="title" formControlName="title"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+              placeholder="Enter exam title" [class.border-red-500]="title?.invalid && title?.touched">
+            <div *ngIf="title?.invalid && title?.touched" class="mt-1 text-red-500 text-sm">
+              <div *ngIf="title?.errors?.['required']">Title is required</div>
+              <div *ngIf="title?.errors?.['minlength']">Title must be at least 3 characters long</div>
+              <div *ngIf="title?.errors?.['maxlength']">Title cannot exceed 100 characters</div>
+            </div>
+          </div>
+
+          <!-- Description Field -->
+          <div class="md:col-span-2">
+            <label for="description" class="block text-sm font-medium text-[var(--primary-color)] mb-2">
+              Description <span class="text-red-500">*</span>
+            </label>
+            <textarea id="description" formControlName="description" rows="4"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300 resize-none"
+              placeholder="Enter exam description"
+              [class.border-red-500]="description?.invalid && description?.touched"></textarea>
+            <div *ngIf="description?.invalid && description?.touched" class="mt-1 text-red-500 text-sm">
+              <div *ngIf="description?.errors?.['required']">Description is required</div>
+              <div *ngIf="description?.errors?.['minlength']">Description must be at least 10 characters long</div>
+              <div *ngIf="description?.errors?.['maxlength']">Description cannot exceed 500 characters</div>
+            </div>
+          </div>
+
+          <!-- Questions Count -->
+          <div>
+            <label for="questionCount" class="block text-sm font-medium text-[var(--primary-color)] mb-2">
+              Number of Questions <span class="text-red-500">*</span>
+            </label>
+            <input type="number" id="questionCount" formControlName="questionCount" min="1" max="100"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+              placeholder="Enter number of questions"
+              [class.border-red-500]="questionCount?.invalid && questionCount?.touched">
+            <div *ngIf="questionCount?.invalid && questionCount?.touched" class="mt-1 text-red-500 text-sm">
+              <div *ngIf="questionCount?.errors?.['required']">Number of questions is required</div>
+              <div *ngIf="questionCount?.errors?.['min']">Must have at least 1 question</div>
+              <div *ngIf="questionCount?.errors?.['max']">Cannot exceed 100 questions</div>
+            </div>
+          </div>
+
+          <!-- Max Attempts -->
+          <div>
+            <label for="maxAttempts" class="block text-sm font-medium text-[var(--primary-color)] mb-2">
+              Maximum Attempts <span class="text-red-500">*</span>
+            </label>
+            <input type="number" id="maxAttempts" formControlName="maxAttempts" min="1" max="10"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+              placeholder="Enter max attempts" [class.border-red-500]="maxAttempts?.invalid && maxAttempts?.touched">
+            <div *ngIf="maxAttempts?.invalid && maxAttempts?.touched" class="mt-1 text-red-500 text-sm">
+              <div *ngIf="maxAttempts?.errors?.['required']">Maximum attempts is required</div>
+              <div *ngIf="maxAttempts?.errors?.['min']">Must allow at least 1 attempt</div>
+              <div *ngIf="maxAttempts?.errors?.['max']">Cannot exceed 10 attempts</div>
+            </div>
+          </div>
+
+          <!-- Teacher ID -->
+          <div>
+            <label for="title" class="block text-sm font-medium text-[var(--primary-color)] mb-2">
+              Teacher ID <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="teacherId" formControlName="teacherId"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+              placeholder="Enter teacher ID" [class.border-red-500]="teacherId?.invalid && teacherId?.touched">
+            <div *ngIf="teacherId?.invalid && teacherId?.touched" class="mt-1 text-red-500 text-sm">
+              <div *ngIf="teacherId?.errors?.['required']">Teacher ID is required</div>
+            </div>
+          </div>
+
+          <!-- Course ID -->
+          <div>
+            <label for="title" class="block text-sm font-medium text-[var(--primary-color)] mb-2">
+              Course ID <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="courseId" formControlName="courseId"
+              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--secondary-color)] focus:border-transparent transition-all duration-300"
+              placeholder="Enter teacher ID" [class.border-red-500]="teacherId?.invalid && teacherId?.touched">
+            <div *ngIf="courseId?.invalid && courseId?.touched" class="mt-1 text-red-500 text-sm">
+              <div *ngIf="courseId?.errors?.['required']">Course ID is required</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 sm:justify-end pt-6 border-t border-gray-200">
+          <button type="button" (click)="onCancel()" [disabled]="isSubmitting"
+            class="w-full sm:w-auto px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-300 font-medium disabled:opacity-50 disabled:cursor-not-allowed">
+            Cancel
+          </button>
+          <button type="submit" [disabled]="updateExamForm.invalid || isSubmitting"
+            class="w-full sm:w-auto bg-gradient-to-r from-[var(--secondary-color)] to-[var(--background-color)] hover:from-[var(--primary-color)] hover:to-[var(--secondary-color)] text-white px-6 py-3 rounded-lg font-medium shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:hover:shadow-md">
+            <span *ngIf="!isSubmitting">Update Exam</span>
+            <span *ngIf="isSubmitting" class="flex items-center justify-center">
+              <svg class="animate-spin -ml-1 mr-3 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                </path>
+              </svg>
+              Updating...
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
