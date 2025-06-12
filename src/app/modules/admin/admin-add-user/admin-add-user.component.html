@@ -1,94 +1,103 @@
-<div class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#003060] to-[#0E86D4]">
-  <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-2xl transform transition-all duration-500 hover:scale-[1.02]">
-    <div class="text-center mb-8">
-      <h2 class="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#003060] to-[#055C9D]">
-        Add New User
-      </h2>
-      <p class="text-[#68BBE3]">Fill in the details to create a new account</p>
-    </div>
-    
-    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" class="space-y-6">
+<div class="pt-10 pb-10 bg-gradient-to-br from-[#003060] to-[#0E86D4]">
+  <div class="max-w-3xl mx-auto">
+    <form
+      #userForm="ngForm"
+      (ngSubmit)="onSubmit(userForm)"
+      class="bg-gradient-to-br from-white to-[#b4c8ff]/20 p-8 rounded-2xl shadow-xl border border-[#b4c8ff]/50 backdrop-blur-sm transform transition-all duration-500 hover:shadow-2xl space-y-6"
+    >
+      <div class="text-center mb-8">
+        <h2
+          class="text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[#003060] to-[#055C9D]"
+        >
+          Add New User
+        </h2>
+        <p class="text-[#68BBE3]">
+          Fill in the details to create a new account
+        </p>
+      </div>
       <!-- Name -->
-      <div class="space-y-1">
-        <label class="block text-sm font-medium text-[#003060]">Full Name</label>
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#003060]"
+          >Full Name</label
+        >
         <input
           type="text"
           name="name"
-          ngModel
-          class="mt-1 w-full px-4 py-3 border border-[#b4c8ff] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
+          [(ngModel)]="newUser.name"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
           required
           placeholder="Enter Full Name"
         />
       </div>
 
       <!-- Username -->
-      <div class="space-y-1">
+      <div class="space-y-2">
         <label class="block text-sm font-medium text-[#003060]">Username</label>
         <input
           type="text"
           name="username"
           [(ngModel)]="newUser.username"
-          class="mt-1 w-full px-4 py-3 border border-[#b4c8ff] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
           required
           placeholder="Username"
         />
       </div>
 
       <!-- Email -->
-      <div class="space-y-1">
+      <div class="space-y-2">
         <label class="block text-sm font-medium text-[#003060]">Email</label>
         <input
           type="email"
           name="email"
           [(ngModel)]="newUser.email"
-          class="mt-1 w-full px-4 py-3 border border-[#b4c8ff] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
           required
           placeholder="Enter Email"
         />
       </div>
 
       <!-- Password -->
-      <div class="space-y-1">
+      <div class="space-y-2">
         <label class="block text-sm font-medium text-[#003060]">Password</label>
         <input
           type="password"
           name="password"
           [(ngModel)]="newUser.password"
-          class="mt-1 w-full px-4 py-3 border border-[#b4c8ff] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
           required
           placeholder="Password"
         />
       </div>
 
       <!-- Role -->
-      <div class="space-y-1">
+      <div class="space-y-2">
         <label class="block text-sm font-medium text-[#003060]">Role</label>
         <select
           name="role"
           [(ngModel)]="newUser.role"
-          class="mt-1 w-full px-4 py-3 border border-[#b4c8ff] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%23003060\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e')] bg-no-repeat bg-[right_0.5rem_center] bg-[length:1.5em]"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 appearance-none bg-white bg-[right_1rem_center] bg-no-repeat bg-[length:1.5em_1.5em]"
+          style="
+            background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3e%3cpath stroke=%27%23003060%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27M6 8l4 4 4-4%27/%3e%3c/svg%3e');
+          "
           required
         >
-          <option value="" disabled selected>Select Role</option>
-          <option value="ADMIN">ADMIN</option>
-          <option value="TEACHER">TEACHER</option>
-          <option value="STUDENT">STUDENT</option>
+          <option [ngValue]="null" class="text-[#68BBE3]" disabled selected>
+            Select Role
+          </option>
+          <option value="ADMIN" class="text-[#003060]">ADMIN</option>
+          <option value="TEACHER" class="text-[#003060]">TEACHER</option>
+          <option value="STUDENT" class="text-[#003060]">STUDENT</option>
         </select>
       </div>
 
       <!-- Submit Button -->
-      <div class="pt-2">
+      <div class="pt-4">
         <button
           type="submit"
-          class="w-full bg-gradient-to-r from-[#003060] to-[#055C9D] text-white py-3 rounded-xl hover:from-[#055C9D] hover:to-[#0E86D4] transition-all duration-500 shadow-md hover:shadow-lg font-medium flex items-center justify-center"
+          class="w-full bg-gradient-to-r from-[#003060] to-[#055C9D] text-white py-3 rounded-xl hover:bg-gradient-to-r hover:from-[#055C9D] hover:to-[#0E86D4] transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 font-medium text-lg"
           [disabled]="userForm.invalid"
         >
-          <span class="group-hover:translate-x-1 transition-transform duration-300">
-            Create Account
-          </span>
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-all duration-300 group-hover:translate-x-1" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-          </svg>
+          Create Account
         </button>
       </div>
     </form>

@@ -1,0 +1,123 @@
+<div class="pt-10 pb-10 bg-gradient-to-br from-[#003060] to-[#0E86D4]">
+  <div class="max-w-3xl mx-auto">
+    <form
+      #examForm="ngForm"
+      (ngSubmit)="onSubmit(examForm)"
+      class="bg-gradient-to-br from-white to-[#b4c8ff]/20 p-8 rounded-2xl shadow-xl border border-[#b4c8ff]/50 backdrop-blur-sm transform transition-all duration-500 hover:shadow-2xl space-y-6"
+    >
+      <h2
+        class="text-3xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#003060] to-[#055C9D]"
+      >
+        Create New Exam
+      </h2>
+      <!-- Exam Title -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#003060]"
+          >Exam Title</label
+        >
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="newExam.title"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
+          placeholder="Enter exam title"
+          required
+        />
+      </div>
+
+      <!-- Description -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#003060]"
+          >Description</label
+        >
+        <textarea
+          name="description"
+          [(ngModel)]="newExam.description"
+          rows="3"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
+          placeholder="Describe the exam"
+          required
+        ></textarea>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Question Count -->
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-[#003060]"
+            >Question Count</label
+          >
+          <input
+            type="number"
+            name="questionCount"
+            [(ngModel)]="newExam.questionCount"
+            class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
+            required
+          />
+        </div>
+
+        <!-- Max Attempts -->
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-[#003060]"
+            >Max Attempts</label
+          >
+          <input
+            type="number"
+            name="maxAttempts"
+            [(ngModel)]="newExam.maxAttempts"
+            class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
+            required
+          />
+        </div>
+      </div>
+
+      <!-- Course Name Dropdown -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#003060]"
+          >Course Name</label
+        >
+        <select
+          name="courseId"
+          [(ngModel)]="newExam.courseId"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 appearance-none bg-white bg-[right_1rem_center] bg-no-repeat bg-[length:1.5em_1.5em]"
+          style="
+            background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3e%3cpath stroke=%27%23003060%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27M6 8l4 4 4-4%27/%3e%3c/svg%3e');
+          "
+          required
+        >
+          <option [ngValue]="null" class="text-[#68BBE3]">Select Course</option>
+          <option
+            *ngFor="let course of courseList"
+            [ngValue]="course.id"
+            class="text-[#003060]"
+          >
+            {{ course.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Teacher Name -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#003060]"
+          >Teacher Name</label
+        >
+        <input
+          name="teacherId"
+          [(ngModel)]="createdByName"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl bg-gray-50 text-[#003060] cursor-not-allowed"
+          readonly
+          required
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-4">
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-[#003060] to-[#055C9D] text-white py-3 rounded-xl hover:bg-gradient-to-r hover:from-[#055C9D] hover:to-[#0E86D4] transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 font-medium text-lg"
+        >
+          Create Exam
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

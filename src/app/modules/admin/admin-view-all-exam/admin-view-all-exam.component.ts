@@ -106,9 +106,4 @@ export class AdminViewAllExamComponent implements OnInit {
     this.updateDisplayedExams();
   }
 
-  updateExam(examId: number){
-    console.log('update exam With Id:', examId);
-    this.router.navigate(['admin/update-exam', examId]);
-  }
-
 }

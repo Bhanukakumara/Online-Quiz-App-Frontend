@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { User } from '../../../core/models/user';
 import { RequestUser } from '../../../core/models/request-user';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-add-user',
@@ -12,9 +13,9 @@ import Swal from 'sweetalert2';
   templateUrl: './admin-add-user.component.html',
   styleUrl: './admin-add-user.component.css',
 })
-export class AdminAddUserComponent{
-newUser: User = new User('','','','','');
-  constructor(private userService: UserService) {}
+export class AdminAddUserComponent {
+  newUser: User = new User('', '', '', '', '');
+  constructor(private userService: UserService, private router: Router) {}
   onSubmit(form: NgForm) {
     if (form.valid) {
       const userToCreate = new User(
@@ -28,6 +29,7 @@ newUser: User = new User('','','','','');
         next: (response) => {
           form.resetForm();
           Swal.fire('Success', 'User added successfully!', 'success');
+          this.router.navigate(['admin/view-all-user']);
         },
         error: (error) => {
           console.error('Error adding user', error);
