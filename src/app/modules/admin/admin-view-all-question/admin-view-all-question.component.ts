@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Component({
   selector: 'app-admin-view-all-question',
@@ -20,11 +21,14 @@ export class AdminViewAllQuestionComponent implements OnInit {
   totalQuestion: number = 0;
   isLoading = false;
   searchTerm = '';
+  userRole: string = '';
   private searchSubject = new Subject<string>();
 
   constructor(
     private questionService: QuestionService,
-    private router: Router) {}
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.loadAllQuestion();
@@ -36,6 +40,8 @@ export class AdminViewAllQuestionComponent implements OnInit {
         this.searchTerm = searchTerm;
         this.applySearch();
       });
+
+    this.me();
   }
   loadAllQuestion() {
     this.questionService.getAllQuestions().subscribe({
@@ -166,7 +172,26 @@ export class AdminViewAllQuestionComponent implements OnInit {
       }
     });
   }
-  updateQuestion(questionId:number){
-    this.router.navigate([`/admin/edit-question/${questionId}`]);
+  me() {
+    this.authService.me().subscribe({
+      next: (user) => {
+        this.userRole = user.role;
+      },
+      error: (error) => {
+        console.error('Error deleting user', error);
+        Swal.fire(
+          'Error',
+          'Failed to catch the user. Please try again.',
+          'error'
+        );
+      },
+    });
+  }
+  updateQuestion(questionId: number) {
+    if (this.userRole === 'ADMIN') {
+      this.router.navigate([`/admin/edit-question/${questionId}`]);
+    } else if (this.userRole === 'TEACHER') {
+      this.router.navigate([`/teacher/edit-question/${questionId}`]);
+    }
   }
 }
