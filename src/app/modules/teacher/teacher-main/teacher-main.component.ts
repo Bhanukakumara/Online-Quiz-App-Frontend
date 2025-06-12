@@ -1,52 +1,99 @@
-import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../../core/services/auth.service';
+import Swal from 'sweetalert2';
+import { DashboardService } from '../../../core/services/dashboard.service';
 @Component({
   selector: 'app-teacher-main',
   imports: [],
   templateUrl: './teacher-main.component.html',
-  styleUrl: './teacher-main.component.css'
+  styleUrl: './teacher-main.component.css',
 })
-export class TeacherMainComponent {
-  activeItem: any;
-  hasContent = false; // Set to true when child components are present
-  get mainContentClasses(): string {
-    return 'lg:ml-64';
+export class TeacherMainComponent implements OnInit {
+  userName: string = '';
+  courseCount:number = 0;
+  studentCount:number = 0;
+  examCount:number = 0;
+  questionCount:number = 0;
+  constructor(private authService: AuthService, private dashboardService: DashboardService) {}
+  ngOnInit(): void {
+    this.me();
+    this.getUserCount();
+    this.getStudentCount();
+    this.getExamCount();
   }
-  getPageTitle(): string {
-    const titles: { [key: string]: string } = {
-      'dashboard': 'Dashboard',
-      'users': 'User Management',
-      'courses': 'Course Management',
-      'exams': 'Exam Management',
-      'questions': 'Question Bank',
-      'reports': 'Reports & Analytics',
-      'settings': 'Settings'
-    };
-    return titles[this.activeItem] || 'Dashboard';
+  me() {
+    this.authService.me().subscribe({
+      next: (user) => {
+        this.userName = user.name;
+      },
+      error: (error) => {
+        console.error('Error fetching user data', error);
+        Swal.fire(
+          'Error',
+          'Failed to fetch user data. Please try again later.',
+          'error'
+        );
+      },
+    });
   }
-  getPageDescription(): string {
-    const descriptions: { [key: string]: string } = {
-      'dashboard': 'Overview of your quiz portal activities and statistics',
-      'users': 'Manage admins, teachers, and students',
-      'courses': 'Create and manage courses for your quiz system',
-      'exams': 'Create and configure exams for different courses',
-      'questions': 'Manage question pools for your exams',
-      'reports': 'View detailed analytics and performance reports',
-      'settings': 'Configure system settings and preferences'
-    };
-    return descriptions[this.activeItem] || 'Welcome to the admin panel';
+  getUserCount(){
+    this.dashboardService.getCourseCount().subscribe({
+      next: (courseCount) => {
+        this.courseCount = courseCount;
+      },
+      error: (error) => {
+        console.error('Error fetching user data', error);
+        Swal.fire(
+          'Error',
+          'Failed to fetch user data. Please try again later.',
+          'error'
+        );
+      },
+    });
   }
-  getActionButtonText(): string {
-    const actions: { [key: string]: string } = {
-      'dashboard': 'View Reports',
-      'users': 'Add New User',
-      'courses': 'Create Course',
-      'exams': 'Create Exam',
-      'questions': 'Add Question',
-      'reports': 'Export Data',
-      'settings': 'Save Changes'
-    };
-    return actions[this.activeItem] || 'Take Action';
+  getStudentCount(){
+    this.dashboardService.getStudentCount().subscribe({
+      next: (studentCount) => {
+        this.studentCount = studentCount;
+      },
+      error: (error) => {
+        console.error('Error fetching user data', error);
+        Swal.fire(
+          'Error',
+          'Failed to fetch user data. Please try again later.',
+          'error'
+        );
+      },
+    });
+  }
+  getExamCount(){
+    this.dashboardService.getExamCount().subscribe({
+      next: (examCount) => {
+        this.examCount = examCount;
+      },
+      error: (error) => {
+        console.error('Error fetching user data', error);
+        Swal.fire(
+          'Error',
+          'Failed to fetch user data. Please try again later.',
+          'error'
+        );
+      },
+    });
+  }
+  getQuestionCount(){
+    this.dashboardService.getQuestionCount().subscribe({
+      next: (questionCount) => {
+        this.questionCount = questionCount;
+      },
+      error: (error) => {
+        console.error('Error fetching user data', error);
+        Swal.fire(
+          'Error',
+          'Failed to fetch user data. Please try again later.',
+          'error'
+        );
+      },
+    })
   }
 }

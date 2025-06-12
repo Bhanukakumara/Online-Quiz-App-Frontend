@@ -48,7 +48,7 @@ export class AdminViewAllResultComponent implements OnInit, OnDestroy {
       next: (user) => {
         this.userRole = user.role;
         this.userId = user.id;
-        if (this.userRole === 'ADMIN') {
+        if (this.userRole === 'ADMIN' || this.userRole === 'TEACHER') {
           this.getAllResult();
         }
         else if (this.userRole === 'STUDENT') {
