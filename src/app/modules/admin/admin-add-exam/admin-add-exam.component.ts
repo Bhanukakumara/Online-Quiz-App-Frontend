@@ -6,14 +6,15 @@ import { AuthService } from '../../../core/services/auth.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin-create-exam',
+  selector: 'app-admin-add-exam',
   imports: [CommonModule, FormsModule],
-  templateUrl: './admin-create-exam.component.html',
-  styleUrl: './admin-create-exam.component.css'
+  templateUrl: './admin-add-exam.component.html',
+  styleUrl: './admin-add-exam.component.css',
 })
-export class AdminCreateExamComponent implements OnInit{
+export class AdminAddExamComponent implements OnInit {
   newExam = new Exam('', '', 0, 0, 0, 0);
   createdBy: any;
   courseList: any[] = [];
@@ -21,7 +22,9 @@ export class AdminCreateExamComponent implements OnInit{
   constructor(
     private examService: ExamService,
     private courseService: CourseService,
-    private authService: AuthService){}
+    private authService: AuthService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.authService.me().subscribe({
       next: (response) => {
@@ -29,8 +32,12 @@ export class AdminCreateExamComponent implements OnInit{
       },
       error: (error) => {
         console.error('Error fetching user data', error);
-        Swal.fire('Error', 'Failed to fetch user data. Please try again later.', 'error');
-      }
+        Swal.fire(
+          'Error',
+          'Failed to fetch user data. Please try again later.',
+          'error'
+        );
+      },
     });
     this.courseService.getAllCourses().subscribe({
       next: (course) => {
@@ -38,18 +45,22 @@ export class AdminCreateExamComponent implements OnInit{
       },
       error: (error) => {
         console.error('Error fetching courses', error);
-        Swal.fire('Error', 'Failed to load courses. Please try again later.', 'error');
-      }
+        Swal.fire(
+          'Error',
+          'Failed to load courses. Please try again later.',
+          'error'
+        );
+      },
     });
     this.authService.me().subscribe({
       next: (response) => {
         this.createdBy = response;
         this.createdByName = response.name;
-      }
-    })
+      },
+    });
   }
-  onSubmit(form:any) {
-    if(form.valid){
+  onSubmit(form: any) {
+    if (form.valid) {
       const examToCreate = new Exam(
         form.value.title,
         form.value.description,
@@ -62,10 +73,15 @@ export class AdminCreateExamComponent implements OnInit{
         next: () => {
           form.resetForm();
           Swal.fire('Success', 'Exam created successfully!', 'success');
+          this.router.navigate(['admin/view-all-user']);
         },
         error: (error) => {
           console.error('Error creating exam', error);
-          Swal.fire('Error', 'Failed to create exam. Please try again.', 'error');
+          Swal.fire(
+            'Error',
+            'Failed to create exam. Please try again.',
+            'error'
+          );
         },
       });
     }

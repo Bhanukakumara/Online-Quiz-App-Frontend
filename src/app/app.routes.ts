@@ -6,9 +6,9 @@ import { StudentDashboardComponent } from './modules/student/student-dashboard/s
 import { AdminMainComponent } from './modules/admin/admin-main/admin-main.component';
 import { AdminAddUserComponent } from './modules/admin/admin-add-user/admin-add-user.component';
 import { AdminViewAllUsersComponent } from './modules/admin/admin-view-all-users/admin-view-all-users.component';
-import { AdminCreateCourseComponent } from './modules/admin/admin-create-course/admin-create-course.component';
+import { AdminAddCourseComponent } from './modules/admin/admin-add-course/admin-add-course.component';
 import { AdminViewAllCourseComponent } from './modules/admin/admin-view-all-course/admin-view-all-course.component';
-import { AdminCreateExamComponent } from './modules/admin/admin-create-exam/admin-create-exam.component';
+import { AdminAddExamComponent } from './modules/admin/admin-add-exam/admin-add-exam.component';
 import { AdminViewAllExamComponent } from './modules/admin/admin-view-all-exam/admin-view-all-exam.component';
 import { AdminAddQuestionComponent } from './modules/admin/admin-add-question/admin-add-question.component';
 import { AdminViewAllQuestionComponent } from './modules/admin/admin-view-all-question/admin-view-all-question.component';
@@ -18,8 +18,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { StudentExamComponent } from './modules/student/student-exam/student-exam.component';
 import { StudentPaperComponent } from './modules/student/student-paper/student-paper.component';
 import { AdminViewAllResultComponent } from './modules/admin/admin-view-all-result/admin-view-all-result.component';
-import { AdminUpdateExamComponent } from './modules/admin/admin-update-exam/admin-update-exam.component';
-import { AdminEditQuestionComponent } from './modules/admin/admin-edit-question/admin-edit-question.component';
+import { AdminUpdateQuestionComponent } from './modules/admin/admin-update-question/admin-update-question.component';
 
 export const routes: Routes = [
     {
@@ -34,15 +33,14 @@ export const routes: Routes = [
             {path: 'dashboard', component: AdminMainComponent},
             {path: 'add-user', component: AdminAddUserComponent},
             {path: 'view-all-user', component: AdminViewAllUsersComponent},
-            {path: 'create-course', component: AdminCreateCourseComponent},
+            {path: 'create-course', component: AdminAddCourseComponent},
             {path: 'view-all-course', component: AdminViewAllCourseComponent},
-            {path: 'create-exam', component: AdminCreateExamComponent},
+            {path: 'create-exam', component: AdminAddExamComponent},
             {path: 'view-all-exam', component: AdminViewAllExamComponent},
             {path: 'add-question', component: AdminAddQuestionComponent},
             {path: 'view-all-question', component: AdminViewAllQuestionComponent},
             {path: 'view-all-result', component: AdminViewAllResultComponent},
-            {path: 'update-exam/:id', component: AdminUpdateExamComponent},
-            {path: 'edit-question/:questionId', component: AdminEditQuestionComponent}
+            {path: 'edit-question/:questionId', component: AdminUpdateQuestionComponent}
         ]
     },
     {
@@ -53,11 +51,11 @@ export const routes: Routes = [
         children: [
             {path: 'dashboard', component: TeacherMainComponent},
             {path: 'view-all-course', component: AdminViewAllCourseComponent},
-            {path: 'create-exam', component: AdminCreateExamComponent},
+            {path: 'create-exam', component: AdminAddExamComponent},
             {path: 'view-all-exam', component: AdminViewAllExamComponent},
             {path: 'add-question', component: AdminAddQuestionComponent},
             {path: 'view-all-question', component: AdminViewAllQuestionComponent},
-            {path: 'edit-question/:questionId', component: AdminEditQuestionComponent}
+            {path: 'edit-question/:questionId', component: AdminUpdateQuestionComponent}
         ]
     },
     {

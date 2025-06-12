@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AuthService } from '../../../core/services/auth.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-add-question',
@@ -25,7 +26,8 @@ export class AdminAddQuestionComponent implements OnInit {
   constructor(
     private questionService: QuestionService,
     private examService: ExamService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -71,6 +73,7 @@ export class AdminAddQuestionComponent implements OnInit {
         next: () => {
           form.reset();
           Swal.fire('Success', 'Question added successfully!', 'success');
+          this.router.navigate(['admin/view-all-question']);
         },
         error: (error) => {
           console.error('Error adding question', error);
