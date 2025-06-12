@@ -20,7 +20,7 @@
         <tbody>
           <tr
             class="border-t border-[var(--border-color)] hover:bg-[var(--text-color)/10] transition-colors duration-300"
-            *ngFor="let exam of exams; let i = index">
+            *ngFor="let exam of allExams; let i = index">
             <td class="py-4 px-6 text-[var(--primary-color)] font-medium">{{i + 1}}</td>
             <td class="py-4 px-6 text-[var(--primary-color)]">{{exam.title}}</td>
             <td class="py-4 px-6 text-[var(--secondary-color)]">{{exam.description}}</td>
