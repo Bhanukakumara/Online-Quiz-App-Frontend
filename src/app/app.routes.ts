@@ -19,6 +19,7 @@ import { StudentExamComponent } from './modules/student/student-exam/student-exa
 import { StudentPaperComponent } from './modules/student/student-paper/student-paper.component';
 import { AdminViewAllResultComponent } from './modules/admin/admin-view-all-result/admin-view-all-result.component';
 import { AdminUpdateQuestionComponent } from './modules/admin/admin-update-question/admin-update-question.component';
+import { AdminUpdateExamComponent } from './modules/admin/admin-update-exam/admin-update-exam.component';
 
 export const routes: Routes = [
     {
@@ -40,7 +41,8 @@ export const routes: Routes = [
             {path: 'add-question', component: AdminAddQuestionComponent},
             {path: 'view-all-question', component: AdminViewAllQuestionComponent},
             {path: 'view-all-result', component: AdminViewAllResultComponent},
-            {path: 'edit-question/:questionId', component: AdminUpdateQuestionComponent}
+            {path: 'edit-question/:questionId', component: AdminUpdateQuestionComponent},
+            {path: 'update-exam/:examId', component: AdminUpdateExamComponent}
         ]
     },
     {

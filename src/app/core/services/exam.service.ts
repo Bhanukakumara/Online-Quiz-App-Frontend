@@ -25,4 +25,12 @@ export class ExamService {
   updateExam(examId: number, examData: any): Observable<any> {
     return this.http.put<any>(`http://localhost:8080/api/exam/update/${examId}`, examData);
   }
+
+  getExamsByTeacherId(teacherId: number): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/api/exam/get-by-teacher-id/${teacherId}`);
+  }
+
+  getExamsByCourseId(courseId: number): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/api/exam/get-by-courseId-id/${courseId}`);
+  }
 }
