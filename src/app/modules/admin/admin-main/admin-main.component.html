@@ -1,19 +1,13 @@
-<main class="p-4 lg:p-6 bg-gray-50 min-h-screen">
+<main class="p-4 lg:p-6 bg-gradient-to-br from-[#003060] to-[#0E86D4] min-h-screen">
   <!-- Welcome Header -->
   <div class="mb-8 animate-fade-in">
-    <div
-      class="bg-gradient-to-r from-[var(--primary-color)] via-[var(--secondary-color)] to-[var(--background-color)] rounded-2xl p-6 lg:p-8 text-white relative overflow-hidden"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 lg:p-8 text-white relative overflow-hidden border border-[#b4c8ff]/20 shadow-xl">
       <!-- Background Animation Elements -->
-      <div
-        class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse"
-      ></div>
-      <div
-        class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-xl animate-pulse animation-delay-1000"
-      ></div>
+      <div class="absolute top-0 right-0 w-32 h-32 bg-[#68BBE3]/10 rounded-full blur-2xl animate-pulse"></div>
+      <div class="absolute bottom-0 left-0 w-24 h-24 bg-[#055C9D]/10 rounded-full blur-xl animate-pulse animation-delay-1000"></div>
 
       <div class="relative z-10">
-        <h1 class="text-2xl lg:text-3xl font-bold mb-2">
+        <h1 class="text-2xl lg:text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-color)] to-white">
           Welcome back, {{ userName }}!
         </h1>
         <p class="text-white/90 text-sm lg:text-base">
@@ -24,122 +18,62 @@
   </div>
 
   <!-- Stats Cards -->
-  <div
-    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8"
-  >
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8">
     <!-- Total Users Card -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 animate-slide-up">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-gray-600 text-sm font-medium">Total Users</p>
-          <p class="text-2xl font-bold text-gray-900 mt-1">{{ userCount }}</p>
+          <p class="text-white text-sm font-medium">Total Users</p>
+          <p class="text-2xl font-bold text-white mt-1">{{ userCount }}</p>
         </div>
-        <div
-          class="w-12 h-12 bg-gradient-to-br from-[var(--text-color)] to-[var(--background-color)] rounded-lg flex items-center justify-center"
-        >
-          <svg
-            class="w-6 h-6 text-[var(--primary-color)]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
-            ></path>
+        <div class="w-12 h-12 bg-gradient-to-br from-[#68BBE3] to-[#0E86D4] rounded-lg flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#003060]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
           </svg>
         </div>
       </div>
     </div>
 
     <!-- Active Courses Card -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up animation-delay-200"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 animate-slide-up animation-delay-200">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-gray-600 text-sm font-medium">Total Courses</p>
-          <p class="text-2xl font-bold text-gray-900 mt-1">{{ courseCount }}</p>
+          <p class="text-white text-sm font-medium">Total Courses</p>
+          <p class="text-2xl font-bold text-white mt-1">{{ courseCount }}</p>
         </div>
-        <div
-          class="w-12 h-12 bg-gradient-to-br from-[var(--background-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center"
-        >
-          <svg
-            class="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-            ></path>
+        <div class="w-12 h-12 bg-gradient-to-br from-[#0E86D4] to-[#055C9D] rounded-lg flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
           </svg>
         </div>
       </div>
     </div>
 
     <!-- Total Exams Card -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up animation-delay-400"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 animate-slide-up animation-delay-400">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-gray-600 text-sm font-medium">Total Exams</p>
-          <p class="text-2xl font-bold text-gray-900 mt-1">{{ examCount }}</p>
+          <p class="text-white text-sm font-medium">Total Exams</p>
+          <p class="text-2xl font-bold text-white mt-1">{{ examCount }}</p>
         </div>
-        <div
-          class="w-12 h-12 bg-gradient-to-br from-[var(--secondary-color)] to-[var(--primary-color)] rounded-lg flex items-center justify-center"
-        >
-          <svg
-            class="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            ></path>
+        <div class="w-12 h-12 bg-gradient-to-br from-[#055C9D] to-[#003060] rounded-lg flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
           </svg>
         </div>
       </div>
     </div>
 
     <!-- Question Bank Card -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up animation-delay-600"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 animate-slide-up animation-delay-600">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-gray-600 text-sm font-medium">Total Questions</p>
-          <p class="text-2xl font-bold text-gray-900 mt-1">
-            {{ questionCount }}
-          </p>
+          <p class="text-white text-sm font-medium">Total Questions</p>
+          <p class="text-2xl font-bold text-white mt-1">{{ questionCount }}</p>
         </div>
-        <div
-          class="w-12 h-12 bg-gradient-to-br from-[var(--text-color)] to-[var(--secondary-color)] rounded-lg flex items-center justify-center"
-        >
-          <svg
-            class="w-6 h-6 text-[var(--primary-color)]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            ></path>
+        <div class="w-12 h-12 bg-gradient-to-br from-[#68BBE3] to-[#055C9D] rounded-lg flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#003060]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </div>
       </div>
@@ -148,110 +82,63 @@
 
   <!-- Main Content Grid -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-    <div
-      class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6 animate-slide-up animation-delay-800"
-    >
+    <!-- Chart Section -->
+    <div class="lg:col-span-2 bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 animate-slide-up animation-delay-800 shadow-xl">
       <app-admin-submission-chart></app-admin-submission-chart>
     </div>
+
     <!-- Quick Actions -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 animate-slide-up animation-delay-1000"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 animate-slide-up animation-delay-1000 shadow-xl">
       <div class="mb-6">
-        <h3 class="text-lg font-semibold text-gray-900">Quick Actions</h3>
-        <p class="text-sm text-gray-600">Frequently used functions</p>
+        <h3 class="text-lg font-semibold text-white">Quick Actions</h3>
+        <p class="text-[#68BBE3] text-sm">Frequently used functions</p>
       </div>
 
       <div class="space-y-3">
-        <button
-          (click)="addNewUser()"
-          class="w-full p-4 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
-        >
+        <button (click)="addNewUser()" class="w-full p-4 bg-gradient-to-r from-[#003060] to-[#055C9D] text-white rounded-lg hover:bg-gradient-to-r hover:from-[#055C9D] hover:to-[#0E86D4] transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl">
           <div class="flex items-center space-x-3">
-            <svg
-              class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-              ></path>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
             </svg>
             <span class="font-medium">Add New User</span>
           </div>
         </button>
 
-        <button
-          (click)="createCourse()"
-          class="w-full p-4 bg-gradient-to-r from-[var(--secondary-color)] to-[var(--background-color)] text-white rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
-        >
+        <button (click)="createCourse()" class="w-full p-4 bg-gradient-to-r from-[#055C9D] to-[#0E86D4] text-white rounded-lg hover:bg-gradient-to-r hover:from-[#0E86D4] hover:to-[#055C9D] transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl">
           <div class="flex items-center space-x-3">
-            <svg
-              class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-              ></path>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
             </svg>
             <span class="font-medium">Create Course</span>
           </div>
         </button>
 
-        <button
-          (click)="viewReports()"
-          class="w-full p-4 bg-gradient-to-r from-[var(--background-color)] to-[var(--text-color)] text-[var(--primary-color)] rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
-        >
+        <button (click)="viewReports()" class="w-full p-4 bg-gradient-to-r from-[#0E86D4] to-[#68BBE3] text-[#003060] rounded-lg hover:bg-gradient-to-r hover:from-[#68BBE3] hover:to-[#0E86D4] transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl">
           <div class="flex items-center space-x-3">
-            <svg
-              class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-              ></path>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
             </svg>
             <span class="font-medium">View Reports</span>
           </div>
         </button>
       </div>
 
-      <!-- System Status -->
-      <div class="mt-6 pt-6 border-t border-gray-200">
-        <h4 class="text-sm font-semibold text-gray-900 mb-1">
-          User Distribution
-        </h4>
-        <p class="text-sm text-gray-600 mb-5">Current user roles breakdown</p>
+      <!-- User Distribution -->
+      <div class="mt-6 pt-6 border-t border-[#b4c8ff]/20">
+        <h4 class="text-sm font-semibold text-white mb-1">User Distribution</h4>
+        <p class="text-[#68BBE3] text-sm mb-5">Current user roles breakdown</p>
         <div class="space-y-2">
           <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-600">Total Admin</span>
-            <div class="flex items-center space-x-2">
-              <span class="text-xs font-medium">{{ adminCount }}</span>
-            </div>
+            <span class="text-sm text-[#68BBE3]">Total Admin</span>
+            <span class="text-sm font-medium text-white">{{ adminCount }}</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-600">Total Teacher</span>
-            <div class="flex items-center space-x-2">
-              <span class="text-xs font-medium">{{ teacherCount }}</span>
-            </div>
+            <span class="text-sm text-[#68BBE3]">Total Teacher</span>
+            <span class="text-sm font-medium text-white">{{ teacherCount }}</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-600">Total Student</span>
-            <span class="text-sm font-medium">{{ studentCount }}</span>
+            <span class="text-sm text-[#68BBE3]">Total Student</span>
+            <span class="text-sm font-medium text-white">{{ studentCount }}</span>
           </div>
         </div>
       </div>

@@ -9,12 +9,12 @@ import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin-edit-question',
+  selector: 'app-admin-update-question',
   imports: [FormsModule, CommonModule],
-  templateUrl: './admin-edit-question.component.html',
-  styleUrl: './admin-edit-question.component.css'
+  templateUrl: './admin-update-question.component.html',
+  styleUrl: './admin-update-question.component.css'
 })
-export class AdminEditQuestionComponent implements OnInit {
+export class AdminUpdateQuestionComponent implements OnInit {
    questionEditing: Question = {
     text: '',
     option1: '',

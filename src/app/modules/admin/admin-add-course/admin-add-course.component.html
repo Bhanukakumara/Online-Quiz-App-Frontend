@@ -1,0 +1,69 @@
+<div class="pt-10 pb-10 bg-gradient-to-br from-[#003060] to-[#0E86D4]">
+  <div class="max-w-3xl mx-auto">
+    <form
+      #courseForm="ngForm"
+      (ngSubmit)="onSubmit(courseForm)"
+      class="bg-gradient-to-br from-white to-[#b4c8ff]/20 p-8 rounded-2xl shadow-xl border border-[#b4c8ff]/50 backdrop-blur-sm transform transition-all duration-500 hover:shadow-2xl space-y-6"
+    >
+      <h2
+        class="text-3xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#003060] to-[#055C9D]"
+      >
+        Create New Course
+      </h2>
+      <!-- Course Name -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#003060]"
+          >Course Name</label
+        >
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="newCourse.name"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
+          placeholder="Enter course name"
+          required
+        />
+      </div>
+
+      <!-- Course Description -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#003060]"
+          >Course Description</label
+        >
+        <textarea
+          name="description"
+          rows="4"
+          [(ngModel)]="newCourse.description"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
+          placeholder="Describe your course"
+          required
+        ></textarea>
+      </div>
+
+      <!-- Admin Name -->
+      <div class="space-y-2">
+        <label class="block text-sm font-medium text-[#003060]"
+          >Admin Name</label
+        >
+        <input
+          type="text"
+          name="adminName"
+          [ngModel]="adminName"
+          class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl bg-gray-50 text-[#003060] cursor-not-allowed"
+          readonly
+          required
+        />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-4">
+        <button
+          type="submit"
+          class="w-full bg-gradient-to-r from-[#003060] to-[#055C9D] text-white py-3 rounded-xl hover:bg-gradient-to-r hover:from-[#055C9D] hover:to-[#0E86D4] transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 font-medium text-lg"
+        >
+          Create Course
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

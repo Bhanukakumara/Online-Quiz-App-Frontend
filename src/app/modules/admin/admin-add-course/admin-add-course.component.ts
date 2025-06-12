@@ -5,33 +5,40 @@ import { FormsModule } from '@angular/forms';
 import { Course } from '../../../core/models/course';
 import { CourseService } from '../../../core/services/course.service';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin-create-course',
+  selector: 'app-admin-add-course',
   imports: [CommonModule, FormsModule],
-  templateUrl: './admin-create-course.component.html',
-  styleUrl: './admin-create-course.component.css'
+  templateUrl: './admin-add-course.component.html',
+  styleUrl: './admin-add-course.component.css',
 })
-export class AdminCreateCourseComponent implements OnInit{
+export class AdminAddCourseComponent implements OnInit {
   adminName: string = '';
-  newCourse  = new Course('', '', 0);
+  newCourse = new Course('', '', 0);
   constructor(
     private authService: AuthService,
-    private courseService: CourseService) { }
+    private courseService: CourseService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
-   this.authService.me().subscribe({
+    this.authService.me().subscribe({
       next: (response) => {
         this.adminName = response.name;
         this.newCourse.adminId = response.id;
       },
       error: (error) => {
         console.error('Error fetching user data', error);
-        Swal.fire('Error', 'Failed to fetch user data. Please try again later.', 'error');
-      }
-    }); 
+        Swal.fire(
+          'Error',
+          'Failed to fetch user data. Please try again later.',
+          'error'
+        );
+      },
+    });
   }
-  onSubmit(form:any){
-    if(form.valid){
+  onSubmit(form: any) {
+    if (form.valid) {
       const courseToCreate = new Course(
         form.value.name,
         form.value.description,
@@ -41,10 +48,15 @@ export class AdminCreateCourseComponent implements OnInit{
         next: () => {
           form.resetForm();
           Swal.fire('Success', 'Course created successfully!', 'success');
+          this.router.navigate(['admin/view-all-user']);
         },
         error: (error) => {
           console.error('Error creating course', error);
-          Swal.fire('Error', 'Failed to create course. Please try again.', 'error');
+          Swal.fire(
+            'Error',
+            'Failed to create course. Please try again.',
+            'error'
+          );
         },
       });
     }

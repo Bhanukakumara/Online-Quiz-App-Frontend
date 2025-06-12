@@ -8,17 +8,17 @@
       <h2
         class="text-3xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-[#003060] to-[#055C9D]"
       >
-        Create New Question
+        Update Question
       </h2>
       <!-- Question -->
       <div class="mb-6 space-y-2">
         <label class="block text-sm font-medium text-[#003060]">Question</label>
         <textarea
           name="text"
-          [(ngModel)]="newQuestion.text"
+          [(ngModel)]="questionEditing.text"
           rows="3"
           required
-          class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
+          class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-[#68BBE3]/50"
           placeholder="Enter your question here..."
         ></textarea>
       </div>
@@ -31,10 +31,10 @@
           >
           <input
             name="option1"
-            [(ngModel)]="newQuestion.option1"
+            [(ngModel)]="questionEditing.option1"
             type="text"
             required
-            class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
+            class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-[#68BBE3]/50"
             placeholder="Option 1"
           />
         </div>
@@ -44,10 +44,10 @@
           >
           <input
             name="option2"
-            [(ngModel)]="newQuestion.option2"
+            [(ngModel)]="questionEditing.option2"
             type="text"
             required
-            class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
+            class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-[#68BBE3]/50"
             placeholder="Option 2"
           />
         </div>
@@ -57,10 +57,10 @@
           >
           <input
             name="option3"
-            [(ngModel)]="newQuestion.option3"
+            [(ngModel)]="questionEditing.option3"
             type="text"
             required
-            class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
+            class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-[#68BBE3]/50"
             placeholder="Option 3"
           />
         </div>
@@ -70,10 +70,10 @@
           >
           <input
             name="option4"
-            [(ngModel)]="newQuestion.option4"
+            [(ngModel)]="questionEditing.option4"
             type="text"
             required
-            class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-gray-500"
+            class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 placeholder-[#68BBE3]/50"
             placeholder="Option 4"
           />
         </div>
@@ -86,7 +86,7 @@
         >
         <select
           name="correctOption"
-          [(ngModel)]="newQuestion.correctOption"
+          [(ngModel)]="questionEditing.correctOption"
           class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 appearance-none bg-white bg-[right_1rem_center] bg-no-repeat bg-[length:1.5em_1.5em]"
           style="
             background-image: url('data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 fill=%27none%27 viewBox=%270 0 20 20%27%3e%3cpath stroke=%27%23003060%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27 stroke-width=%271.5%27 d=%27M6 8l4 4 4-4%27/%3e%3c/svg%3e');
@@ -107,7 +107,7 @@
           >
           <input
             name="timeToAnswer"
-            [(ngModel)]="newQuestion.timeToAnswer"
+            [(ngModel)]="questionEditing.timeToAnswer"
             type="number"
             required
             class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
@@ -117,7 +117,7 @@
           <label class="block text-sm font-medium text-[#003060]">Marks</label>
           <input
             name="marks"
-            [(ngModel)]="newQuestion.marks"
+            [(ngModel)]="questionEditing.marks"
             type="number"
             required
             class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300"
@@ -132,7 +132,7 @@
         >
         <select
           name="examId"
-          [(ngModel)]="newQuestion.examId"
+          [(ngModel)]="questionEditing.examId"
           required
           class="mt-1 block w-full border border-[#676768] rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-[#055C9D] focus:border-transparent transition-all duration-300 appearance-none bg-white bg-[right_1rem_center] bg-no-repeat bg-[length:1.5em_1.5em]"
           style="
@@ -160,7 +160,7 @@
         <input
           type="text"
           name="userName"
-          [ngModel]="userName"
+          [(ngModel)]="userName"
           class="mt-1 w-full px-4 py-3 border border-[#676768] rounded-xl bg-gray-50 text-[#003060] cursor-not-allowed"
           readonly
           required
@@ -173,7 +173,7 @@
           type="submit"
           class="w-full bg-gradient-to-r from-[#003060] to-[#055C9D] text-white py-3 rounded-xl hover:bg-gradient-to-r hover:from-[#055C9D] hover:to-[#0E86D4] transition-all duration-300 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 font-medium text-lg"
         >
-          Create Question
+          Save Question
         </button>
       </div>
     </form>
