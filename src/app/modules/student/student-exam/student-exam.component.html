@@ -1,48 +1,75 @@
-<div class="p-6 min-h-screen bg-gradient-to-br from-[var(--text-color)] via-[var(--background-color)] to-[var(--secondary-color)]">
-  <!-- Header -->
-  <div class="text-center mb-8">
-    <h1 class="text-3xl md:text-4xl font-bold text-[var(--primary-color)] mb-2 animate-fade-in">
-      Available Exams
-    </h1>
-    <p class="text-[var(--primary-color)] opacity-80 text-lg">Choose an exam to get started</p>
-  </div>
+<div
+  class="p-10 min-h-screen bg-gradient-to-br from-[var(--text-color)] via-[var(--background-color)] to-[var(--secondary-color)]"
+>
+  <div class="max-w-7xl mx-auto bg-gradient-to-br from-white to-[#b4c8ff]/20 p-6 rounded-2xl shadow-xl border border-[#b4c8ff]/50 backdrop-blur-sm">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1
+        class="text-3xl md:text-4xl font-bold text-[var(--primary-color)] mb-2 animate-fade-in"
+      >
+        Available Exams
+      </h1>
+      <p class="text-[var(--background-color)] opacity-80 text-lg">
+        Choose an exam to get started
+      </p>
+    </div>
 
-  <!-- Exam Grid -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-    
-    <!-- Exam Card 1 -->
-    <div *ngFor="let exam of exams" class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-in-out animate-slide-up border border-[var(--background-color)]/20 overflow-hidden">
-      <div class="h-2 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]"></div>
-      <div class="p-6">
-        <div class="flex items-center justify-between mb-4">
-          <span class="px-3 py-1 bg-gradient-to-r from-[var(--background-color)] to-[var(--text-color)] text-[var(--primary-color)] text-sm font-semibold rounded-full">
-            {{exam.courseName}}
-          </span>
-          <span class="text-[var(--secondary-color)] font-bold text-sm">{{exam.totalTimeMinutes}} min</span>
-        </div>
-        
-        <h3 class="text-xl font-bold text-[var(--primary-color)] mb-2 group-hover:text-[var(--secondary-color)] transition-colors">
-          {{exam.title}}
-        </h3>
-        
-        <p class="text-gray-600 text-sm mb-4 line-clamp-3">
-          {{exam.description}}
-        </p>
-        
-        <div class="space-y-2 mb-4">
-          <div class="flex justify-between text-sm">
-            <span class="text-gray-500">Questions:</span>
-            <span class="font-semibold text-[var(--primary-color)]">{{exam.questionCount}}</span>
+    <!-- Exam Grid -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
+    >
+      <!-- Exam Card 1 -->
+      <div
+        *ngFor="let exam of exams"
+        class="group bg-white rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-in-out animate-slide-up border border-[var(--background-color)]/20 overflow-hidden"
+      >
+        <div
+          class="h-2 bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)]"
+        ></div>
+        <div class="p-6">
+          <div class="flex items-center justify-between mb-4">
+            <span
+              class="px-3 py-1 bg-gradient-to-r from-[var(--background-color)] to-[var(--text-color)] text-[var(--primary-color)] text-sm font-semibold rounded-full"
+            >
+              {{ exam.courseName }}
+            </span>
+            <span class="text-[var(--secondary-color)] font-bold text-sm"
+              >{{ exam.totalTimeMinutes }} min</span
+            >
           </div>
-          <div class="flex justify-between text-sm">
-            <span class="text-gray-500">Max Attempts:</span>
-            <span class="font-semibold text-[var(--primary-color)]">{{exam.maxAttempts}}</span>
+
+          <h3
+            class="text-xl font-bold text-[var(--primary-color)] mb-2 group-hover:text-[var(--secondary-color)] transition-colors"
+          >
+            {{ exam.title }}
+          </h3>
+
+          <p class="text-gray-600 text-sm mb-4 line-clamp-3">
+            {{ exam.description }}
+          </p>
+
+          <div class="space-y-2 mb-4">
+            <div class="flex justify-between text-sm">
+              <span class="text-gray-500">Questions:</span>
+              <span class="font-semibold text-[var(--primary-color)]">{{
+                exam.questionCount
+              }}</span>
+            </div>
+            <div class="flex justify-between text-sm">
+              <span class="text-gray-500">Max Attempts:</span>
+              <span class="font-semibold text-[var(--primary-color)]">{{
+                exam.maxAttempts
+              }}</span>
+            </div>
           </div>
+
+          <button
+            (click)="getQuestionPaper(exam.id)"
+            class="w-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white font-semibold py-3 rounded-lg hover:from-[var(--secondary-color)] hover:to-[var(--background-color)] transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg"
+          >
+            Attempt Exam
+          </button>
         </div>
-        
-        <button (click)="getQuestionPaper(exam.id)" class="w-full bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white font-semibold py-3 rounded-lg hover:from-[var(--secondary-color)] hover:to-[var(--background-color)] transform hover:scale-105 transition-all duration-200 shadow-md hover:shadow-lg">
-          Attempt Exam
-        </button>
       </div>
     </div>
   </div>
