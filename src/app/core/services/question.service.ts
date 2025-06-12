@@ -33,4 +33,7 @@ export class QuestionService {
   deleteQuestionById(questionId:number){
     return this.http.delete(`http://localhost:8080/api/question/delete/${questionId}`);
   }
+  updateQuestionById(questionId: number, question: Question) {
+    return this.http.post(`http://localhost:8080/api/question/update/${questionId}`, question);
+  }
 }
