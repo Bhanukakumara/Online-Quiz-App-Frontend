@@ -1,20 +1,14 @@
-<main class="p-4 lg:p-6 bg-gray-50 min-h-screen">
+<main class="p-4 lg:p-6 bg-gradient-to-br from-[#003060] to-[#0E86D4] min-h-screen">
   <!-- Welcome Header -->
   <div class="mb-8 animate-fade-in">
-    <div
-      class="bg-gradient-to-r from-[#2F5233] via-[#337B01] to-[#76B947] rounded-2xl p-6 lg:p-8 text-white relative overflow-hidden"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-2xl p-6 lg:p-8 text-white relative overflow-hidden border border-[#b4c8ff]/20 shadow-xl">
       <!-- Background Animation Elements -->
-      <div
-        class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl animate-pulse"
-      ></div>
-      <div
-        class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-xl animate-pulse animation-delay-1000"
-      ></div>
+      <div class="absolute top-0 right-0 w-32 h-32 bg-[#68BBE3]/10 rounded-full blur-2xl animate-pulse"></div>
+      <div class="absolute bottom-0 left-0 w-24 h-24 bg-[#055C9D]/10 rounded-full blur-xl animate-pulse animation-delay-1000"></div>
 
       <div class="relative z-10">
-        <h1 class="text-2xl lg:text-3xl font-bold mb-2">
-          Welcome back, Professor Smith!
+        <h1 class="text-2xl lg:text-3xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-color)] to-white">
+          Welcome back, {{ userName }}!
         </h1>
         <p class="text-white/90 text-sm lg:text-base">
           Manage your courses and track student progress
@@ -24,196 +18,62 @@
   </div>
 
   <!-- Stats Cards -->
-  <div
-    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8"
-  >
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8">
     <!-- My Courses Card -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 animate-slide-up">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-gray-600 text-sm font-medium">My Courses</p>
-          <p class="text-2xl font-bold text-gray-900 mt-1">8</p>
-          <div class="flex items-center mt-2">
-            <span class="text-green-500 text-xs font-medium flex items-center">
-              <svg
-                class="w-3 h-3 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
-                ></path>
-              </svg>
-              +2 new
-            </span>
-            <span class="text-gray-500 text-xs ml-1">this month</span>
-          </div>
+          <p class="text-[#68BBE3] text-sm font-medium">My Courses</p>
+          <p class="text-2xl font-bold text-white mt-1">{{ courseCount }}</p>
         </div>
-        <div
-          class="w-12 h-12 bg-gradient-to-br from-[#BEEAC5] to-[#76B947] rounded-lg flex items-center justify-center"
-        >
-          <svg
-            class="w-6 h-6 text-[#2F5233]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-            ></path>
+        <div class="w-12 h-12 bg-gradient-to-br from-[#b4c8ff] to-[#0E86D4] rounded-lg flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#003060]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
           </svg>
         </div>
       </div>
     </div>
 
     <!-- Total Students Card -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up animation-delay-200"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 animate-slide-up animation-delay-200">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-gray-600 text-sm font-medium">Total Students</p>
-          <p class="text-2xl font-bold text-gray-900 mt-1">156</p>
-          <div class="flex items-center mt-2">
-            <span class="text-blue-500 text-xs font-medium flex items-center">
-              <svg
-                class="w-3 h-3 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
-                ></path>
-              </svg>
-              +15
-            </span>
-            <span class="text-gray-500 text-xs ml-1">new enrollments</span>
-          </div>
+          <p class="text-[#68BBE3] text-sm font-medium">Total Students</p>
+          <p class="text-2xl font-bold text-white mt-1">{{ studentCount }}</p>
         </div>
-        <div
-          class="w-12 h-12 bg-gradient-to-br from-[#76B947] to-[#337B01] rounded-lg flex items-center justify-center"
-        >
-          <svg
-            class="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
-            ></path>
+        <div class="w-12 h-12 bg-gradient-to-br from-[#0E86D4] to-[#055C9D] rounded-lg flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
           </svg>
         </div>
       </div>
     </div>
 
     <!-- Active Exams Card -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up animation-delay-400"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 animate-slide-up animation-delay-400">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-gray-600 text-sm font-medium">Active Exams</p>
-          <p class="text-2xl font-bold text-gray-900 mt-1">12</p>
-          <div class="flex items-center mt-2">
-            <span class="text-purple-500 text-xs font-medium flex items-center">
-              <svg
-                class="w-3 h-3 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                ></path>
-              </svg>
-              3 due today
-            </span>
-            <span class="text-gray-500 text-xs ml-1">submissions</span>
-          </div>
+          <p class="text-[#68BBE3] text-sm font-medium">Active Exams</p>
+          <p class="text-2xl font-bold text-white mt-1">{{ examCount }}</p>
         </div>
-        <div
-          class="w-12 h-12 bg-gradient-to-br from-[#337B01] to-[#2F5233] rounded-lg flex items-center justify-center"
-        >
-          <svg
-            class="w-6 h-6 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            ></path>
+        <div class="w-12 h-12 bg-gradient-to-br from-[#055C9D] to-[#003060] rounded-lg flex items-center justify-center">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
           </svg>
         </div>
       </div>
     </div>
 
     <!-- Questions Created Card -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-slide-up animation-delay-600"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 animate-slide-up animation-delay-600">
       <div class="flex items-center justify-between">
         <div>
-          <p class="text-gray-600 text-sm font-medium">Questions Created</p>
-          <p class="text-2xl font-bold text-gray-900 mt-1">284</p>
-          <div class="flex items-center mt-2">
-            <span class="text-orange-500 text-xs font-medium flex items-center">
-              <svg
-                class="w-3 h-3 mr-1"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M5 10l7-7m0 0l7 7m-7-7v18"
-                ></path>
-              </svg>
-              +24
-            </span>
-            <span class="text-gray-500 text-xs ml-1">this week</span>
-          </div>
+          <p class="text-[#68BBE3] text-sm font-medium">Questions Created</p>
+          <p class="text-2xl font-bold text-white mt-1">{{ questionCount }}</p>
         </div>
-        <div
-          class="w-12 h-12 bg-gradient-to-br from-[#BEEAC5] to-[#337B01] rounded-lg flex items-center justify-center"
-        >
-          <svg
-            class="w-6 h-6 text-[#2F5233]"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            ></path>
+        <div class="w-12 h-12 bg-gradient-to-br from-[#b4c8ff] to-[#055C9D] rounded-lg flex items-center justify-center">
+          <svg class="w-6 h-6 text-[#003060]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </div>
       </div>
@@ -223,210 +83,99 @@
   <!-- Main Content Grid -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
     <!-- Recent Activity -->
-    <div
-      class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 p-6 animate-slide-up animation-delay-800"
-    >
+    <div class="lg:col-span-2 bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 animate-slide-up animation-delay-800 shadow-xl">
       <div class="flex items-center justify-between mb-6">
-        <h3 class="text-lg font-semibold text-gray-900">Recent Activity</h3>
-        <button
-          class="text-[#337B01] hover:text-[#2F5233] text-sm font-medium transition-colors duration-200"
-        >
+        <h3 class="text-lg font-semibold text-white">Recent Activity</h3>
+        <button class="text-[#68BBE3] hover:text-[#055C9D] text-sm font-medium transition-colors duration-200">
           View All
         </button>
       </div>
 
       <div class="space-y-4">
-        <div
-          class="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 animate-fade-in"
-        >
-          <div
-            class="w-10 h-10 bg-gradient-to-br from-[#2F5233] to-[#337B01] rounded-full flex items-center justify-center flex-shrink-0"
-          >
-            <svg
-              class="w-5 h-5 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              ></path>
+        <div class="flex items-start space-x-4 p-3 rounded-lg hover:bg-[#b4c8ff]/10 transition-colors duration-200 animate-fade-in">
+          <div class="w-10 h-10 bg-gradient-to-br from-[#003060] to-[#055C9D] rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
             </svg>
           </div>
           <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-gray-900">New exam created</p>
-            <p class="text-sm text-gray-600">
-              Mathematics Quiz 3 - Calculus Basics
-            </p>
-            <p class="text-xs text-gray-400 mt-1">2 hours ago</p>
+            <p class="text-sm font-medium text-white">New exam created</p>
+            <p class="text-sm text-[#68BBE3]">Mathematics Quiz 3 - Calculus Basics</p>
+            <p class="text-xs text-[#68BBE3]/70 mt-1">2 hours ago</p>
           </div>
         </div>
 
-        <div
-          class="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 animate-fade-in"
-          style="animation-delay: 100ms"
-        >
-          <div
-            class="w-10 h-10 bg-gradient-to-br from-[#337B01] to-[#76B947] rounded-full flex items-center justify-center flex-shrink-0"
-          >
-            <svg
-              class="w-5 h-5 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
-              ></path>
+        <div class="flex items-start space-x-4 p-3 rounded-lg hover:bg-[#b4c8ff]/10 transition-colors duration-200 animate-fade-in" style="animation-delay: 100ms">
+          <div class="w-10 h-10 bg-gradient-to-br from-[#055C9D] to-[#0E86D4] rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
             </svg>
           </div>
           <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-gray-900">Student submission</p>
-            <p class="text-sm text-gray-600">
-              Sarah Johnson submitted Physics Lab Report
-            </p>
-            <p class="text-xs text-gray-400 mt-1">4 hours ago</p>
+            <p class="text-sm font-medium text-white">Student submission</p>
+            <p class="text-sm text-[#68BBE3]">Sarah Johnson submitted Physics Lab Report</p>
+            <p class="text-xs text-[#68BBE3]/70 mt-1">4 hours ago</p>
           </div>
         </div>
 
-        <div
-          class="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 animate-fade-in"
-          style="animation-delay: 200ms"
-        >
-          <div
-            class="w-10 h-10 bg-gradient-to-br from-[#76B947] to-[#BEEAC5] rounded-full flex items-center justify-center flex-shrink-0"
-          >
-            <svg
-              class="w-5 h-5 text-[#2F5233]"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-              ></path>
+        <div class="flex items-start space-x-4 p-3 rounded-lg hover:bg-[#b4c8ff]/10 transition-colors duration-200 animate-fade-in" style="animation-delay: 200ms">
+          <div class="w-10 h-10 bg-gradient-to-br from-[#0E86D4] to-[#b4c8ff] rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-[#003060]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
             </svg>
           </div>
           <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-gray-900">
-              Grade report generated
-            </p>
-            <p class="text-sm text-gray-600">
-              Chemistry 101 - Midterm results available
-            </p>
-            <p class="text-xs text-gray-400 mt-1">Yesterday</p>
+            <p class="text-sm font-medium text-white">Grade report generated</p>
+            <p class="text-sm text-[#68BBE3]">Chemistry 101 - Midterm results available</p>
+            <p class="text-xs text-[#68BBE3]/70 mt-1">Yesterday</p>
           </div>
         </div>
 
-        <div
-          class="flex items-start space-x-4 p-3 rounded-lg hover:bg-gray-50 transition-colors duration-200 animate-fade-in"
-          style="animation-delay: 300ms"
-        >
-          <div
-            class="w-10 h-10 bg-gradient-to-br from-[#2F5233] to-[#76B947] rounded-full flex items-center justify-center flex-shrink-0"
-          >
-            <svg
-              class="w-5 h-5 text-white"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-              ></path>
+        <div class="flex items-start space-x-4 p-3 rounded-lg hover:bg-[#b4c8ff]/10 transition-colors duration-200 animate-fade-in" style="animation-delay: 300ms">
+          <div class="w-10 h-10 bg-gradient-to-br from-[#003060] to-[#0E86D4] rounded-full flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
             </svg>
           </div>
           <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-gray-900">Course updated</p>
-            <p class="text-sm text-gray-600">
-              Added new module to Data Structures course
-            </p>
-            <p class="text-xs text-gray-400 mt-1">2 days ago</p>
+            <p class="text-sm font-medium text-white">Course updated</p>
+            <p class="text-sm text-[#68BBE3]">Added new module to Data Structures course</p>
+            <p class="text-xs text-[#68BBE3]/70 mt-1">2 days ago</p>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Quick Actions -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 animate-slide-up animation-delay-1000"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 animate-slide-up animation-delay-1000 shadow-xl">
       <div class="mb-6">
-        <h3 class="text-lg font-semibold text-gray-900">Quick Actions</h3>
-        <p class="text-sm text-gray-600">Frequently used functions</p>
+        <h3 class="text-lg font-semibold text-white">Quick Actions</h3>
+        <p class="text-[#68BBE3] text-sm">Frequently used functions</p>
       </div>
 
       <div class="space-y-3">
-        <button
-          class="w-full p-4 bg-gradient-to-r from-[#2F5233] to-[#337B01] text-white rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
-        >
+        <button class="w-full p-4 bg-gradient-to-r from-[#003060] to-[#055C9D] text-white rounded-lg hover:bg-gradient-to-r hover:from-[#055C9D] hover:to-[#0E86D4] transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl">
           <div class="flex items-center space-x-3">
-            <svg
-              class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-              ></path>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
             </svg>
             <span class="font-medium">Create New Exam</span>
           </div>
         </button>
 
-        <button
-          class="w-full p-4 bg-gradient-to-r from-[#337B01] to-[#76B947] text-white rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
-        >
+        <button class="w-full p-4 bg-gradient-to-r from-[#055C9D] to-[#0E86D4] text-white rounded-lg hover:bg-gradient-to-r hover:from-[#0E86D4] hover:to-[#055C9D] transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl">
           <div class="flex items-center space-x-3">
-            <svg
-              class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
             <span class="font-medium">Add Questions</span>
           </div>
         </button>
 
-        <button
-          class="w-full p-4 bg-gradient-to-r from-[#76B947] to-[#BEEAC5] text-[#2F5233] rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 group"
-        >
+        <button class="w-full p-4 bg-gradient-to-r from-[#0E86D4] to-[#b4c8ff] text-[#003060] rounded-lg hover:bg-gradient-to-r hover:from-[#b4c8ff] hover:to-[#0E86D4] transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-2xl">
           <div class="flex items-center space-x-3">
-            <svg
-              class="w-5 h-5 group-hover:rotate-12 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-              ></path>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
             </svg>
             <span class="font-medium">Grade Submissions</span>
           </div>
@@ -434,28 +183,26 @@
       </div>
 
       <!-- Pending Tasks -->
-      <div class="mt-6 pt-6 border-t border-gray-200">
-        <h4 class="text-sm font-semibold text-gray-900 mb-3">Pending Tasks</h4>
+      <div class="mt-6 pt-6 border-t border-[#b4c8ff]/20">
+        <h4 class="text-sm font-semibold text-white mb-3">Pending Tasks</h4>
         <div class="space-y-2">
           <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-600">Ungraded Exams</span>
+            <span class="text-sm text-[#68BBE3]">Ungraded Exams</span>
             <div class="flex items-center space-x-2">
-              <div
-                class="w-2 h-2 bg-orange-400 rounded-full animate-pulse"
-              ></div>
-              <span class="text-xs text-orange-600 font-medium">7</span>
+              <div class="w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+              <span class="text-xs text-orange-400 font-medium">7</span>
             </div>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-600">Course Updates</span>
+            <span class="text-sm text-[#68BBE3]">Course Updates</span>
             <div class="flex items-center space-x-2">
               <div class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-              <span class="text-xs text-blue-600 font-medium">3</span>
+              <span class="text-xs text-blue-400 font-medium">3</span>
             </div>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-sm text-gray-600">Student Messages</span>
-            <span class="text-sm font-medium text-gray-900">12</span>
+            <span class="text-sm text-[#68BBE3]">Student Messages</span>
+            <span class="text-sm font-medium text-white">12</span>
           </div>
         </div>
       </div>
@@ -465,14 +212,10 @@
   <!-- Charts Section -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Student Performance Chart -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 animate-slide-up animation-delay-1200"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 animate-slide-up animation-delay-1200 shadow-xl">
       <div class="flex items-center justify-between mb-6">
-        <h3 class="text-lg font-semibold text-gray-900">Student Performance</h3>
-        <select
-          class="text-sm border border-gray-200 rounded-lg px-3 py-1 focus:ring-2 focus:ring-[#76B947] focus:border-transparent"
-        >
+        <h3 class="text-lg font-semibold text-white">Student Performance</h3>
+        <select class="text-sm border border-[#676768] rounded-lg px-3 py-1 focus:ring-2 focus:ring-[#055C9D] focus:border-transparent bg-white/10 text-white">
           <option>Last 7 days</option>
           <option>Last 30 days</option>
           <option>Last 90 days</option>
@@ -480,33 +223,16 @@
       </div>
 
       <!-- Simple Chart Placeholder -->
-      <div
-        class="h-64 bg-gradient-to-br from-[#BEEAC5]/20 to-[#76B947]/20 rounded-lg flex items-center justify-center relative overflow-hidden"
-      >
+      <div class="h-64 bg-gradient-to-br from-[#b4c8ff]/20 to-[#0E86D4]/20 rounded-lg flex items-center justify-center relative overflow-hidden">
         <div class="absolute inset-0 flex items-end justify-around p-4">
-          <div
-            class="w-8 bg-gradient-to-t from-[#2F5233] to-[#337B01] rounded-t animate-grow-bar"
-            style="height: 70%; animation-delay: 0.1s"
-          ></div>
-          <div
-            class="w-8 bg-gradient-to-t from-[#337B01] to-[#76B947] rounded-t animate-grow-bar"
-            style="height: 85%; animation-delay: 0.2s"
-          ></div>
-          <div
-            class="w-8 bg-gradient-to-t from-[#76B947] to-[#BEEAC5] rounded-t animate-grow-bar"
-            style="height: 65%; animation-delay: 0.3s"
-          ></div>
-          <div
-            class="w-8 bg-gradient-to-t from-[#2F5233] to-[#76B947] rounded-t animate-grow-bar"
-            style="height: 80%; animation-delay: 0.4s"
-          ></div>
-          <div
-            class="w-8 bg-gradient-to-t from-[#337B01] to-[#BEEAC5] rounded-t animate-grow-bar"
-            style="height: 92%; animation-delay: 0.5s"
-          ></div>
+          <div class="w-8 bg-gradient-to-t from-[#003060] to-[#055C9D] rounded-t animate-grow-bar" style="height: 70%; animation-delay: 0.1s"></div>
+          <div class="w-8 bg-gradient-to-t from-[#055C9D] to-[#0E86D4] rounded-t animate-grow-bar" style="height: 85%; animation-delay: 0.2s"></div>
+          <div class="w-8 bg-gradient-to-t from-[#0E86D4] to-[#b4c8ff] rounded-t animate-grow-bar" style="height: 65%; animation-delay: 0.3s"></div>
+          <div class="w-8 bg-gradient-to-t from-[#003060] to-[#0E86D4] rounded-t animate-grow-bar" style="height: 80%; animation-delay: 0.4s"></div>
+          <div class="w-8 bg-gradient-to-t from-[#055C9D] to-[#b4c8ff] rounded-t animate-grow-bar" style="height: 92%; animation-delay: 0.5s"></div>
         </div>
         <div class="z-10 text-center">
-          <p class="text-sm text-gray-600">
+          <p class="text-sm text-[#68BBE3]">
             Average score improved by 8% this week!
           </p>
         </div>
@@ -514,106 +240,76 @@
     </div>
 
     <!-- Course Engagement -->
-    <div
-      class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 animate-slide-up animation-delay-1400"
-    >
+    <div class="bg-white/10 backdrop-blur-lg rounded-xl border border-[#b4c8ff]/20 p-6 animate-slide-up animation-delay-1400 shadow-xl">
       <div class="mb-6">
-        <h3 class="text-lg font-semibold text-gray-900">Course Engagement</h3>
-        <p class="text-sm text-gray-600">Student participation by course</p>
+        <h3 class="text-lg font-semibold text-white">Course Engagement</h3>
+        <p class="text-sm text-[#68BBE3]">Student participation by course</p>
       </div>
 
       <div class="space-y-4">
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-3">
-            <div
-              class="w-4 h-4 bg-gradient-to-r from-[#2F5233] to-[#337B01] rounded"
-            ></div>
-            <span class="text-sm font-medium text-gray-900"
-              >Mathematics 101</span
-            >
+            <div class="w-4 h-4 bg-gradient-to-r from-[#003060] to-[#055C9D] rounded"></div>
+            <span class="text-sm font-medium text-white">Mathematics 101</span>
           </div>
           <div class="flex items-center space-x-2">
-            <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div
-                class="h-full bg-gradient-to-r from-[#2F5233] to-[#337B01] rounded-full animate-progress-bar"
-                style="width: 88%"
-              ></div>
+            <div class="w-24 h-2 bg-gray-200/20 rounded-lg overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#003060] to-[#055C9D] rounded-lg animate-stretch" style="width: 95%"></div>
             </div>
-            <span class="text-sm text-gray-600">42 students</span>
+            <span class="text-sm text-[#68BBE3]">42 students</span>
           </div>
         </div>
 
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-3">
-            <div
-              class="w-4 h-4 bg-gradient-to-r from-[#337B01] to-[#76B947] rounded"
-            ></div>
-            <span class="text-sm font-medium text-gray-900">Physics Lab</span>
+            <div class="w-4 h-4 bg-gradient-to-r from-[#055C9D] to-[#0E86D4] rounded"></div>
+            <span class="text-sm font-medium text-white">Physics Lab</span>
           </div>
           <div class="flex items-center space-x-2">
-            <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div
-                class="h-full bg-gradient-to-r from-[#337B01] to-[#76B947] rounded-full animate-progress-bar animation-delay-300"
-                style="width: 76%"
-              ></div>
+            <div class="w-24 h-2 bg-gray-200/20 rounded-lg overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#055C9D] to-[#0E86D4] rounded-lg animate-stretch animation-delay-300" style="width: 65%"></div>
             </div>
-            <span class="text-sm text-gray-600">31 students</span>
+            <span class="text-sm text-[#68BBE3]">31 students</span>
           </div>
         </div>
 
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-3">
-            <div
-              class="w-4 h-4 bg-gradient-to-r from-[#76B947] to-[#BEEAC5] rounded"
-            ></div>
-            <span class="text-sm font-medium text-gray-900">Chemistry 201</span>
+            <div class="w-4 h-4 bg-gradient-to-r from-[#0E86D4] to-[#b4c8ff] rounded"></div>
+            <span class="text-sm font-medium text-white">Chemistry 201</span>
           </div>
           <div class="flex items-center space-x-2">
-            <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div
-                class="h-full bg-gradient-to-r from-[#76B947] to-[#BEEAC5] rounded-full animate-progress-bar animation-delay-600"
-                style="width: 92%"
-              ></div>
+            <div class="w-24 h-2 bg-gray-200/20 rounded-lg overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#0E86D4] to-[#b4c8ff] rounded-lg animate-stretch animation-delay-600" style="width: 85%"></div>
             </div>
-            <span class="text-sm text-gray-600">28 students</span>
+            <span class="text-sm text-[#68BBE3]">28 students</span>
           </div>
         </div>
 
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-3">
-            <div
-              class="w-4 h-4 bg-gradient-to-r from-[#2F5233] to-[#BEEAC5] rounded"
-            ></div>
-            <span class="text-sm font-medium text-gray-900"
-              >Data Structures</span
-            >
+            <div class="w-4 h-4 bg-gradient-to-r from-[#003060] to-[#b4c8ff] rounded"></div>
+            <span class="text-sm font-medium text-white">courses name</span>
           </div>
           <div class="flex items-center space-x-2">
-            <div class="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div
-                class="h-full bg-gradient-to-r from-[#2F5233] to-[#BEEAC5] rounded-full animate-progress-bar animation-delay-900"
-                style="width: 84%"
-              ></div>
+            <div class="w-24 h-2 bg-gray-200/20 rounded-lg overflow-hidden">
+              <div class="h-full bg-gradient-to-r from-[#003060] to-[#b4c8ff] rounded-lg animate-stretch animation-delay-900" style="width: 55%"></div>
             </div>
-            <span class="text-sm text-gray-600">35 students</span>
+            <span class="text-sm text-[#68BBE3]">21 students</span>
           </div>
         </div>
       </div>
 
       <!-- Top Performers -->
-      <div class="mt-6 pt-6 border-t border-gray-200">
-        <h4 class="text-sm font-semibold text-gray-900 mb-3">
-          Top Performers This Week
-        </h4>
+      <div class="mt-6 pt-6 border-t border-[#b4c8ff]/20">
+        <h4 class="text-sm font-semibold text-white mb-3">Top Performers This Week</h4>
         <div class="flex items-center space-x-2">
           <div class="flex -space-x-2">
-            <div
-              class="w-8 h-8 bg-gradient-to-br from-[#76B947] to-[#BEEAC5] rounded-full border-2 border-white flex items-center justify-center"
-            >
-              <span class="text-xs text-[#2F5233] font-medium">SL</span>
+            <div class="w-8 h-8 bg-gradient-to-br from-[#0E86D4] to-[#b4c8ff] rounded-full border-2 border-[#003060]/50 flex items-center justify-center">
+              <span class="text-xs text-[#003060] font-medium">SL</span>
             </div>
           </div>
-          <span class="text-sm text-gray-600">3 students with 95%+ scores</span>
+          <span class="text-sm text-[#68BBE3]">3 students with 95%+ scores</span>
         </div>
       </div>
     </div>
