@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExamService } from '../../../core/services/exam.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { Exam } from '../../../core/models/exam';
 import { Router, RouterModule } from '@angular/router';
 import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 
@@ -109,4 +107,56 @@ export class AdminViewAllExamComponent implements OnInit {
   editExam(examId: string) {
     this.router.navigate(['/admin/update-exam', examId]);
   }
+  deleteExam(examId: number) {
+      Swal.fire({
+        title: 'Are you sure?',
+        text: 'Do you want to delete this exam?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.examService.deleteExamById(examId).subscribe({
+            next: (response) => {
+              if (response) {
+                // Remove the deleted question from allQuestion
+                this.allExams = this.allExams.filter(
+                  (exam) => exam.id !== examId
+                );
+  
+                // Reapply search filter to update filteredQuestion
+                this.applySearch();
+  
+                // Adjust current page if necessary
+                const totalPages = this.getTotalPages();
+                if (this.currentPage >= totalPages && totalPages > 0) {
+                  this.currentPage = totalPages - 1;
+                }
+  
+                // Update displayed questions
+                this.updateDisplayedExams();
+  
+                // Show success message
+                Swal.fire(
+                  'Deleted!',
+                  'The exam has been deleted.',
+                  'success'
+                );
+              } else {
+                Swal.fire('Error', 'Failed to delete the exam.', 'error');
+              }
+            },
+            error: (error) => {
+              console.error('Error deleting exam', error);
+              Swal.fire(
+                'Error',
+                'Failed to delete the exam. Please try again.',
+                'error'
+              );
+            },
+          });
+        }
+      });
+    }
 }

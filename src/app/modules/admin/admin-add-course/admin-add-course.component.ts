@@ -47,8 +47,8 @@ export class AdminAddCourseComponent implements OnInit {
       this.courseService.createCourse(courseToCreate).subscribe({
         next: () => {
           form.resetForm();
+          this.router.navigate(['admin/view-all-course']);
           Swal.fire('Success', 'Course created successfully!', 'success');
-          this.router.navigate(['admin/view-all-user']);
         },
         error: (error) => {
           console.error('Error creating course', error);

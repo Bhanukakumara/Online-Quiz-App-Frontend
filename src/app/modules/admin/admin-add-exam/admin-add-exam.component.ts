@@ -73,7 +73,7 @@ export class AdminAddExamComponent implements OnInit {
         next: () => {
           form.resetForm();
           Swal.fire('Success', 'Exam created successfully!', 'success');
-          this.router.navigate(['admin/view-all-user']);
+          this.router.navigate(['admin/view-all-exam']);
         },
         error: (error) => {
           console.error('Error creating exam', error);
