@@ -109,5 +109,4 @@ export class AdminViewAllExamComponent implements OnInit {
   editExam(examId: string) {
     this.router.navigate(['/admin/update-exam', examId]);
   }
-
 }
