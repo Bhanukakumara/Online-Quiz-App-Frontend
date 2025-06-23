@@ -1,10 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule
-} from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/login-request';
@@ -57,6 +53,9 @@ export class LoginComponent {
             }
           },
         });
+      },
+      error: (err) => {
+        Swal.fire('Error', `Invalid credentials`, 'error');
       },
     });
   }
