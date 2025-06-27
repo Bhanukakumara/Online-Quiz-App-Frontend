@@ -29,4 +29,9 @@ export class UserService {
   searchByEmail(query: string): Observable<RequestUser> {
     return this.http.get<RequestUser>(`http://localhost:8080/api/user/get-by-email/${query}`);
   }
+
+  // Get all teachers
+  getTeachers():Observable<RequestUser[]>{
+    return this.http.get<RequestUser[]>(`http://localhost:8080/api/user/get-by-role/TEACHER`);
+  }
 }

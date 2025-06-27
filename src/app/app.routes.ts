@@ -22,55 +22,68 @@ import { AdminUpdateQuestionComponent } from './modules/admin/admin-update-quest
 import { AdminUpdateExamComponent } from './modules/admin/admin-update-exam/admin-update-exam.component';
 
 export const routes: Routes = [
-    {
-        path: '', component: LoginComponent
-    },
-    {
-        path: 'admin',
-        component: AdminDashboardComponent,
-        canActivate: [authGuard],
-        data: { roles: ['ADMIN'] },
-        children: [
-            {path: 'dashboard', component: AdminMainComponent},
-            {path: 'add-user', component: AdminAddUserComponent},
-            {path: 'view-all-user', component: AdminViewAllUsersComponent},
-            {path: 'create-course', component: AdminAddCourseComponent},
-            {path: 'view-all-course', component: AdminViewAllCourseComponent},
-            {path: 'create-exam', component: AdminAddExamComponent},
-            {path: 'view-all-exam', component: AdminViewAllExamComponent},
-            {path: 'add-question', component: AdminAddQuestionComponent},
-            {path: 'view-all-question', component: AdminViewAllQuestionComponent},
-            {path: 'view-all-result', component: AdminViewAllResultComponent},
-            {path: 'edit-question/:questionId', component: AdminUpdateQuestionComponent},
-            {path: 'update-exam/:examId', component: AdminUpdateExamComponent}
-        ]
-    },
-    {
-        path: 'teacher',
-        component: TeacherDashboardComponent,
-        canActivate: [authGuard],
-        data: { roles: ['TEACHER'] },
-        children: [
-            {path: 'dashboard', component: TeacherMainComponent},
-            {path: 'view-all-course', component: AdminViewAllCourseComponent},
-            {path: 'create-exam', component: AdminAddExamComponent},
-            {path: 'view-all-exam', component: AdminViewAllExamComponent},
-            {path: 'add-question', component: AdminAddQuestionComponent},
-            {path: 'view-all-question', component: AdminViewAllQuestionComponent},
-            {path: 'view-all-result', component: AdminViewAllResultComponent},
-            {path: 'edit-question/:questionId', component: AdminUpdateQuestionComponent}
-        ]
-    },
-    {
-        path: 'student',
-        component: StudentDashboardComponent,
-        canActivate: [authGuard],
-        data: { roles: ['STUDENT'] },
-        children: [
-            {path: 'dashboard', component: StudentMainComponent},
-            {path: 'exam', component: StudentExamComponent},
-            {path: 'exam/paper', component: StudentPaperComponent},
-            {path: 'view-all-result/:studentId', component: AdminViewAllResultComponent}
-        ]
-    }
+  {
+    path: '',
+    component: LoginComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminDashboardComponent,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN'] },
+    children: [
+      { path: 'dashboard', component: AdminMainComponent },
+      { path: 'add-user', component: AdminAddUserComponent },
+      { path: 'view-all-user', component: AdminViewAllUsersComponent },
+      { path: 'create-course', component: AdminAddCourseComponent },
+      { path: 'view-all-course', component: AdminViewAllCourseComponent },
+      { path: 'create-exam', component: AdminAddExamComponent },
+      { path: 'view-all-exam', component: AdminViewAllExamComponent },
+      { path: 'add-question', component: AdminAddQuestionComponent },
+      { path: 'view-all-question', component: AdminViewAllQuestionComponent },
+      { path: 'view-all-result', component: AdminViewAllResultComponent },
+      {
+        path: 'edit-question/:questionId',
+        component: AdminUpdateQuestionComponent,
+      },
+      { path: 'update-exam/:examId', component: AdminUpdateExamComponent },
+    ],
+  },
+  {
+    path: 'teacher',
+    component: TeacherDashboardComponent,
+    canActivate: [authGuard],
+    data: { roles: ['TEACHER'] },
+    children: [
+      { path: 'dashboard', component: TeacherMainComponent },
+      { path: 'view-all-course', component: AdminViewAllCourseComponent },
+      { path: 'create-exam', component: AdminAddExamComponent },
+      { path: 'view-all-exam', component: AdminViewAllExamComponent },
+      { path: 'add-question', component: AdminAddQuestionComponent },
+      { path: 'view-all-question', component: AdminViewAllQuestionComponent },
+      { path: 'view-all-result', component: AdminViewAllResultComponent },
+      {
+        path: 'edit-question/:questionId',
+        component: AdminUpdateQuestionComponent,
+      },
+    ],
+  },
+  {
+    path: 'student',
+    component: StudentDashboardComponent,
+    canActivate: [authGuard],
+    data: { roles: ['STUDENT'] },
+    children: [
+      { path: 'dashboard', component: StudentMainComponent },
+      { path: 'exam', component: StudentExamComponent },
+      {
+        path: 'view-all-result/:studentId',
+        component: AdminViewAllResultComponent,
+      },
+    ],
+  },
+  {
+    path: 'student/exam/paper',
+    component: StudentPaperComponent,
+  },
 ];

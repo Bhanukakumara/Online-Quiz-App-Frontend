@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'app-admin-add-exam',
@@ -23,9 +24,15 @@ export class AdminAddExamComponent implements OnInit {
     private examService: ExamService,
     private courseService: CourseService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private userService:UserService
   ) {}
   ngOnInit(): void {
+    this.userService.getTeachers().subscribe({
+      next: (response)=>{
+        console.log(response);
+      }
+    });
     this.authService.me().subscribe({
       next: (response) => {
         this.createdBy = response.id;
